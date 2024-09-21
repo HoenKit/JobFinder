@@ -6,6 +6,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
+using JobFinder.Service;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -13,15 +14,16 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using JobFinder.Models;
 
 namespace JobFinder.Areas.Identity.Pages.Account
 {
     public class ForgotPasswordModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<AppUser> _userManager;
         private readonly IEmailSender _emailSender;
 
-        public ForgotPasswordModel(UserManager<IdentityUser> userManager, IEmailSender emailSender)
+        public ForgotPasswordModel(UserManager<AppUser> userManager, IEmailSender emailSender)
         {
             _userManager = userManager;
             _emailSender = emailSender;
@@ -67,15 +69,16 @@ namespace JobFinder.Areas.Identity.Pages.Account
                 var callbackUrl = Url.Page(
                     "/Account/ResetPassword",
                     pageHandler: null,
-                    values: new { area = "Identity", code },
+                    values: new { area = "Identity", code},
                     protocol: Request.Scheme);
 
                 await _emailSender.SendEmailAsync(
-                    Input.Email,
+                    "kitran2610@gmail.com",
                     "Reset Password",
                     $"Please Enter link to reset your password<a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>Reset PassWord</a>.");
-
+            
                 return RedirectToPage("./ForgotPasswordConfirmation");
+                
             }
 
             return Page();

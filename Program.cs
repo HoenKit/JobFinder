@@ -1,4 +1,5 @@
 ﻿using JobFinder.Data;
+using JobFinder.Models;
 using JobFinder.Service;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
@@ -15,7 +16,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
 
@@ -24,7 +25,7 @@ builder.Services.AddRazorPages();
 builder.Services.ConfigureApplicationCookie(options => {
     options.LoginPath = "/login/";
     options.LogoutPath = "/logout/";
-    options.AccessDeniedPath = "/khongduoctruycap.html";
+    options.AccessDeniedPath = "/AccessDenied";
 });
 builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
 builder.Services.Configure<IdentityOptions>(options =>
@@ -53,7 +54,7 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.SignIn.RequireConfirmedAccount = true; // Confirmed account required
 });
 
-builder.Services.AddAuthentication(options =>
+/*builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
@@ -65,7 +66,7 @@ builder.Services.AddAuthentication(options =>
     options.ClientId = gconfig["ClientId"];
     options.ClientSecret = gconfig["ClientSecret"];
      options.CallbackPath = "/ExternalLogin"; 
-});
+});*/
 // Register the email sender service
 builder.Services.AddSingleton<IEmailSender, SendMailService>();
 var app = builder.Build();
@@ -86,7 +87,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();

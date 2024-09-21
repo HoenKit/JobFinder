@@ -15,16 +15,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using NuGet.Protocol.Plugins;
+using JobFinder.Models;
 
 namespace JobFinder.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly SignInManager<AppUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<AppUser> _userManager;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger, UserManager<IdentityUser> userManager)
+        public LoginModel(SignInManager<AppUser> signInManager, ILogger<LoginModel> logger, UserManager<AppUser> userManager)
         {
             _signInManager = signInManager;
             _logger = logger;
@@ -127,6 +128,7 @@ namespace JobFinder.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+                    
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -144,7 +146,6 @@ namespace JobFinder.Areas.Identity.Pages.Account
                     return Page();
                 }
             }
-
             // If we got this far, something failed, redisplay form
             return Page();
         }
