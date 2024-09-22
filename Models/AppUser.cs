@@ -6,8 +6,8 @@ namespace JobFinder.Models
 {
     public class AppUser : IdentityUser
     {
-       public int ProfileStatus { get; set; }
+       public int ProfileStatus { get; set; } = 0;
 
-      public string Avatar {  get; set; }
+      public string? Avatar {  get; set; }
     }
 }
