@@ -31,6 +31,7 @@ namespace JobFinder.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Avatar")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -98,8 +99,8 @@ namespace JobFinder.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
 
                     b.Property<DateTime>("ApplicationDate")
                         .HasColumnType("datetime2");
@@ -383,19 +384,19 @@ namespace JobFinder.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8d585fb2-057c-4239-8018-fca8086c24fb",
+                            Id = "e6036d07-8705-4481-b461-20a34372dd72",
                             Name = "Administrator",
                             NormalizedName = "Administrator"
                         },
                         new
                         {
-                            Id = "2c2c2a4e-2bfd-4a7f-87df-e8ff5c872914",
+                            Id = "9928b7bc-c3af-4f81-b4f9-55e43485aa34",
                             Name = "Users",
                             NormalizedName = "Users"
                         },
                         new
                         {
-                            Id = "5edf059e-b7bd-4edb-8c2b-74eedf9ab049",
+                            Id = "59813c05-1412-4ba5-9dd9-d27977f7609b",
                             Name = "Recruiter",
                             NormalizedName = "Recruiter"
                         });
