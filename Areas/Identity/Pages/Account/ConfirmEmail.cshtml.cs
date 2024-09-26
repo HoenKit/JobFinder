@@ -31,6 +31,7 @@ namespace JobFinder.Areas.Identity.Pages.Account
         [TempData]
         public string StatusMessage { get; set; }
         public bool IsRecruiter { get; set; }
+        public string UserId { get; set; }
         public async Task<IActionResult> OnGetAsync(string userId, string code)
         {
             if (userId == null || code == null)
@@ -50,6 +51,7 @@ namespace JobFinder.Areas.Identity.Pages.Account
 
             // Check if the user is in "Admin" role
             IsRecruiter = await _userManager.IsInRoleAsync(user, "Recruiter");
+            UserId = userId;
             return Page();
         }
     }

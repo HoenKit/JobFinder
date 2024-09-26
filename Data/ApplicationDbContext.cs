@@ -22,7 +22,7 @@ namespace JobFinder.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            var admin = new IdentityRole("Administrator");
+            /*var admin = new IdentityRole("Administrator");
             admin.NormalizedName = "Administrator";
 
             var users = new IdentityRole("Users");
@@ -30,7 +30,7 @@ namespace JobFinder.Data
 
             var recruiter = new IdentityRole("Recruiter");
             recruiter.NormalizedName = "Recruiter";
-            builder.Entity<IdentityRole>().HasData(admin, users, recruiter);
+            builder.Entity<IdentityRole>().HasData(admin, users, recruiter);*/
 
             builder.Entity<JobPosting>(entity =>
             {

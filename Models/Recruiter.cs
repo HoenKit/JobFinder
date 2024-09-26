@@ -14,5 +14,6 @@
         public AppUser? User { get; set; }
         public string UserId { get; set; }
         public ICollection<JobPosting> JobPostings { get; set; }
+        public string? CompanyImage {  get; set; }
     }
 }

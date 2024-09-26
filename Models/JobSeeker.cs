@@ -16,7 +16,7 @@
         public int JobPositionId { get; set; }
         public AppUser? User { get; set; }
         public string UserId { get; set; }
-        public ICollection<Application> Applications { get; set; }
+        public ICollection<Application>? Applications { get; set; }
         
     }
 }

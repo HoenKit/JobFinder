@@ -1,5 +1,93 @@
 ﻿@page
 @model JobFinder.Pages.RegisterJobSeekerModel
 @{
+    ViewData["Title"] = "Fill Job Seeker Form";
 }
-<h2>This is Job Seeker Form</h2>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-6 col-sm-12">
+            <section class="card shadow-lg p-4">
+                <h2 class="text-center mb-4">@ViewData["Title"]</h2>
+                @if (!ModelState.IsValid)
+                {
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                            {
+                                <li>@error.ErrorMessage</li>
+                            }
+                        </ul>
+                    </div>
+                }
+                <form method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="FirstName">First Name</label>
+                        <input type="text" id="FirstName" name="FirstName" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="LastName">Last Name</label>
+                        <input type="text" id="LastName" name="LastName" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Birthday">Birthday</label>
+                        <input type="date" id="Birthday" name="Birthday" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Address">Address</label>
+                        <input type="text" id="Address" name="Address" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="EducationLevel">Education Level</label>
+                        <select id="EducationLevel" name="EducationLevel" class="form-control" required>
+                            <option value="">Select</option>
+                            <option value="High School">High School</option>
+                            <option value="Associate Degree">Associate Degree</option>
+                            <option value="Bachelor's Degree">Bachelor's Degree</option>
+                            <option value="Master's Degree">Master's Degree</option>
+                            <option value="Doctorate">Doctorate</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Specialized">Specialized</label>
+                        <input type="text" id="Specialized" name="Specialized" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Experience">Experience (Years)</label>
+                        <input type="number" id="Experience" name="Experience" class="form-control" min="1" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CV">Upload CV</label>
+                        <input type="file" id="CV" name="CV" class="form-control" required />
+                    </div>
+
+                    <div>
+                        <label for="JobPositionId">Job Position:</label>
+                        <select id="JobPositionId" name="JobPositionId" class="form-control" required>
+                            <option value="">Select Position</option>
+                            @if (Model.JobPositions != null && Model.JobPositions.Any())
+                            {
+                                foreach (var position in Model.JobPositions)
+                                {
+                                    <option value="@position.Id">@position.JobPositionName</option>
+                                }
+                            }
+                            else
+                            {
+                                <option value="">No positions available</option>
+                            }
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>

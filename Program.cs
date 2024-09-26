@@ -1,5 +1,7 @@
 ﻿using JobFinder.Data;
+using JobFinder.Interface;
 using JobFinder.Models;
+using JobFinder.Repository;
 using JobFinder.Service;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
@@ -86,6 +88,9 @@ PayOS payOS = new PayOS(
 );
 
 builder.Services.AddSingleton(payOS);
+//Config Repository
+builder.Services.AddScoped<IJobPositionRepository, JobPositionRepository>();
+builder.Services.AddScoped<IJobSeekerRepository, JobSeekerRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
