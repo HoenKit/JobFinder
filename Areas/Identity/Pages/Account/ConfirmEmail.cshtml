@@ -5,4 +5,30 @@
 }
 
 <h1>@ViewData["Title"]</h1>
-<partial name="_StatusMessage" model="Model.StatusMessage" />
+
+<div>
+    @Model.StatusMessage
+    Wait a bit to fill form
+</div>
+
+
+@if (!string.IsNullOrEmpty(Model.StatusMessage) && Model.StatusMessage.Contains("successful"))
+{
+    @if (User.IsInRole("Recruiter"))
+    {
+        <script type="text/javascript">
+            setTimeout(function () {
+                window.location.href = '/RegisterRecruiter'; // Redirect to Index page after 5 seconds
+            }, 5000); // 5000 milliseconds = 5 seconds
+        </script>
+    }
+    else
+    {
+        <script type="text/javascript">
+            setTimeout(function () {
+                window.location.href = '/RegisterJobSeeker'; // Redirect to Index page after 5 seconds
+            }, 5000); // 5000 milliseconds = 5 seconds
+        </script>
+    }
+
+}

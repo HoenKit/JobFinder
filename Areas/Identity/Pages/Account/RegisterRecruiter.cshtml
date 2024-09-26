@@ -1,5 +1,5 @@
 ﻿@page
-@model RegisterModel
+@model RegisterRecruiterModel
 @{
     ViewData["Title"] = "Register";
 }
@@ -46,18 +46,19 @@
     <div class="row justify-content-center mt-4">
         <div class="col-lg-5 col-md-6 col-sm-12">
             <section class="card shadow-lg p-4">
-                <a class="btn head-btn1" asp-page="/Payment">Become Recruiter</a>
+                <a class="btn head-btn1" asp-area="Identity" asp-page="/Account/Register">Become Job Seeker</a>
                 <h5 class="mb-3 text-center">Use another service to register</h5>
                 <hr />
                 @{
                     if ((Model.ExternalLogins?.Count ?? 0) == 0)
                     {
                         <div class="text-center">
-                                <p>
-                                    There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
+                            <p>
+                                There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
+                                    article
                                     about setting up this ASP.NET application to support logging in via external services
-                                    </a>.
-                                </p>
+                                </a>.
+                            </p>
                         </div>
                     }
                     else

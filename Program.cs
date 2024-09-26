@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using Net.payOS;
 using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -75,6 +76,16 @@ builder.Services.Configure<IdentityOptions>(options =>
 });*/
 // Register the email sender service
 builder.Services.AddSingleton<IEmailSender, SendMailService>();
+
+// Config for PayOs
+var configuration = builder.Configuration;
+PayOS payOS = new PayOS(
+    configuration["Environment:PAYOS_CLIENT_ID"] ?? throw new Exception("PAYOS_CLIENT_ID không được tìm thấy"),
+    configuration["Environment:PAYOS_API_KEY"] ?? throw new Exception("PAYOS_API_KEY không được tìm thấy"),
+    configuration["Environment:PAYOS_CHECKSUM_KEY"] ?? throw new Exception("PAYOS_CHECKSUM_KEY không được tìm thấy")
+);
+
+builder.Services.AddSingleton(payOS);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

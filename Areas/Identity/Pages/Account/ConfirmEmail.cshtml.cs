@@ -30,6 +30,7 @@ namespace JobFinder.Areas.Identity.Pages.Account
         /// </summary>
         [TempData]
         public string StatusMessage { get; set; }
+        public bool IsRecruiter { get; set; }
         public async Task<IActionResult> OnGetAsync(string userId, string code)
         {
             if (userId == null || code == null)
@@ -46,6 +47,9 @@ namespace JobFinder.Areas.Identity.Pages.Account
             code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
             var result = await _userManager.ConfirmEmailAsync(user, code);
             StatusMessage = result.Succeeded ? "Email confirmation successful, your account has been activated.." : "Error confirming your email.";
+
+            // Check if the user is in "Admin" role
+            IsRecruiter = await _userManager.IsInRoleAsync(user, "Recruiter");
             return Page();
         }
     }

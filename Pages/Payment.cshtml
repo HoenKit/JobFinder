@@ -1,0 +1,53 @@
+﻿@page
+@model JobFinder.Pages.PaymentModel
+@{
+    ViewData["Title"] = "Become A Recruiter";
+}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-6 col-sm-12">
+            <section class="card shadow-lg p-4">
+                <h2 class="text-center mb-4">@ViewData["Title"]</h2>
+
+                <form method="post" asp-page-handler="CreatePaymentLink">
+                    <div>
+                        <input type="text" id="ProductName" name="PaymentRequest.ProductName" required value="Register As Recruiter" hidden readonly />
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label for="Description" style="font-weight: bold; font-size: 16px; display: block; margin-bottom: 10px;">
+                            Description:
+                        </label>
+                        <p style="font-size: 14px; line-height: 1.6; margin-bottom: 10px;">
+                            Sign up as a recruiter today and find talented candidates in just a few easy steps!
+                            <br><br>
+                            At JobFinder, we make it easy for businesses of all sizes to connect with the best talent in the job market.
+                            By becoming an employer on our platform, you will enjoy these exceptional benefits:
+                        </p>
+                        <ul style="font-size: 14px; line-height: 1.6; margin-left: 20px;">
+                            <li><strong>Quick access to the right candidates:</strong> With our intelligent filtering system and extensive database, you can quickly find candidates who have the skills and experience that match your job requirements.</li>
+                            <li><strong>Convenient hiring process:</strong> Manage job postings, review candidate profiles, and schedule interviews directly through our platform – everything is optimized to save you time and effort.</li>
+                            <li><strong>Powerful analytics tools:</strong> Track the performance of your job postings with detailed reports, helping you optimize your recruitment strategy and improve your talent search process.</li>
+                            <li><strong>Transparency and credibility guaranteed:</strong> Our platform is committed to maintaining transparency between employers and candidates. Every candidate is verified, giving you peace of mind in your hiring decisions.</li>
+                            <li><strong>Comprehensive support:</strong> Our dedicated support team is always available to answer your questions, making it easy for you to use the platform and find the best talent for your business.</li>
+                        </ul>
+                        <p style="font-size: 14px; line-height: 1.6;">
+                            Sign up today and experience a fast, efficient hiring process with us!
+                        </p>
+                        <input type="text" id="Description" name="PaymentRequest.Description"
+                               value="You will become recruiter"
+                               readonly hidden required />
+                    </div>
+
+                    <div>
+                        <label for="Price">Price : 30.000đ/month </label>
+                        <input type="number" id="Price" name="PaymentRequest.Price" required value="30000" readonly hidden />
+                    </div>
+
+                    <button class="btn head-btn2" type="submit">Accept</button>
+                    <a class="btn head-btn1" asp-area="Identity" asp-page="/Account/Register">Become Job Seeker</a>
+                </form>
+
+            </section>
+        </div>
+    </div>
+</div>
