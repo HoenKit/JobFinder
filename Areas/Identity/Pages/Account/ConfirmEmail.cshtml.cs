@@ -49,7 +49,6 @@ namespace JobFinder.Areas.Identity.Pages.Account
             var result = await _userManager.ConfirmEmailAsync(user, code);
             StatusMessage = result.Succeeded ? "Email confirmation successful, your account has been activated.." : "Error confirming your email.";
 
-            // Check if the user is in "Admin" role
             IsRecruiter = await _userManager.IsInRoleAsync(user, "Recruiter");
             UserId = userId;
             return Page();

@@ -38,7 +38,7 @@ namespace JobFinder.Pages
         [BindProperty]
         [Required(ErrorMessage = "Address is required.")]
         [StringLength(100, ErrorMessage = "Address can't be longer than 100 characters.")]
-        public string Address { get; set; }
+        public string fullAddress { get; set; }
 
         [BindProperty]
         [Required(ErrorMessage = "Education Level is required.")]
@@ -93,7 +93,7 @@ namespace JobFinder.Pages
                 FirstName = FirstName,
                 LastName = LastName,
                 Birthday = Birthday,
-                Address = Address,
+                Address = fullAddress,
                 EducationLevel = EducationLevel,
                 Specialized = Specialized,
                 Experience = Experience,

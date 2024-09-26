@@ -8,7 +8,7 @@
         public string? CompanyWebsite { get; set; }
         public string CompanyPhone { get; set; }
         public string CompanyEmail { get; set; }
-        public DateTime RegisterDate { get; set; } = DateTime.Now;
+        public DateTime RegisterDate { get; set; } = DateTime.UtcNow;
         public string Address { get; set; }
         public int StaffSize { get; set; }
         public AppUser? User { get; set; }

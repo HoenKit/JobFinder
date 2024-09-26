@@ -14,7 +14,7 @@
 
 @if (!string.IsNullOrEmpty(Model.StatusMessage) && Model.StatusMessage.Contains("successful"))
 {
-    @if (User.IsInRole("Recruiter"))
+    @if (Model.IsRecruiter)
     {
         <script type="text/javascript">
             setTimeout(function () {
