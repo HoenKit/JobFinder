@@ -6,37 +6,88 @@
     @if (SignInManager.IsSignedIn(User))
     {
         if (User.IsInRole("Administrator"))
-        {
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Admin</a>
-            </li>
-            <li class="nav-item">
-                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
-                    <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-                </form>
-            </li>
+        {   
+            <div class="header-btn d-none f-right d-lg-block ml-auto">
+                <div class="dropdown">
+                  <!-- Thay đổi biểu tượng thành nút dropdown -->
+                    <a href="#" class="btn btn-secondary dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        Admin Menu <!-- Văn bản thay thế cho icon -->
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="dropdown-item">
+                            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Edit</a>
+                      
+                        <li class="dropdown-item">
+                            <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+                                <button type="submit" class="dropdown-item text-danger">Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+             </div>
         }
         else if (User.IsInRole("Users"))
         {
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)</a>
-            </li>
-            <li class="nav-item">
-                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
-                    <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-                </form>
-            </li>
+            <div class="header-btn d-none f-right d-lg-block ml-auto">
+                <div class="dropdown">
+                    <!-- Thay đổi biểu tượng thành nút dropdown -->
+                    <a href="#" class="btn btn-secondary dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        User Menu <!-- Văn bản thay thế cho icon -->
+                    </a>
+
+                    <!-- Menu dropdown -->
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <!-- Hiển thị tên người dùng -->
+                        <li class="dropdown-item">
+                            Hello, @UserManager.GetUserName(User)
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <!-- Nút chỉnh sửa hồ sơ -->
+                        <li class="dropdown-item">
+                            <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Edit Profile</a>
+                        </li>
+                        <!-- Nút đăng xuất -->
+                        <li class="dropdown-item">
+                            <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+                                <button type="submit" class="dropdown-item text-danger">Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         }
+
+
         else if (User.IsInRole("Recruiter"))
         {
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Company : @UserManager.GetUserName(User)</a>
-            </li>
-            <li class="nav-item">
-                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
-                    <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-                </form>
-            </li>
+            <div class="header-btn d-none f-right d-lg-block ml-auto">
+                <div class="dropdown">
+                    <a href="#" class="btn btn-secondary dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        Recruiter Menu
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li class="dropdown-item">
+                            Company : @UserManager.GetUserName(User)
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="dropdown-item">
+                            <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Edit Profile</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+                                <button type="submit" class="dropdown-item text-danger">Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
 
         }
