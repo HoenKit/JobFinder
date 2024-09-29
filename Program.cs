@@ -92,6 +92,7 @@ builder.Services.AddSingleton(payOS);
 builder.Services.AddScoped<IJobPositionRepository, JobPositionRepository>();
 builder.Services.AddScoped<IJobSeekerRepository, JobSeekerRepository>();
 builder.Services.AddScoped<IRecruiterRepository, RecruiterRepository>();
+builder.Services.AddScoped<IJobPostingRepository, JobPostingRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
