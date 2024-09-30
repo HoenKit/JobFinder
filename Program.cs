@@ -19,6 +19,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+builder.Services.AddScoped<IAppUserRepository, AppUserRepository>();
+
 builder.Services.AddIdentity<AppUser, IdentityRole>()
 .AddDefaultUI()
 .AddDefaultTokenProviders()
