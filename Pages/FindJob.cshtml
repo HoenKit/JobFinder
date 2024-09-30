@@ -69,6 +69,7 @@
                             </div>
                         </div>
                         <!-- Job Category Listing start -->
+                        <form id="jobFilterForm" method="get" action="/FindJob">
                         <div class="job-category-listing mb-50">
                             <!-- single one -->
                             <div class="single-listing">
@@ -86,33 +87,39 @@
                                     </select>
                                 </div>
                                 <!--  Select job items End-->
-                                <!-- select-Categories start -->
-                                <div class="select-Categories pt-80 pb-50">
-                                    <div class="small-section-tittle2">
-                                        <h4>Job Type</h4>
+                                
+                                    <!-- select-Categories start -->
+                                    <div class="select-Categories pt-80 pb-50">
+                                        <div class="small-section-tittle2">
+                                            <h4>Job Type</h4>
+                                        </div>
+                                        <label class="container">
+                                            Full Time
+                                            <input type="checkbox" name="JobTypeFilter" value="Full Time"
+                                            @(@Model.JobTypeFilter != null && @Model.JobTypeFilter.Contains("Full Time") ? "checked" : "")">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="container">
+                                            Part Time
+                                            <input type="checkbox" name="JobTypeFilter" value="Part Time"
+                                            @(@Model.JobTypeFilter != null && @Model.JobTypeFilter.Contains("Part Time") ? "checked" : "")">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="container">
+                                            Remote
+                                            <input type="checkbox" name="JobTypeFilter" value="Remote"
+                                            @(@Model.JobTypeFilter != null && @Model.JobTypeFilter.Contains("Remote") ? "checked" : "")">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="container">
+                                            Freelance
+                                            <input type="checkbox" name="JobTypeFilter" value="Freelance"
+                                            @(@Model.JobTypeFilter != null && @Model.JobTypeFilter.Contains("Freelance") ? "checked" : "")">
+                                            <span class="checkmark"></span>
+                                        </label>
                                     </div>
-                                    <label class="container">
-                                        Full Time
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">
-                                        Part Time
-                                        <input type="checkbox" checked="checked active">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">
-                                        Remote
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">
-                                        Freelance
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <!-- select-Categories End -->
+                                    <!-- select-Categories End -->
+                                
                             </div>
                             <!-- single two -->
                             <div class="single-listing">
@@ -137,22 +144,26 @@
                                     </div>
                                     <label class="container">
                                         1-2 Years
-                                        <input type="checkbox">
+                                        <input type="checkbox" name="ExperienceFilter" value="1-2"
+                                        @(Model.ExperienceFilter != null && Model.ExperienceFilter.Contains("1-2") ? "checked" : "")">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container">
                                         2-3 Years
-                                        <input type="checkbox" checked="checked active">
+                                        <input type="checkbox" name="ExperienceFilter" value="2-3"
+                                        @(Model.ExperienceFilter != null && Model.ExperienceFilter.Contains("2-3") ? "checked" : "")">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container">
                                         3-6 Years
-                                        <input type="checkbox">
+                                        <input type="checkbox" name="ExperienceFilter" value="3-6"
+                                        @(Model.ExperienceFilter != null && Model.ExperienceFilter.Contains("3-6") ? "checked" : "")>
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container">
-                                        6-more..
-                                        <input type="checkbox">
+                                        6+ Years
+                                        <input type="checkbox" name="ExperienceFilter" value="6-more"
+                                        @(Model.ExperienceFilter != null && Model.ExperienceFilter.Contains("6-more") ? "checked" : "")>
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
@@ -165,65 +176,66 @@
                                     <div class="small-section-tittle2">
                                         <h4>Posted Within</h4>
                                     </div>
-                                    <label class="container">
-                                        Any
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">
-                                        Today
-                                        <input type="checkbox" checked="checked active">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">
-                                        Last 2 days
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">
-                                        Last 3 days
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">
-                                        Last 5 days
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">
-                                        Last 10 days
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
+                                        <label class="container">
+                                            Any
+                                            <input type="radio" name="postedWithin" value="0" checked>
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="container">
+                                            Today
+                                            <input type="radio" name="postedWithin" value="1">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="container">
+                                            Last 2 days
+                                            <input type="radio" name="postedWithin" value="2">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="container">
+                                            Last 3 days
+                                            <input type="radio" name="postedWithin" value="3">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="container">
+                                            Last 5 days
+                                            <input type="radio" name="postedWithin" value="5">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="container">
+                                            Last 10 days
+                                            <input type="radio" name="postedWithin" value="10">
+                                            <span class="checkmark"></span>
+                                        </label>
                                 </div>
                                 <!-- select-Categories End -->
                             </div>
                             <div class="single-listing">
-                                <!-- Range Slider Start -->
-                                <aside class="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow">
-                                    <div class="small-section-tittle2">
-                                        <h4>Filter Jobs</h4>
-                                    </div>
-                                    <div class="widgets_inner">
-                                        <div class="range_item">
-                                            <!-- <div id="slider-range"></div> -->
-                                            <input type="text" class="js-range-slider" value="" />
-                                            <div class="d-flex align-items-center">
-                                                <div class="price_text">
-                                                    <p>Price :</p>
-                                                </div>
-                                                <div class="price_value d-flex justify-content-center">
-                                                    <input type="text" class="js-input-from" id="amount" readonly />
-                                                    <span>to</span>
-                                                    <input type="text" class="js-input-to" id="amount" readonly />
+                                    <!-- Range Slider Start -->
+                                    <aside class="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow">
+                                        <div class="small-section-tittle2">
+                                            <h4>Filter Jobs by Salary</h4>
+                                        </div>
+                                        <div class="widgets_inner">
+                                            <div class="range_item">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="price_text">
+                                                        <p>Salary :</p>
+                                                    </div>
+                                                    <div class="price_value d-flex justify-content-center">
+                                                        <input type="text" class="border" name="MinSalary" value="0" />
+                                                        <span>to</span>
+                                                        <input type="text" class="border" name="MaxSalary" value="5000000"/>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </aside>
-                                <!-- Range Slider End -->
+                                    </aside>
+                                    <!-- Range Slider End -->
+                                    <br />
+                                    <button style="background-color: crimson" class="btn-secondary" type="submit">Filter Jobs</button>
                             </div>
                         </div>
+                        </form>
                         <!-- Job Category Listing End -->
                     </div>
                     <!-- Right content -->
@@ -235,7 +247,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="count-job mb-35">
-                                            <span>39, 782 Jobs found</span>
+                                            <span>@Model.JobPostings.TotalRecords Jobs found</span>
                                             <!-- Select job items start -->
                                             <div class="select-job-items">
                                                 <span>Sort by</span>
@@ -252,72 +264,37 @@
                                 </div>
                                 <!-- Count of Job list End -->
                                 <!-- single-job-content -->
-                                <div class="single-job-items mb-30">
-                                    <div class="job-items">
-                                        <div class="company-img">
-                                            <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
-                                        </div>
-                                        <div class="job-tittle job-tittle2">
-                                            <a href="#">
-                                                <h4>Digital Marketer</h4>
-                                            </a>
-                                            <ul>
-                                                <li>Creative Agency</li>
-                                                <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                                <li>$3500 - $4000</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="items-link items-link2 f-right">
-                                        <a href="/FindJobDetail">Full Time</a>
-                                        <span>7 hours ago</span>        
-                                    </div>
-                                </div>
-                                <!-- single-job-content -->
-                                <div class="single-job-items mb-30">
-                                    <div class="job-items">
-                                        <div class="company-img">
-                                            <a href="#"><img src="assets/img/icon/job-list2.png" alt=""></a>
-                                        </div>
-                                        <div class="job-tittle job-tittle2">
-                                            <a href="#">
-                                                <h4>Digital Marketer</h4>
-                                            </a>
-                                            <ul>
-                                                <li>Creative Agency</li>
-                                                <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                                <li>$3500 - $4000</li>
-                                            </ul>
+                                @foreach (var job in Model.JobPostings.Data)
+                                {
+                                    <div class="single-job-items mb-30" style="padding: 15px;">
+                                        <div class="job-items d-flex align-items-center">
+                                            <div class="company-img">
+                                                <a href="#">
+                                                    <img src="@job.Recruiter.CompanyImage" alt="@job.JobTitle" style="width: 80px; height: 80px;">
+                                                </a>
+                                            </div>
+                                            <div class="job-tittle job-tittle2" style="margin-left: 15px;">
+                                                <a href="/FindJobDetail?Id=@job.Id">
+                                                    <h4>@job.JobTitle</h4>
+                                                </a>
+                                                <ul class="d-flex align-items-center" style="list-style-type: none; padding-left: 0; margin-top: 5px;">
+                                                    <li style="margin-right: 20px;">@job.Recruiter.CompanyName</li>
+                                                    <li style="margin-right: 20px;">
+                                                        <i class="fas fa-map-marker-alt"></i> @job.JobLocation
+                                                    </li>
+                                                    <li>@job.Salary đ</li>
+                                                </ul>
+                                            </div>
+                                            <div class="items-link f-right" style="margin-left: auto;">
+                                                <a href="/FindJobDetail?Id=@job.Id" >
+                                                    @job.JobNature.JobNatureName
+                                                </a>
+                                                <span style="display: block; margin-top: 5px;">@job.PostDate.ToString("dd/MM/yyyy")</span>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="items-link items-link2 f-right">
-                                        <a href="/FindJobDetail">Full Time</a>
-                                        <span>7 hours ago</span>
-                                    </div>
-                                </div>
-                                <!-- single-job-content -->
-                                <div class="single-job-items mb-30">
-                                    <div class="job-items">
-                                        <div class="company-img">
-                                            <a href="#"><img src="assets/img/icon/job-list3.png" alt=""></a>
-                                        </div>
-                                        <div class="job-tittle job-tittle2">
-                                            <a href="#">
-                                                <h4>Digital Marketer</h4>
-                                            </a>
-                                            <ul>
-                                                <li>Creative Agency</li>
-                                                <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                                <li>$3500 - $4000</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="items-link items-link2 f-right">
-                                        <a href="/FindJobDetail">Full Time</a>
-                                        <span>7 hours ago</span>
-                                    </div>
-                                </div>
-                                <!-- single-job-content -->
+                                }
+                                <!-- single-job-content 
                                 <div class="single-job-items mb-30">
                                     <div class="job-items">
                                         <div class="company-img">
@@ -338,73 +315,7 @@
                                         <a href="/FindJobDetail">Full Time</a>
                                         <span>7 hours ago</span>
                                     </div>
-                                </div>
-                                <!-- single-job-content -->
-                                <div class="single-job-items mb-30">
-                                    <div class="job-items">
-                                        <div class="company-img">
-                                            <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
-                                        </div>
-                                        <div class="job-tittle job-tittle2">
-                                            <a href="#">
-                                                <h4>Digital Marketer</h4>
-                                            </a>
-                                            <ul>
-                                                <li>Creative Agency</li>
-                                                <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                                <li>$3500 - $4000</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="items-link items-link2 f-right">
-                                        <a href="/FindJobDetail">Full Time</a>
-                                        <span>7 hours ago</span>
-                                    </div>
-                                </div>
-                                <!-- single-job-content -->
-                                <div class="single-job-items mb-30">
-                                    <div class="job-items">
-                                        <div class="company-img">
-                                            <a href="#"><img src="assets/img/icon/job-list3.png" alt=""></a>
-                                        </div>
-                                        <div class="job-tittle job-tittle2">
-                                            <a href="#">
-                                                <h4>Digital Marketer</h4>
-                                            </a>
-                                            <ul>
-                                                <li>Creative Agency</li>
-                                                <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                                <li>$3500 - $4000</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="items-link items-link2 f-right">
-                                        <a href="/FindJobDetail">Full Time</a>
-                                        <span>7 hours ago</span>
-                                    </div>
-                                </div>
-                                <!-- single-job-content -->
-                                <div class="single-job-items mb-30">
-                                    <div class="job-items">
-                                        <div class="company-img">
-                                            <a href="#"><img src="assets/img/icon/job-list4.png" alt=""></a>
-                                        </div>
-                                        <div class="job-tittle job-tittle2">
-                                            <a href="#">
-                                                <h4>Digital Marketer</h4>
-                                            </a>
-                                            <ul>
-                                                <li>Creative Agency</li>
-                                                <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                                <li>$3500 - $4000</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="items-link items-link2 f-right">
-                                        <a href="/FindJobDetail">Full Time</a>
-                                        <span>7 hours ago</span>
-                                    </div>
-                                </div>
+                                </div>-->
                             </div>
                         </section>
                         <!-- Featured_job_end -->
@@ -413,7 +324,7 @@
             </div>
         </div>
         <!-- Job List Area End -->
-        <!--Pagination Start  -->
+        <!-- Pagination Start -->
         <div class="pagination-area pb-115 text-center">
             <div class="container">
                 <div class="row">
@@ -421,10 +332,17 @@
                         <div class="single-wrap d-flex justify-content-center">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination justify-content-start">
-                                    <li class="page-item active"><a class="page-link" href="#">01</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">02</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">03</a></li>
-                                    <li class="page-item"><a class="page-link" href="#"><span class="ti-angle-right"></span></a></li>
+                                    @for (int i = 1; i <= Model.JobPostings.TotalPages; i++)
+                                    {
+                                        <li class="page-item @(i == Model.JobPostings.PageNumber ? "active" : "")">
+                                            <a class="page-link" href="?PageNumber=@i">@i.ToString("D2")</a>
+                                        </li>
+                                    }
+                                    <li class="page-item">
+                                        <a class="page-link" href="?PageNumber=@(Model.JobPostings.PageNumber + 1)">
+                                            <span class="ti-angle-right"></span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </nav>
                         </div>
@@ -432,8 +350,8 @@
                 </div>
             </div>
         </div>
-        <!--Pagination End  -->
 
+        <!-- Pagination End -->
 
     </main>
 
@@ -446,7 +364,7 @@
     <script src="~/assets/js/jquery.slicknav.min.js"></script>
     <script src="~/assets/js/owl.carousel.min.js"></script>
     <script src="~/assets/js/slick.min.js"></script>
-    <script src="~/assets/js/price_rangs.js"></script>
+    <script src="~/assets/js/price_rangs.js"></script> 
     <script src="~/assets/js/wow.min.js"></script>
     <script src="~/assets/js/animated.headline.js"></script>
     <script src="~/assets/js/jquery.magnific-popup.js"></script>

@@ -2378,16 +2378,16 @@ var $range = $(".js-range-slider"),
     $inputTo = $(".js-input-to"),
     instance,
     min = 0,
-    max = 1000,
-    from = 10,
-    to = 100;
+    max = 100000000,
+    from = 0,
+    to = 5000000;
 
 $range.ionRangeSlider({
     type: "double",
     min: min,
     max: max,
     from: 0,
-    to: 500,
+    to: 5000000,
   prefix: 'tk. ',
     onStart: updateInputs,
     onChange: updateInputs,
@@ -2440,4 +2440,4 @@ $inputTo.on("input", function () {
     });
 });
 
-    });
+});
