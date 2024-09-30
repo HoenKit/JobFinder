@@ -1,0 +1,60 @@
+﻿@page
+@model JobFinder.Areas.Identity.Pages.Admin.ManageUser.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">User Details</h1>
+
+    <div class="card">
+        <div class="card-header" style="background-color:#fb246a">
+            <h4 style="color: white;">User Information</h4>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Profile Status</dt>
+                <dd class="col-sm-9">
+                    @if (Model.AppUser.ProfileStatus == 1)
+                    {
+                        <span class="badge badge-danger">Banned</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-success">Active</span>
+                    }
+                </dd>
+                
+                <dt class="col-sm-3">Avatar</dt>
+                <dd class="col-sm-9">
+                    <img src="@Model.AppUser.Avatar" alt="User Avatar" class="img-fluid rounded" style="max-width: 150px; max-height: 150px;" />
+                </dd>
+
+                <dt class="col-sm-3">Username</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.AppUser.UserName)</dd>
+                
+                <dt class="col-sm-3">Email</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.AppUser.Email)</dd>
+                
+                <dt class="col-sm-3">Email Confirmed</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.AppUser.EmailConfirmed)</dd>
+                
+                <dt class="col-sm-3">Phone Number</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.AppUser.PhoneNumber)</dd>
+                
+                <dt class="col-sm-3">Two Factor Enabled</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.AppUser.TwoFactorEnabled)</dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a asp-page="./BanUnban" asp-route-id="@Model.AppUser.Id" class="btn btn-danger">
+            @(Model.AppUser.ProfileStatus == 1 ? "Unban User" : "Ban User")
+        </a>
+        <form method="get" asp-page="./Index" style="display:inline;">
+            <button type="submit" class="btn btn-secondary">Back to List</button>
+        </form>
+    </div>
+</div>

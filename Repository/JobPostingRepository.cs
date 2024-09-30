@@ -97,7 +97,7 @@ namespace JobFinder.Repository
                 query = query.Where(p => p.Salary <= maxSalary.Value);
             }
 
-            var totalRecords = query.Count();
+            var totalRecords = query.Count(); //giu lai
 
             var paginatedData = query
                 .Skip((pageNumber - 1) * pageSize)
