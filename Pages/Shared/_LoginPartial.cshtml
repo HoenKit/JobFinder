@@ -1,7 +1,30 @@
-﻿﻿@using JobFinder.Models
+﻿@using JobFinder.Models
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
 
+<!-- Custom styles for pink effect -->
+<style>
+    .btn-pink {
+        background-color: #e91e63; /* Pink background */
+        color: white; /* White text */
+        border: none; /* Remove borders */
+    }
+
+    .btn-pink:hover {
+        background-color: #d81b60; /* Darker pink on hover */
+    }
+
+    .dropdown-item.active,
+    .dropdown-item:active {
+        background-color: #e91e63; /* Pink background for active dropdown item */
+        color: white; /* White text for active item */
+    }
+
+    .dropdown-menu .dropdown-item:hover {
+        background-color: #f8bbd0; /* Light pink hover effect */
+        color: #e91e63; /* Pink text on hover */
+    }
+</style>
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
@@ -18,7 +41,7 @@
                             <hr class="dropdown-divider">
                         </li>
                         <li class="dropdown-item">
-                            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Edit</a>
+                            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Profile</a>
                       
                         <li class="dropdown-item">
                             <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
@@ -49,7 +72,7 @@
                         </li>
                         <!-- Nút chỉnh sửa hồ sơ -->
                         <li class="dropdown-item">
-                            <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Edit Profile</a>
+                            <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Profile</a>
                         </li>
                         <!-- Nút đăng xuất -->
                         <li class="dropdown-item">
@@ -78,7 +101,7 @@
                             <hr class="dropdown-divider">
                         </li>
                         <li class="dropdown-item">
-                            <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Edit Profile</a>
+                            <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Profile</a>
                         </li>
                         <li class="dropdown-item">
                             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">

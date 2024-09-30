@@ -6,10 +6,12 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using JobFinder.Data;
 using JobFinder.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 namespace JobFinder.Areas.Identity.Pages.Account.Manage
 {
@@ -17,13 +19,15 @@ namespace JobFinder.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private ApplicationDbContext _context;  
 
         public IndexModel(
             UserManager<AppUser> userManager,
-            SignInManager<AppUser> signInManager)
+            SignInManager<AppUser> signInManager, ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _context = context;
         }
 
         /// <summary>
@@ -59,20 +63,74 @@ namespace JobFinder.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            [Required]
+            [Display(Name = "First name")]
+            public string FirstName { get; set; }
+
+           /* [Required]
+            [Display(Name = "Last name")]
+            public string LastName { get; set; }
+
+            [DataType(DataType.Date)]
+            [Display(Name = "Date of Birth")]
+            public DateTime Birthday { get; set; }
+
+            [Display(Name = "Address")]
+            public string Address { get; set; }
+
+            [Display(Name = "Education Level")]
+            public string EducationLevel { get; set; }
+
+            [Display(Name = "Specialized")]
+            public string Specialized { get; set; }
+
+            [Display(Name = "Experience")]
+            public string Experience { get; set; }
+
+            [Display(Name = "CV URL")]
+            public string CV { get; set; }
+
+            public int JobPositionId { get; set; }
+
+            // These fields could map to User and JobPosition relationships
+            public string UserId { get; set; }
+            public string JobPosition { get; set; }*/
         }
 
         private async Task LoadAsync(AppUser user)
         {
+            // Get the username and phone number of the user
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
+            // Retrieve JobSeeker profile based on the user ID
+            var jobSeeker = await _context.JobSeeker.FirstOrDefaultAsync(js => js.UserId == user.Id);
+
+            if (jobSeeker == null)
+            {
+                // Handle case where JobSeeker profile does not exist
+                return;
+            }
+
+            // Assign the values to the Input model from JobSeeker and user data
             Username = userName;
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                FirstName = jobSeeker.FirstName,
+             /*   LastName = jobSeeker.LastName,
+                Birthday = jobSeeker.Birthday,
+                Address = jobSeeker.Address,
+                EducationLevel = jobSeeker.EducationLevel,
+                Specialized = jobSeeker.Specialized,
+                Experience = jobSeeker.Experience,
+                CV = jobSeeker.CV,
+                JobPositionId = jobSeeker.JobPositionId,*/
+                PhoneNumber = phoneNumber // Set the phone number from the user profile
             };
         }
+
 
         public async Task<IActionResult> OnGetAsync()
         {
@@ -94,11 +152,13 @@ namespace JobFinder.Areas.Identity.Pages.Account.Manage
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
+        
             if (!ModelState.IsValid)
             {
                 await LoadAsync(user);
                 return Page();
             }
+   
 
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
             if (Input.PhoneNumber != phoneNumber)
@@ -110,6 +170,26 @@ namespace JobFinder.Areas.Identity.Pages.Account.Manage
                     return RedirectToPage();
                 }
             }
+
+            var jobSeeker = await _context.JobSeeker.FirstOrDefaultAsync(js => js.UserId == user.Id);
+            if (jobSeeker == null)
+            {
+                return NotFound($"Unable to load job seeker profile for user with ID '{_userManager.GetUserId(User)}'.");
+            }
+
+            jobSeeker.FirstName = Input.FirstName;
+        /*    jobSeeker.LastName = Input.LastName;
+            jobSeeker.Birthday = Input.Birthday;
+            jobSeeker.Address = Input.Address;
+            jobSeeker.EducationLevel = Input.EducationLevel;
+            jobSeeker.Specialized = Input.Specialized;
+            jobSeeker.Experience = Input.Experience;
+            jobSeeker.CV = Input.CV;
+            jobSeeker.JobPositionId = Input.JobPositionId;*/
+
+            // Save changes to JobSeeker
+            _context.JobSeeker.Update(jobSeeker);
+            await _context.SaveChangesAsync();
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
