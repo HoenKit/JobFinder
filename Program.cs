@@ -19,8 +19,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddScoped<IAppUserRepository, AppUserRepository>();
-
 builder.Services.AddIdentity<AppUser, IdentityRole>()
 .AddDefaultUI()
 .AddDefaultTokenProviders()
@@ -95,6 +93,8 @@ builder.Services.AddScoped<IJobPositionRepository, JobPositionRepository>();
 builder.Services.AddScoped<IJobSeekerRepository, JobSeekerRepository>();
 builder.Services.AddScoped<IRecruiterRepository, RecruiterRepository>();
 builder.Services.AddScoped<IJobPostingRepository, JobPostingRepository>();
+builder.Services.AddScoped<IAppUserRepository, AppUserRepository>();
+builder.Services.AddScoped<IJobTypeRepository, JobTypeRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

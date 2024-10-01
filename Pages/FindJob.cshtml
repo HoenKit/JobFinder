@@ -74,16 +74,16 @@
                             <!-- single one -->
                             <div class="single-listing">
                                 <div class="small-section-tittle2">
-                                    <h4>Job Category</h4>
+                                    <h4>Job Type</h4>
                                 </div>
                                 <!-- Select job items start -->
                                 <div class="select-job-items2">
-                                    <select name="select">
-                                        <option value="">All Category</option>
-                                        <option value="">Category 1</option>
-                                        <option value="">Category 2</option>
-                                        <option value="">Category 3</option>
-                                        <option value="">Category 4</option>
+                                    <select id="JobTypeId" name="JobTypeId">
+                                            <option value="">All Job Types</option>
+                                            @foreach (var jt in Model.JobTypes)
+                                            {
+                                                <option value="@jt.Id">@jt.JobTypeName</option>
+                                            }                                      
                                     </select>
                                 </div>
                                 <!--  Select job items End-->
@@ -91,7 +91,7 @@
                                     <!-- select-Categories start -->
                                     <div class="select-Categories pt-80 pb-50">
                                         <div class="small-section-tittle2">
-                                            <h4>Job Type</h4>
+                                            <h4>Job Nature</h4>
                                         </div>
                                         <label class="container">
                                             Full Time
@@ -127,15 +127,21 @@
                                     <h4>Job Location</h4>
                                 </div>
                                 <!-- Select job items start -->
-                                <div class="select-job-items2">
-                                    <select name="select">
-                                        <option value="">Anywhere</option>
-                                        <option value="">Category 1</option>
-                                        <option value="">Category 2</option>
-                                        <option value="">Category 3</option>
-                                        <option value="">Category 4</option>
-                                    </select>
-                                </div>
+                                    <div class="form-group">
+                                        <label for="province">Province/City</label>
+                                        <select id="province" class="form-control">
+                                            <option value="">Select a province/city</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="district">District</label>
+                                        <select id="district" name="district" class="form-control">
+                                            <option value="">Select a district</option>
+                                        </select>
+                                    </div>
+                                    <!-- Hidden field to store the concatenated full address -->
+                                    <input type="hidden" id="fullAddress" name="fullAddress" />
                                 <!--  Select job items End-->
                                 <!-- select-Categories start -->
                                 <div class="select-Categories pt-80 pb-50">
@@ -284,7 +290,7 @@
                                         <div class="count-job mb-35">
                                             <span>@Model.JobPostings.TotalRecords Jobs found</span>
                                             <!-- Select job items start -->
-                                            <div class="select-job-items">
+                                           @*  <div class="select-job-items">
                                                 <span>Sort by</span>
                                                 <select name="select">
                                                     <option value="">None</option>
@@ -292,7 +298,7 @@
                                                     <option value="">job list</option>
                                                     <option value="">job list</option>
                                                 </select>
-                                            </div>
+                                            </div> *@
                                             <!--  Select job items End-->
                                         </div>
                                     </div>
@@ -404,6 +410,100 @@
         maxSlider.oninput = function () {
             maxValue.innerHTML = new Intl.NumberFormat().format(this.value);
         }
+
+        async function fetchProvinces() {
+            try {
+                const response = await fetch("https://provinces.open-api.vn/api/p/");
+                const provinces = await response.json();
+
+                console.log(provinces); // Log the fetched provinces to check the data
+
+                const provinceSelect = document.getElementById("province");
+                provinceSelect.innerHTML = ''; // Clear previous options
+
+                // Ensure the first option is a prompt for selection
+                const defaultOption = document.createElement("option");
+                console.log(12, provinceSelect);
+                defaultOption.value = "";
+                defaultOption.textContent = "Select a province/city";
+                provinceSelect.appendChild(defaultOption);
+
+                // Check if provinces exist
+                if (Array.isArray(provinces) && provinces.length > 0) {
+                    provinces.forEach(province => {
+                        const option = document.createElement("option");
+                        option.value = province.code; // Assign province code as the value
+                        option.textContent = province.name; // Assign province name as the display text
+                        provinceSelect.appendChild(option); // Append option to the dropdown
+                    });
+                } else {
+                    console.log("No provinces found."); // Log if no provinces are found
+                }
+            } catch (error) {
+                console.error("Error fetching provinces:", error); // Log any errors
+            }
+
+        }
+
+
+
+        async function fetchDistricts(provinceCode) {
+            const response = await fetch(`https://provinces.open-api.vn/api/p/${provinceCode}?depth=2`);
+            const provinceData = await response.json();
+
+            console.log(provinceData); // Add this line to log the response
+
+            const districtSelect = document.getElementById("district");
+            districtSelect.innerHTML = '<option value="">Select a district</option>'; // Reset district options
+
+            // Check if districts exist
+            if (provinceData.districts && provinceData.districts.length > 0) {
+                provinceData.districts.forEach(district => {
+                    const option = document.createElement("option");
+                    option.value = district.name; // Use name for concatenation later
+                    option.textContent = district.name;
+                    districtSelect.appendChild(option);
+                });
+            } else {
+                console.log("No districts found for this province."); // Log message for no districts
+            }
+        }
+
+        // Event listener for province selection change
+        document.getElementById("province").addEventListener("change", function () {
+            const provinceCode = this.value;
+            if (provinceCode) {
+                fetchDistricts(provinceCode);
+            } else {
+                document.getElementById("district").innerHTML = '<option value="">Select a district</option>'; // Reset district options
+            }
+        });
+
+        // Concatenate full address when the form is submitted
+        document.getElementById('jobFilterForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent actual form submission
+
+            const district = document.getElementById('district').value;
+            const province = document.getElementById('province').options[document.getElementById('province').selectedIndex].text;
+
+            if (district && province) {
+                const fullAddress = `${district}, ${province}`;
+                document.getElementById('fullAddress').value = fullAddress;
+
+                console.log('Full Address:', fullAddress);
+
+                // Now you can submit the form or send data via an API call
+                this.submit(); // Submit form after setting fullAddress
+            } else {
+                const fullAddress = null;
+                document.getElementById('fullAddress').value = fullAddress;
+                this.submit();
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            fetchProvinces(); // Fetch provinces once the DOM is fully loaded
+        });
     </script>
 
 

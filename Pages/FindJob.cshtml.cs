@@ -3,18 +3,26 @@ using JobFinder.Interface;
 using JobFinder.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.ComponentModel.DataAnnotations;
 
 namespace JobFinder.Pages
 {
     public class FindJobModel : PageModel
     {
         private readonly IJobPostingRepository _jobPostingRepository;
-        public FindJobModel(IJobPostingRepository jobPostingRepository)
+        private readonly IJobTypeRepository _jobTypeRepository;
+        public FindJobModel(IJobPostingRepository jobPostingRepository, IJobTypeRepository jobTypeRepository)
         {
             _jobPostingRepository = jobPostingRepository;
+            _jobTypeRepository = jobTypeRepository;
         }
 
         public PaginatedResult<JobPosting> JobPostings { get; set; }
+        public ICollection<JobType> JobTypes { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string fullAddress { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public int JobTypeId { get; set; }
         public int CurrentPage { get; set; }
         public int PageSize { get; set; } = 10;
 
@@ -34,8 +42,9 @@ namespace JobFinder.Pages
 
         public async Task<IActionResult> OnGetAsync(int pageNumber = 1)
         {
+            JobTypes = _jobTypeRepository.GetAllJobType();
             CurrentPage = pageNumber;
-            JobPostings = _jobPostingRepository.GetAllJobPostings(pageNumber, PageSize, JobTypeFilter, ExperienceFilter, postedWithin, MinSalary, MaxSalary);
+            JobPostings = _jobPostingRepository.GetAllJobPostings(pageNumber, PageSize, JobTypeFilter, ExperienceFilter, postedWithin, MinSalary, MaxSalary, JobTypeId, fullAddress);
             return Page();
         }
 

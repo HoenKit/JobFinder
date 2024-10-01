@@ -14,7 +14,7 @@ namespace JobFinder.Repository
         {
             _context = context;
         }
-        public PaginatedResult<JobPosting> GetAllJobPostings(int pageNumber, int pageSize, string[] jobTypeFilter, string[] experienceFilter, int? postedWithin, decimal? minSalary, decimal? maxSalary)
+        public PaginatedResult<JobPosting> GetAllJobPostings(int pageNumber, int pageSize, string[] jobTypeFilter, string[] experienceFilter, int? postedWithin, decimal? minSalary, decimal? maxSalary, int jobTypeId, string address)
         {
             var query = _context.JobPosting
                 .Include(p => p.JobNature)
@@ -96,8 +96,16 @@ namespace JobFinder.Repository
             {
                 query = query.Where(p => p.Salary <= maxSalary.Value);
             }
+            if (jobTypeId > 0)
+            {
+                query = query.Where(p => p.JobTypeId == jobTypeId);
+            }
+            if (!string.IsNullOrEmpty(address))
+            {
+                query = query.Where(p => p.JobLocation.Contains(address));
+            }
 
-            var totalRecords = query.Count(); //giu lai
+            var totalRecords = query.Count(); 
 
             var paginatedData = query
                 .Skip((pageNumber - 1) * pageSize)
