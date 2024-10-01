@@ -64,31 +64,39 @@ namespace JobFinder.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "First name is required")]
             [Display(Name = "First name")]
+            [StringLength(100, ErrorMessage = "First name cannot be longer than 100 characters.")]
             public string FirstName { get; set; }
 
-           /* [Required]
+            [Required(ErrorMessage = "Last name is required")]
             [Display(Name = "Last name")]
+            [StringLength(100, ErrorMessage = "Last name cannot be longer than 100 characters.")]
             public string LastName { get; set; }
 
-            [DataType(DataType.Date)]
+            [Required(ErrorMessage = "Birthday is required")]
+            [DataType(DataType.Date, ErrorMessage = "Please enter a valid date.")]
             [Display(Name = "Date of Birth")]
             public DateTime Birthday { get; set; }
 
+            [Required(ErrorMessage = "Address is required")]
             [Display(Name = "Address")]
             public string Address { get; set; }
 
+            [Required(ErrorMessage = "Education Level is required")]
             [Display(Name = "Education Level")]
             public string EducationLevel { get; set; }
 
+            [Required(ErrorMessage = "Specialization is required")]
             [Display(Name = "Specialized")]
             public string Specialized { get; set; }
 
+
+            [Required(ErrorMessage = "Experience is required")]
             [Display(Name = "Experience")]
             public string Experience { get; set; }
 
-            [Display(Name = "CV URL")]
+         /*   [Display(Name = "CV URL")]
             public string CV { get; set; }
 
             public int JobPositionId { get; set; }
@@ -119,13 +127,13 @@ namespace JobFinder.Areas.Identity.Pages.Account.Manage
             Input = new InputModel
             {
                 FirstName = jobSeeker.FirstName,
-             /*   LastName = jobSeeker.LastName,
+                LastName = jobSeeker.LastName,
                 Birthday = jobSeeker.Birthday,
                 Address = jobSeeker.Address,
                 EducationLevel = jobSeeker.EducationLevel,
                 Specialized = jobSeeker.Specialized,
                 Experience = jobSeeker.Experience,
-                CV = jobSeeker.CV,
+              /*  CV = jobSeeker.CV,
                 JobPositionId = jobSeeker.JobPositionId,*/
                 PhoneNumber = phoneNumber // Set the phone number from the user profile
             };
@@ -178,13 +186,13 @@ namespace JobFinder.Areas.Identity.Pages.Account.Manage
             }
 
             jobSeeker.FirstName = Input.FirstName;
-        /*    jobSeeker.LastName = Input.LastName;
+            jobSeeker.LastName = Input.LastName;
             jobSeeker.Birthday = Input.Birthday;
             jobSeeker.Address = Input.Address;
             jobSeeker.EducationLevel = Input.EducationLevel;
             jobSeeker.Specialized = Input.Specialized;
             jobSeeker.Experience = Input.Experience;
-            jobSeeker.CV = Input.CV;
+/*          jobSeeker.CV = Input.CV;
             jobSeeker.JobPositionId = Input.JobPositionId;*/
 
             // Save changes to JobSeeker

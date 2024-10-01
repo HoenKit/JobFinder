@@ -29,14 +29,14 @@ namespace JobFinder.Repository
             {
                 // Update each field
                 existingJobSeeker.FirstName = jobSeeker.FirstName;
-              /*  existingJobSeeker.LastName = jobSeeker.LastName;
+                existingJobSeeker.LastName = jobSeeker.LastName;
                 existingJobSeeker.Birthday = jobSeeker.Birthday;
                 existingJobSeeker.Address = jobSeeker.Address;
                 existingJobSeeker.EducationLevel = jobSeeker.EducationLevel;
                 existingJobSeeker.Specialized = jobSeeker.Specialized;
                 existingJobSeeker.Experience = jobSeeker.Experience;
-                existingJobSeeker.CV = jobSeeker.CV;*/
-         /*       existingJobSeeker.JobPositionId = jobSeeker.JobPositionId;
+             /*   existingJobSeeker.CV = jobSeeker.CV;
+                existingJobSeeker.JobPositionId = jobSeeker.JobPositionId;
                 existingJobSeeker.UserId = jobSeeker.UserId;*/
 
                 // Save changes to the database
