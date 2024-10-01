@@ -29,14 +29,17 @@
     @if (SignInManager.IsSignedIn(User))
     {
         if (User.IsInRole("Administrator"))
-        {   
+        {
             <div class="header-btn d-none f-right d-lg-block ml-auto">
                 <div class="dropdown">
-                  <!-- Thay đổi biểu tượng thành nút dropdown -->
+                    <!-- Thay đổi biểu tượng thành nút dropdown -->
                     <a href="#" class="btn btn-secondary dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                         Admin Menu <!-- Văn bản thay thế cho icon -->
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li class="dropdown-item">
+                            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Admin/ManageUser/Index">Manage Users</a>
+                        </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>

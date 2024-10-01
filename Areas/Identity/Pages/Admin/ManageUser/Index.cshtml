@@ -1,0 +1,119 @@
+﻿@page
+@model JobFinder.Areas.Identity.Pages.Admin.ManageUser.IndexModel
+
+@{
+    ViewData["Title"] = "User Manage";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/animations.css" />
+</head>
+
+<h1 class="mb-4 text-center">User Management</h1>
+
+<div class="table-responsive d-flex justify-content-center">
+    <div style="max-width: 1200px; width: 100%;">
+        <table class="table table-striped table-bordered shadow rounded">
+            <thead class="table" style="background-color: #fb246a; color: white;">
+                <tr>
+                    <th>
+                        <a asp-page="./Index" asp-route-pageNumber="@Model.CurrentPage"
+                           asp-route-profileStatusFilter="@(Model.CurrentProfileStatusFilter == 0 ? 1 : Model.CurrentProfileStatusFilter == 1 ? null : 0)">
+                            Profile Status
+                        </a>
+                    </th>
+                    <th>Avatar</th>
+                    <th>User Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.PaginatedUsers.Data)
+                {
+                    <tr>
+                        <td>
+                            @if (item.ProfileStatus == 1)
+                            {
+                                <span class="badge bg-danger">Banned</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success">Active</span>
+                            }
+                        </td>
+                        <td>
+                            <img src="@item.Avatar" alt="User Avatar" class="img-fluid" style="max-width: 50px; max-height: 50px;" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhoneNumber)
+                        </td>
+                        <td>
+                            <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Detail</a>
+                            <a asp-page="./BanUnban" asp-route-id="@item.Id" class="btn btn-danger">
+                                @(item.ProfileStatus == 1 ? "Unban User" : "Ban User")
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Pagination Start -->
+<div class="pagination-area pb-115 text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="single-wrap d-flex justify-content-center">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-start">
+                            @for (int i = 1; i <= Model.PaginatedUsers.TotalPages; i++)
+                            {
+                                <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                                    <a class="page-link" href="?pageNumber=@i">@i.ToString("D2")</a>
+                                </li>
+                            }
+                            <li class="page-item @(Model.CurrentPage >= Model.PaginatedUsers.TotalPages ? "disabled" : "")">
+                                <a class="page-link" href="?pageNumber=@(Model.CurrentPage + 1)">
+                                    <span class="ti-angle-right"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Pagination End -->
+
+<div class="text-center">
+    <p>Page @Model.CurrentPage of @Model.PaginatedUsers.TotalPages</p>
+    <p>Total Users: @Model.PaginatedUsers.TotalRecords</p>
+</div>
+
+<!-- JavaScript Start -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('tbody tr').each(function (index) {
+            var row = $(this);
+            row.delay(index * 300).queue(function (next) {
+                row.css('animation', 'slideIn 0.5s forwards');
+                row.css('opacity', '1');
+                next();
+            });
+        });
+    });
+</script>
+<!-- JavaScript End -->
+
