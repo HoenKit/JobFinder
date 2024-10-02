@@ -143,8 +143,26 @@ namespace JobFinder.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Click the link below to activate your account: <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    await _emailSender.SendEmailAsync(
+                        Input.Email,
+                        "Confirm your email",
+                        $@"
+    <div style='font-family: Arial, sans-serif;'>
+        <h2 style='color: #2c3e50;'>Welcome to JobFinder!</h2>
+        <p style='font-size: 16px; color: #34495e;'>
+            Thank you for signing up! Please confirm your email address by clicking the button below:
+        </p>
+        <div style='text-align : center; margin-top: 20px;'>
+            <a href='{HtmlEncoder.Default.Encode(callbackUrl)}' 
+                style='display: inline-block; padding: 10px 20px; background-color: #3498db; color: #ffffff; 
+                       text-decoration: none; border-radius: 5px; font-size: 16px;'>
+                Confirm Email
+            </a>
+        </div>
+        <p style='font-size: 14px; color: #7f8c8d; margin-top: 20px;'>
+            If you did not sign up for this account, you can safely ignore this email.
+        </p>
+    </div>");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

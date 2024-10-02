@@ -73,10 +73,27 @@ namespace JobFinder.Areas.Identity.Pages.Account
                     protocol: Request.Scheme);
 
                 await _emailSender.SendEmailAsync(
-                    "kitran2610@gmail.com",
+                    Input.Email,
                     "Reset Password",
-                    $"Please Enter link to reset your password<a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>Reset PassWord</a>.");
-            
+$@"
+    <div style='font-family: Arial, sans-serif;'>
+         <img src=""/assets/img/logo/logo.png"" alt=""JobFinderLogo"">
+        <h2 style='color: #e74c3c;'>Password Reset Request</h2>
+        <p style='font-size: 16px; color: #34495e;'>
+            We received a request to reset your password. Click the button below to reset your password:
+        </p>
+        <div style='text-align: center; margin-top: 20px;'>
+            <a href='{HtmlEncoder.Default.Encode(callbackUrl)}' 
+               style='display: inline-block; padding: 10px 20px; background-color: #e74c3c; color: #ffffff;
+                      text-decoration: none; border-radius: 5px; font-size: 16px;'>
+                Reset Password
+            </a>
+        </div>
+        <p style='font-size: 14px; color: #7f8c8d; margin-top: 20px;'>
+            If you did not request this password reset, you can safely ignore this email.
+        </p>
+    </div>");
+
                 return RedirectToPage("./ForgotPasswordConfirmation");
                 
             }
