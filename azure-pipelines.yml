@@ -16,8 +16,8 @@ variables:
   tests: '**/JobFinderTest.csproj'
 
 steps:
--  task: NuGetToolInstaller@1
-   name: 'NugetToolInstaller'
+- task: NuGetToolInstaller@1
+  name: 'NugetToolInstaller'
 
 - task: NuGetCommand@2
   name: 'RestoreNuget'
@@ -32,7 +32,7 @@ steps:
     command: 'test'
     projects: '$(tests)'
     arguments: '--configuration $(buildConfiguration)'
-    zipAfterPublish: true
+
 - task: DotNetCoreCLI@2
   displayName: 'dotnet publish $(buildConfiguration)'
   inputs:
@@ -48,3 +48,4 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'jobfinderartifact'
     publishLocation: 'Container'
+
