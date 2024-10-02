@@ -7,9 +7,10 @@ trigger:
 - develop
 
 pool:
-  name: 'default'
+  name: 'Default'  # Tên pool mà agent đang sử dụng
   demands:
-  - agent.name -equals 'JobFinder'
+    - agent.name -equals 'JobFinder'  # Tên của agent
+
 
 
 variables:
