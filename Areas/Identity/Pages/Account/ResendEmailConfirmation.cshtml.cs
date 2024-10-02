@@ -80,7 +80,22 @@ namespace JobFinder.Areas.Identity.Pages.Account
             await _emailSender.SendEmailAsync(
                 Input.Email,
                 "Confirm your email",
-                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                $@"
+                <div style='font-family: Arial, sans-serif;'>
+                <h2 style='color: #2c3e50;'>Welcome to [Your App Name]!</h2>
+                 <p style='font-size: 16px; color: #34495e;'>
+                    We're excited to have you on board! Please confirm your email address to activate your account. </p>
+                    <div style='text-align: center; margin-top: 20px;'>
+                    <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'
+                style='display: inline-block; padding: 10px 20px; background-color: #3498db; color: #ffffff;
+                      text-decoration: none; border-radius: 5px; font-size: 16px;'>
+                Confirm Your Email
+                     </a>
+                    </div>
+                <p style='font-size: 14px; color: #7f8c8d; margin-top: 20px;'>
+                If you did not sign up for this account, you can safely ignore this email.
+                </p>
+    </div>");
 
             ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
             return Page();
