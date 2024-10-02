@@ -9,7 +9,7 @@ trigger:
 pool:
   name: 'Default'  # Tên pool mà agent đang sử dụng
   demands:
-    - agent.name -equals 'DESKTOP-MBHC9L9'  # Tên của agent
+    - agent.name -equals 'JobFinder'  # Tên của agent
 
 
 
