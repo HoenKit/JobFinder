@@ -88,6 +88,7 @@ PayOS payOS = new PayOS(
 );
 
 builder.Services.AddSingleton(payOS);
+
 //Config Repository
 builder.Services.AddScoped<IJobPositionRepository, JobPositionRepository>();
 builder.Services.AddScoped<IJobSeekerRepository, JobSeekerRepository>();
@@ -95,6 +96,10 @@ builder.Services.AddScoped<IRecruiterRepository, RecruiterRepository>();
 builder.Services.AddScoped<IJobPostingRepository, JobPostingRepository>();
 builder.Services.AddScoped<IAppUserRepository, AppUserRepository>();
 builder.Services.AddScoped<IJobTypeRepository, JobTypeRepository>();
+
+//Config Blob
+builder.Services.AddSingleton<BlobStorageService>(provider =>
+        new BlobStorageService(builder.Configuration.GetValue<string>("AzureBlobStorage:ConnectionString")));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -1,6 +1,7 @@
 ﻿using JobFinder.Interface;
 using JobFinder.Models;
 using JobFinder.Repository;
+using JobFinder.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,11 +14,13 @@ namespace JobFinder.Pages
     {
         private readonly IJobPositionRepository _positionRepository;
         private readonly IJobSeekerRepository _seekerRepository;
+        private readonly BlobStorageService _blobStorageService;
 
-        public RegisterJobSeekerModel(IJobSeekerRepository seekerRepository, IJobPositionRepository positionRepository)
+        public RegisterJobSeekerModel(IJobSeekerRepository seekerRepository, IJobPositionRepository positionRepository, BlobStorageService blobStorageService)
         {
             _positionRepository = positionRepository;
             _seekerRepository = seekerRepository;
+            _blobStorageService = blobStorageService;
         }
 
         [BindProperty]
@@ -85,7 +88,7 @@ namespace JobFinder.Pages
             if (string.IsNullOrEmpty(UserId))
             {
                 ModelState.AddModelError(string.Empty, "User ID is required.");
-                return Page(); 
+                return Page();
             }
 
             var jobSeeker = new JobSeeker
@@ -103,29 +106,18 @@ namespace JobFinder.Pages
 
             if (CV != null && CV.Length > 0)
             {
-                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
-
-                // Create the uploads directory if it doesn't exist
-                if (!Directory.Exists(uploadsFolder))
-                {
-                    Directory.CreateDirectory(uploadsFolder);
-                }
-
                 // Generate a unique filename using GUID
-                var fileExtension = Path.GetExtension(CV.FileName); 
-                var uniqueFileName = Guid.NewGuid().ToString() + fileExtension; 
+                var fileExtension = Path.GetExtension(CV.FileName);
+                var uniqueFileName = Guid.NewGuid().ToString() + fileExtension;
 
-                var cvFilePath = Path.Combine(uploadsFolder, uniqueFileName);
-                var relativePath = Path.Combine("uploads", uniqueFileName).Replace("\\", "/");
-
-                // Save the file to the server
-                using (var stream = new FileStream(cvFilePath, FileMode.Create))
+                // Upload to Azure Blob Storage
+                using (var stream = CV.OpenReadStream())
                 {
-                    await CV.CopyToAsync(stream);
+                    await _blobStorageService.UploadFileAsync(uniqueFileName, stream);
                 }
 
-                // Store the relative path in the database
-                jobSeeker.CV = relativePath; 
+                // Store the full URL in the database (update the blob URL with your storage account name)
+                jobSeeker.CV = $"https://jobfinderuploads.blob.core.windows.net/uploads/{uniqueFileName}";
             }
             else
             {
@@ -140,9 +132,9 @@ namespace JobFinder.Pages
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("", $"Error saving data: {ex.Message}"); 
-                LoadJobPositions(); 
-                return Page(); 
+                ModelState.AddModelError("", $"Error saving data: {ex.Message}");
+                LoadJobPositions();
+                return Page();
             }
         }
 
