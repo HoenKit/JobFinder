@@ -7,7 +7,7 @@ trigger:
 - develop
 
 pool:
-  name: 'Azure Pipelines'  
+  name: 'Default'  
 
 variables:
   buildConfiguration: 'Release'
