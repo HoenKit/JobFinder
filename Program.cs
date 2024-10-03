@@ -117,7 +117,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
+app.UseDeveloperExceptionPage(); 
 
 app.Run();
-app.UseDeveloperExceptionPage(); // chỉ nên bật tạm thời trên production để kiểm tra lỗi
+
 
