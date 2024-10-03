@@ -1,5 +1,6 @@
 using JobFinder.Interface;
 using JobFinder.Models;
+using JobFinder.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
@@ -9,10 +10,12 @@ namespace JobFinder.Pages
     public class RegisterRecruiterModel : PageModel
     {
         private readonly IRecruiterRepository _recruiterRepository;
+        private readonly BlobStorageService _blobStorageService;
 
-        public RegisterRecruiterModel(IRecruiterRepository recruiterRepository)
+        public RegisterRecruiterModel(IRecruiterRepository recruiterRepository, BlobStorageService blobStorageService)
         {
             _recruiterRepository = recruiterRepository;
+            _blobStorageService = blobStorageService;
         }
 
         [BindProperty]
@@ -73,23 +76,18 @@ namespace JobFinder.Pages
 
             if (CompanyImage != null && CompanyImage.Length > 0)
             {
-                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+                // Generate a unique filename using GUID
+                var fileExtension = Path.GetExtension(CompanyImage.FileName);
+                var uniqueFileName = Guid.NewGuid().ToString() + fileExtension;
 
-                if (!Directory.Exists(uploadsFolder))
+                // Upload to Azure Blob Storage
+                using (var stream = CompanyImage.OpenReadStream())
                 {
-                    Directory.CreateDirectory(uploadsFolder);
+                    await _blobStorageService.UploadFileAsync(uniqueFileName, stream);
                 }
 
-                var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(CompanyImage.FileName);
-                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                var relativePath = Path.Combine("uploads", uniqueFileName).Replace("\\", "/");
-
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    await CompanyImage.CopyToAsync(fileStream);
-                }
-
-                recruiter.CompanyImage = relativePath;
+                // Store the full URL in the database (update the blob URL with your storage account name)
+                recruiter.CompanyImage = $"https://jobfinderuploads.blob.core.windows.net/uploads/{uniqueFileName}";
             }
 
             _recruiterRepository.AddRecruiter(recruiter);
