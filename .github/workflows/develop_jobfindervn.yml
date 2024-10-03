@@ -61,6 +61,7 @@ jobs:
         with:
           app-name: 'JobFinderVn'
           slot-name: 'Production'
-          package: ./myapp
+          package: './myapp'
+
 
           
