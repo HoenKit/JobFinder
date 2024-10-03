@@ -12,9 +12,9 @@
         public int Price { get; set; }
 
         // URL để trở về sau khi thanh toán
-        public string ReturnUrl { get; set; } = "https://localhost:7292/Identity/Account/RegisterRecruiter";
+        public string ReturnUrl { get; set; } = "https://jobfindervn-hnbpd4fabpcmd7e2.canadacentral-01.azurewebsites.net/Identity/Account/RegisterRecruiter";
 
         // URL để hủy thanh toán
-        public string CancelUrl { get; set; } = "https://localhost:7292/Identity/Account/Register";
+        public string CancelUrl { get; set; } = "https://jobfindervn-hnbpd4fabpcmd7e2.canadacentral-01.azurewebsites.net/Identity/Account/Register";
     }
 }
