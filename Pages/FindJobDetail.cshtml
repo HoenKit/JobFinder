@@ -38,7 +38,7 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="hero-cap text-center">
-                                <h2>Company Information</h2>
+                                <h2>Job Information</h2>
                             </div>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                                     </a>
                                     <ul>
                                         <li>@Model.JobPosting.Recruiter.CompanyName</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>@Model.JobPosting.JobLocation</li>
+                                        <li><i class="fas fa-map-marker-alt"></i>@Model.JobPosting.Recruiter.Address</li>
                                     </ul>
                                 </div>
                             </div>
@@ -78,7 +78,7 @@
                                 <!-- Small Section Tittle -->
                                 <div class="small-section-tittle">
                                     <h3>Description</h3>
-                                    <h4>@Model.JobPosting.Recruiter.CompanyDescription</h4>
+                                    <h4>@Model.JobPosting.JobDescription</h4>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +93,8 @@
                             </div>
                             <ul>
                                 <li>Posted date : <span>@Model.JobPosting.PostDate</span></li>
-                                <li>Location : <span>@Model.JobPosting.JobLocation</span></li>
+                                <li>Location : </li>
+                                <li><span>@Model.JobPosting.JobLocation</span></li>
                                 <li>Vacancy : <span>@Model.JobPosting.Vacancy</span></li>
                                 <li>Job nature : <span>@Model.JobPosting.JobNature.JobNatureName</span></li>
                                 <li>Salary :  <span>@Model.JobPosting.Salary</span></li>
