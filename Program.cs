@@ -44,8 +44,8 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequireLowercase = false; // No need for lowercase
     options.Password.RequireNonAlphanumeric = false; // No special characters
     options.Password.RequireUppercase = false; // No uppercase required
-    options.Password.RequiredLength = 3; // Minimum length 3 characters
-    options.Password.RequiredUniqueChars = 1; // At least 1 unique character
+    options.Password.RequiredLength = 7; // Minimum length 3 characters
+    options.Password.RequiredUniqueChars = 1; // At least 6 unique character
 
     // Configure Lockout settings
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5); // Lock for 5 minutes
@@ -96,7 +96,7 @@ builder.Services.AddScoped<IRecruiterRepository, RecruiterRepository>();
 builder.Services.AddScoped<IJobPostingRepository, JobPostingRepository>();
 builder.Services.AddScoped<IAppUserRepository, AppUserRepository>();
 builder.Services.AddScoped<IJobTypeRepository, JobTypeRepository>();
-
+builder.Services.AddScoped<IJobDetailRepository, JobDetailRepository>();
 //Config Blob
 builder.Services.AddSingleton<BlobStorageService>(provider =>
         new BlobStorageService(builder.Configuration.GetValue<string>("AzureBlobStorage:ConnectionString")));
