@@ -113,33 +113,37 @@ namespace JobFinder.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
+                // First, check if the user exists by email or username
                 var user = await _userManager.FindByEmailAsync(Input.UsernameOrEmail) ??
-                   await _userManager.FindByNameAsync(Input.UsernameOrEmail);
-                if (user.ProfileStatus == 1)
+                           await _userManager.FindByNameAsync(Input.UsernameOrEmail);
+
+                if (user == null)
                 {
-                    ModelState.AddModelError(string.Empty, "Your Account is Banned. Please contact us support.");
+                    ModelState.AddModelError(string.Empty, "Account not found.");
                     return Page();
                 }
 
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(Input.UsernameOrEmail, Input.Password, Input.RememberMe, lockoutOnFailure: true);
-
-
-                if (!result.Succeeded)
+                // Check ProfileStatus if user is found
+                if (user.ProfileStatus == 1)
                 {
-
-                    if (user != null)
-                    {
-
-                        result = await _signInManager.PasswordSignInAsync(user.UserName, Input.Password, Input.RememberMe, lockoutOnFailure: true);
-                    }
-
+                    ModelState.AddModelError(string.Empty, "Your account is banned. Please contact support.");
+                    return Page();
                 }
 
+                // Attempt to sign in the user
+                var result = await _signInManager.PasswordSignInAsync(Input.UsernameOrEmail, Input.Password, Input.RememberMe, lockoutOnFailure: true);
+
+                // If login fails with email or username, try with user.UserName
+                if (!result.Succeeded && user != null)
+                {
+                    result = await _signInManager.PasswordSignInAsync(user.UserName, Input.Password, Input.RememberMe, lockoutOnFailure: true);
+                }
+
+                // Handle various outcomes of the sign-in attempt
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
