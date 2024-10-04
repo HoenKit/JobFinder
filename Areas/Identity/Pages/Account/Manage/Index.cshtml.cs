@@ -60,19 +60,25 @@ namespace JobFinder.Areas.Identity.Pages.Account.Manage
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Phone]
+            [Required(ErrorMessage = "Phone number is required.")]
+            [Phone(ErrorMessage = "Please enter a valid phone number.")]
             [Display(Name = "Phone number")]
+            [RegularExpression(@"^(\+84\d{9,10}|0\d{9,10})$", ErrorMessage = "Please enter a valid Phone number and contain 10 to 11 digits.")]
             public string PhoneNumber { get; set; }
+
 
             [Required(ErrorMessage = "First name is required")]
             [Display(Name = "First name")]
-            [StringLength(100, ErrorMessage = "First name cannot be longer than 100 characters.")]
+            [StringLength(30, ErrorMessage = "First name cannot be longer than 30 characters.")]
+            [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "First name cannot contain numbers.")]
             public string FirstName { get; set; }
 
             [Required(ErrorMessage = "Last name is required")]
             [Display(Name = "Last name")]
-            [StringLength(100, ErrorMessage = "Last name cannot be longer than 100 characters.")]
+            [StringLength(30, ErrorMessage = "Last name cannot be longer than 30 characters.")]
+            [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Last name cannot contain numbers.")]
             public string LastName { get; set; }
+
 
             [Required(ErrorMessage = "Birthday is required")]
             [DataType(DataType.Date, ErrorMessage = "Please enter a valid date.")]
@@ -81,6 +87,7 @@ namespace JobFinder.Areas.Identity.Pages.Account.Manage
 
             [Required(ErrorMessage = "Address is required")]
             [Display(Name = "Address")]
+            [StringLength(50, ErrorMessage = "Cannot be longer than 50 characters.")]
             public string Address { get; set; }
 
             [Required(ErrorMessage = "Education Level is required")]
@@ -89,21 +96,25 @@ namespace JobFinder.Areas.Identity.Pages.Account.Manage
 
             [Required(ErrorMessage = "Specialization is required")]
             [Display(Name = "Specialized")]
+            [StringLength(30, ErrorMessage = "Cannot be longer than 30 characters.")]
+            [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Cannot contain numbers.")]
             public string Specialized { get; set; }
 
 
             [Required(ErrorMessage = "Experience is required")]
             [Display(Name = "Experience")]
+            [RegularExpression(@"^[0-9]+$", ErrorMessage = "Experience must be a positive number.")]
             public string Experience { get; set; }
 
-         /*   [Display(Name = "CV URL")]
-            public string CV { get; set; }
+            /* [Display(Name = "CV URL")]
+             public string CV { get; set; }
 
-            public int JobPositionId { get; set; }
+             public int JobPositionId { get; set; }
 
-            // These fields could map to User and JobPosition relationships
+             // These fields could map to User and JobPosition relationships
+
+             public string JobPosition { get; set; }*/
             public string UserId { get; set; }
-            public string JobPosition { get; set; }*/
         }
 
         private async Task LoadAsync(AppUser user)
