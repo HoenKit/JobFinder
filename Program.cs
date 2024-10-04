@@ -32,19 +32,21 @@ builder.Services.AddAuthorization(options =>
 
 
 builder.Services.ConfigureApplicationCookie(options => {
-    options.LoginPath = "/login/";
-    options.LogoutPath = "/logout/";
-    options.AccessDeniedPath = "/AccessDenied/";
+
+    options.LoginPath = "/Login/" ;
+    options.LogoutPath = "/Logout/"; // Customize logout path
+    options.AccessDeniedPath = "/AccessDenied/"; // Customize access denied path
+    options.SlidingExpiration = false; // Disable sliding expiration if not needed
 });
 builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
 builder.Services.Configure<IdentityOptions>(options =>
 {
     // Configure Password settings
-    options.Password.RequireDigit = false; // No need for digits
+    options.Password.RequireDigit = true; // No need for digits
     options.Password.RequireLowercase = false; // No need for lowercase
-    options.Password.RequireNonAlphanumeric = false; // No special characters
-    options.Password.RequireUppercase = false; // No uppercase required
-    options.Password.RequiredLength = 7; // Minimum length 3 characters
+    options.Password.RequireNonAlphanumeric = true; // No special characters
+    options.Password.RequireUppercase = true; // No uppercase required
+    options.Password.RequiredLength = 6; // Minimum length 3 characters
     options.Password.RequiredUniqueChars = 1; // At least 6 unique character
 
     // Configure Lockout settings
@@ -61,6 +63,8 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.SignIn.RequireConfirmedEmail = true; // Confirm email is required
     options.SignIn.RequireConfirmedPhoneNumber = false; // Phone confirmation not required
     options.SignIn.RequireConfirmedAccount = true; // Confirmed account required
+
+
 });
 
 /*builder.Services.AddAuthentication(options =>
