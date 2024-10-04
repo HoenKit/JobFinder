@@ -240,10 +240,10 @@
                                                 </div>
                                                 <!-- Slider -->
                                                 <div class="price_range">
-                                                    <input type="range" min="0" max="50000000" value="@Model.MinSalary" class="slider" id="minPrice" name="MinSalary" oninput="updateMinValue(this.value)">
-                                                    <input type="range" min="0" max="50000000" value="@Model.MaxSalary" class="slider" id="maxPrice" name="MaxSalary" oninput="updateMaxValue(this.value)">
+                                                    <input type="range" min="0" max="50000000" value="@(Model.MinSalary > 0 ? Model.MinSalary : 0)" class="slider" id="minPrice" name="MinSalary" oninput="updateMinValue(this.value)">
+                                                    <input type="range" min="0" max="50000000" value="@(Model.MaxSalary > 0 ? Model.MaxSalary : 50000000)" class="slider" id="maxPrice" name="MaxSalary" oninput="updateMaxValue(this.value)">
                                                 </div>
-                                                <p>₫<span id="minValue">@Model.MinSalary</span> - ₫<span id="maxValue">@Model.MaxSalary</span></p>
+                                                <p>₫<span id="minValue">@(Model.MinSalary > 0 ? Model.MinSalary : 0)</span> - ₫<span id="maxValue">@(Model.MaxSalary > 0 ? Model.MaxSalary : 50000000)</span></p>
                                             </div>
                                         </div>
 
@@ -264,8 +264,8 @@
                                                 }
                                         </style>
                                     </aside>
-
                                     <!-- Range Slider End -->
+
                                     <br />
                                     <button style="background-color: #ff4357; 
                                             color: white;
