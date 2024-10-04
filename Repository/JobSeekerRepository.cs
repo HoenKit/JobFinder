@@ -35,9 +35,10 @@ namespace JobFinder.Repository
                 existingJobSeeker.EducationLevel = jobSeeker.EducationLevel;
                 existingJobSeeker.Specialized = jobSeeker.Specialized;
                 existingJobSeeker.Experience = jobSeeker.Experience;
-             /*   existingJobSeeker.CV = jobSeeker.CV;
-                existingJobSeeker.JobPositionId = jobSeeker.JobPositionId;
-                existingJobSeeker.UserId = jobSeeker.UserId;*/
+                /*   existingJobSeeker.CV = jobSeeker.CV;
+                   existingJobSeeker.JobPositionId = jobSeeker.JobPositionId;
+                */
+                existingJobSeeker.UserId = jobSeeker.UserId;
 
                 // Save changes to the database
                 _context.SaveChanges();
