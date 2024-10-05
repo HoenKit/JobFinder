@@ -32,9 +32,8 @@
         {
             <div class="header-btn d-none f-right d-lg-block ml-auto">
                 <div class="dropdown">
-                    <!-- Thay đổi biểu tượng thành nút dropdown -->
                     <a href="#" class="btn btn-secondary dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        Admin Menu <!-- Văn bản thay thế cho icon -->
+                        Admin Menu
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                         <li class="dropdown-item">
@@ -59,25 +58,20 @@
         {
             <div class="header-btn d-none f-right d-lg-block ml-auto">
                 <div class="dropdown">
-                    <!-- Thay đổi biểu tượng thành nút dropdown -->
                     <a href="#" class="btn btn-secondary dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        User Menu <!-- Văn bản thay thế cho icon -->
+                        User Menu
                     </a>
 
-                    <!-- Menu dropdown -->
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                        <!-- Hiển thị tên người dùng -->
                         <li class="dropdown-item">
                             Hello, @UserManager.GetUserName(User)
                         </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <!-- Nút chỉnh sửa hồ sơ -->
                         <li class="dropdown-item">
                             <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Profile</a>
                         </li>
-                        <!-- Nút đăng xuất -->
                         <li class="dropdown-item">
                             <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
                                 <button type="submit" class="dropdown-item text-danger">Logout</button>
