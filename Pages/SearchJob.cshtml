@@ -1,0 +1,206 @@
+﻿@page
+@model SearchJobModel
+
+
+<style>
+    #select1 {
+        width: 100%;
+        background: #fff;
+        border-radius: 0px;
+        padding: 11px 19px 11px 10px;
+        color: #616875;
+        line-height: 54px;
+        border: 0;
+        font-weight: bold;
+    }
+
+    .select-form {
+        height: 70px;
+        background: #fff;
+        border-radius: 0px;
+        padding: 11px 19px 11px 10px;
+        color: #616875;
+        line-height: 54px;
+        border: 0;
+    }
+
+    #locationSelect {
+        border: none;
+        outline: none;
+        background: transparent;
+    }
+
+    .suggestion-list li {
+        padding: 10px;
+        cursor: pointer;
+        border-bottom: 1px solid #ccc;
+        transition: background-color 0.2s;
+    }
+
+    .suggestion-list li:hover {
+        background-color: #f0f0f0;
+    }
+
+
+</style>
+
+<h2 class="text-center">Search Results</h2>
+
+<!-- Search Box -->
+<div class="row">
+    <div class="col-xl-8 mx-auto">
+        <form method="get" action="/SearchJob" class="search-box">
+            <div class="input-form" style="position: relative;">
+                <input type="text" name="jobTitle" id="jobTitleInput" placeholder="Job Title or keyword" required oninput="showSuggestions(this.value)" />
+                <ul id="suggestions" class="suggestion-list" style="display: none; position: absolute; z-index: 1000; margin-top: 5px; padding: 0; list-style-type: none; width: 100%; background: white; border: 1px solid #ccc; border-radius: 5px;">
+                </ul>
+            </div>
+            <div class="select-form">
+                <div class="select-itms">
+                    <select name="location" id="locationSelect" class="form-control" required>
+                        <option value="">Select a location</option>
+                    </select>
+                </div>
+            </div>
+            <div class="search-form" style="text-align: right;">
+                <button type="submit" class="btn btn-primary" style="padding:35px">Find job</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Job Listings -->
+@if (Model.JobPostings != null && Model.JobPostings.Data.Count > 0)
+{
+    <div class="job-listing-area">
+        @foreach (var job in Model.JobPostings.Data)
+        {
+            <div class="single-job-items mb-30" style="padding: 15px; display: flex; justify-content: space-between; max-width: 1000px; margin: 0 auto;">
+                <div class="company-img">
+                    <a href="#">
+                        <img src="@job.Recruiter.CompanyImage" alt="@job.JobTitle" style="width: 80px; height: 80px;">
+                    </a>
+                </div>
+                <div class="job-tittle job-tittle2" style="margin-left: 15px; flex-grow: 1;">
+                    <a href="/FindJobDetail?Id=@job.Id">
+                        <h4>@job.JobTitle</h4>
+                    </a>
+                    <ul class="d-flex align-items-center" style="list-style-type: none; padding-left: 0; margin-top: 5px;">
+                        <li style="margin-right: 20px;">@job.Recruiter.CompanyName</li>
+                        <li style="margin-right: 20px;">
+                            <i class="fas fa-map-marker-alt"></i> @job.JobLocation
+                        </li>
+                        <li>@job.Salary đ</li>
+                    </ul>
+                </div>
+                <div class="items-link" style="text-align: right;">
+                    <a href="/FindJobDetail?Id=@job.Id">
+                        @job.JobNature.JobNatureName
+                    </a>
+                    <span style="display: block; margin-top: 5px;">@job.PostDate.ToString("dd/MM/yyyy")</span>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Pagination Start -->
+    <div class="pagination-area pb-115 text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="single-wrap d-flex justify-content-center">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-start">
+                                @for (int i = 1; i <= Model.JobPostings.TotalPages; i++)
+                                {
+                                    <li class="page-item @(i == Model.JobPostings.PageNumber ? "active" : "")">
+                                        <a class="page-link" href="?PageNumber=@i&jobTitle=@(Request.Query["jobTitle"])&location=@(Request.Query["location"])">
+                                            @i.ToString("D2")
+                                        </a>
+                                    </li>
+                                }
+                                <li class="page-item @(Model.JobPostings.PageNumber == Model.JobPostings.TotalPages ? "disabled" : "")">
+                                    <a class="page-link" href="?PageNumber=@(Model.JobPostings.PageNumber + 1)&jobTitle=@(Request.Query["jobTitle"])&location=@(Request.Query["location"])">
+                                        <span class="ti-angle-right"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pagination End -->
+}
+else
+{
+    <p class="text-center">No job postings found matching your search criteria.</p>
+}
+<!-- Search Script -->
+<script>
+    async function fetchLocations() {
+        try {
+            const response = await fetch("https://provinces.open-api.vn/api/p/");
+            const provinces = await response.json();
+
+            const locationSelect = document.getElementById("locationSelect");
+            locationSelect.innerHTML = '<option value="">Select a location</option>';
+
+            provinces.forEach(province => {
+                const option = document.createElement("option");
+                option.value = province.name;
+                option.textContent = province.name;
+                locationSelect.appendChild(option);
+            });
+        } catch (error) {
+            console.error("Error fetching locations:", error);
+        }
+    }
+
+    document.getElementById("locationSelect").addEventListener("focus", fetchLocations);
+
+    fetchLocations();
+</script>
+
+<script>
+    const jobTitles = @Html.Raw(Json.Serialize(Model.JobTitles));
+
+    function showSuggestions(value) {
+        const suggestionsContainer = document.getElementById("suggestions");
+        suggestionsContainer.innerHTML = '';
+        if (value.length === 0) {
+            suggestionsContainer.style.display = 'none';
+            return;
+        }
+
+        const filteredTitles = jobTitles.filter(title => title.toLowerCase().includes(value.toLowerCase()));
+        if (filteredTitles.length > 0) {
+            filteredTitles.forEach(title => {
+                const suggestionItem = document.createElement("li");
+                suggestionItem.textContent = title;
+                suggestionItem.style.padding = "10px";
+                suggestionItem.style.cursor = "pointer";
+                suggestionItem.style.borderBottom = "1px solid #ccc";
+
+                suggestionItem.onmouseover = () => {
+                    suggestionItem.style.backgroundColor = "#f0f0f0";
+                };
+                suggestionItem.onmouseout = () => {
+                    suggestionItem.style.backgroundColor = "white";
+                };
+
+                suggestionItem.onclick = () => {
+                    document.getElementById("jobTitleInput").value = title;
+                    suggestionsContainer.innerHTML = '';
+                    suggestionsContainer.style.display = 'none';
+                };
+
+                suggestionsContainer.appendChild(suggestionItem);
+            });
+            suggestionsContainer.style.display = 'block';
+        } else {
+            suggestionsContainer.style.display = 'none';
+        }
+    }
+</script>

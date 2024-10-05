@@ -1,25 +1,26 @@
+﻿using JobFinder.Dtos;
 using JobFinder.Interface;
 using JobFinder.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace JobFinder.Pages
 {
-    public class IndexModel : PageModel
+    public class SearchJobModel : PageModel
     {
         private readonly IJobPostingRepository _jobPostingRepository;
 
-        public IndexModel(IJobPostingRepository jobPostingRepository)
+        public SearchJobModel(IJobPostingRepository jobPostingRepository)
         {
             _jobPostingRepository = jobPostingRepository;
         }
 
-        public List<JobPosting> JobPostings { get; set; } = new List<JobPosting>();
+        public PaginatedResult<JobPosting> JobPostings { get; set; }
 
         public IEnumerable<string> JobTitles { get; set; }
 
-        public void OnGet(string jobTitle, string location)
+        public void OnGet(string jobTitle, string location, int pageNumber = 1)
         {
+            JobPostings = _jobPostingRepository.GetAllJobPostings(pageNumber, 10, jobTitle, location);
             JobTitles = _jobPostingRepository.GetDistinctJobTitles();
         }
     }
