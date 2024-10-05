@@ -79,11 +79,15 @@
                             @for (int i = 1; i <= Model.PaginatedUsers.TotalPages; i++)
                             {
                                 <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
-                                    <a class="page-link" href="?pageNumber=@i">@i.ToString("D2")</a>
+                                    <a class="page-link" asp-page="./Index"
+                                       asp-route-pageNumber="@i"
+                                       asp-route-profileStatusFilter="@Model.CurrentProfileStatusFilter">@i.ToString("D2")</a>
                                 </li>
                             }
                             <li class="page-item @(Model.CurrentPage >= Model.PaginatedUsers.TotalPages ? "disabled" : "")">
-                                <a class="page-link" href="?pageNumber=@(Model.CurrentPage + 1)">
+                                <a class="page-link" asp-page="./Index"
+                                   asp-route-pageNumber="@(Model.CurrentPage + 1)"
+                                   asp-route-profileStatusFilter="@Model.CurrentProfileStatusFilter">
                                     <span class="ti-angle-right"></span>
                                 </a>
                             </li>
@@ -116,4 +120,3 @@
     });
 </script>
 <!-- JavaScript End -->
-

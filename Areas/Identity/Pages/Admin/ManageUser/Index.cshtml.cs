@@ -19,7 +19,6 @@ namespace JobFinder.Areas.Identity.Pages.Admin.ManageUser
         public int CurrentPage { get; set; }
         public int PageSize { get; set; } = 10;
 
-        // Thêm biến để lưu trạng thái sắp xếp
         public int? CurrentProfileStatusFilter { get; set; }
 
         public async Task OnGetAsync(int pageNumber = 1, int? profileStatusFilter = null)

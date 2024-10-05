@@ -78,7 +78,7 @@ namespace JobFinder.Repository
                     }
                 }
 
-                query = queryResult.AsQueryable(); 
+                query = queryResult.AsQueryable();
             }
 
             if (postedWithin.HasValue && postedWithin.Value > 0)
@@ -105,7 +105,7 @@ namespace JobFinder.Repository
                 query = query.Where(p => p.JobLocation.Contains(address));
             }
 
-            var totalRecords = query.Count(); 
+            var totalRecords = query.Count();
 
             var paginatedData = query
                 .Skip((pageNumber - 1) * pageSize)
@@ -126,6 +126,50 @@ namespace JobFinder.Repository
                 TotalRecords = totalRecords,
                 Data = paginatedData
             };
+        }
+
+        public PaginatedResult<JobPosting> GetAllJobPostings(int pageNumber, int pageSize, string jobTitle, string location)
+        {
+            var query = _context.JobPosting
+                .Include(p => p.JobNature)
+                .Include(o => o.JobPosition)
+                .Include(c => c.Recruiter)
+                .Include(t => t.JobType)
+                .Where(p => p.JobPostingStatus == 0);
+
+            if (!string.IsNullOrEmpty(jobTitle))
+            {
+                query = query.Where(p => p.JobTitle.Contains(jobTitle));
+            }
+
+            if (!string.IsNullOrEmpty(location))
+            {
+                query = query.Where(p => p.JobLocation.Contains(location));
+            }
+
+            var totalRecords = query.Count();
+
+            var paginatedData = query
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            return new PaginatedResult<JobPosting>
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize,
+                TotalRecords = totalRecords,
+                Data = paginatedData
+            };
+        }
+
+        public IEnumerable<string> GetDistinctJobTitles()
+        {
+            return _context.JobPosting
+                .Where(p => p.JobPostingStatus == 0)
+                .Select(p => p.JobTitle)
+                .Distinct()
+                .ToList();
         }
 
     }
