@@ -57,6 +57,8 @@
             background: transparent; /* Nếu bạn muốn bỏ nền */
         }
 
+
+
     </style>
 
 </head>
@@ -269,31 +271,31 @@
                     <div class="col-xl-10">
                         @foreach (var job in Model.LatestJobPostings)
                         {
-                            <div class="single-job-items mb-30" style="padding: 15px;">
-                                <div class="job-items d-flex align-items-center">
-                                    <div class="company-img">
-                                        <a href="#">
-                                            <img src="@job.Recruiter?.CompanyImage " /images/default-company.png"" alt="@job.JobTitle" style="width: 80px; height: 80px;">
-                                        </a>
-                                    </div>
-                                    <div class="job-tittle job-tittle2" style="margin-left: 15px;">
-                                        <a href="/FindJobDetail?Id=@job.Id">
-                                            <h4>@job.JobTitle</h4>
-                                        </a>
-                                        <ul class="d-flex align-items-center" style="list-style-type: none; padding-left: 0; margin-top: 5px;">
-                                            <li style="margin-right: 20px;">@job.Recruiter?.CompanyName</li>
-                                            <li style="margin-right: 20px;">
-                                                <i class="fas fa-map-marker-alt"></i> @job.JobLocation
-                                            </li>
-                                            <li>@job.Salary đ</li>
-                                        </ul>
-                                    </div>
-                                    <div class="items-link f-right" style="margin-left: auto;">
-                                        <a href="/FindJobDetail?Id=@job.Id">
-                                            @job.JobNature?.JobNatureName
-                                        </a>
-                                        <span style="display: block; margin-top: 5px;">@job.PostDate.ToString("dd/MM/yyyy")</span>
-                                    </div>
+                            <div class="single-job-items mb-30" style="padding: 15px; display: flex; justify-content: space-between; max-width: 1000px; margin: 0 auto;">
+                                <div class="company-img">
+                                    <a href="#">
+                                        <img src="@job.Recruiter.CompanyImage" alt="@job.JobTitle" style="width: 80px; height: 80px;">
+                                    </a>
+                                </div>
+
+                                <div class="job-tittle job-tittle2" style="margin-left: 15px; flex-grow: 1;">
+                                    <a href="/FindJobDetail?Id=@job.Id">
+                                        <h4>@job.JobTitle</h4>
+                                    </a>
+                                    <ul class="d-flex align-items-center" style="list-style-type: none; padding-left: 0; margin-top: 5px;">
+                                        <li style="margin-right: 20px;">@job.Recruiter.CompanyName</li>
+                                        <li style="margin-right: 20px;">
+                                            <i class="fas fa-map-marker-alt"></i> @job.JobLocation
+                                        </li>
+                                        <li>@job.Salary đ</li>
+                                    </ul>
+                                </div>
+
+                                <div class="items-link" style="text-align: right;">
+                                    <a href="/FindJobDetail?Id=@job.Id">
+                                        @job.JobNature.JobNatureName
+                                    </a>
+                                    <span style="display: block; margin-top: 5px;">@job.PostDate.ToString("dd/MM/yyyy")</span>
                                 </div>
                             </div>
                         }

@@ -1,0 +1,268 @@
+﻿@page
+@model JobFinder.Areas.Identity.Pages.Admin.ManageJobPosting.IndexModel
+@{
+    ViewData["Title"] = "Manager Job Posting";
+}
+
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <!-- CSS here -->
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/assets/css/price_rangs.css">
+    <link rel="stylesheet" href="~/assets/css/flaticon.css">
+    <link rel="stylesheet" href="~/assets/css/slicknav.css">
+    <link rel="stylesheet" href="~/assets/css/animate.min.css">
+    <link rel="stylesheet" href="~/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="~/assets/css/themify-icons.css">
+    <link rel="stylesheet" href="~/assets/css/slick.css">
+    <link rel="stylesheet" href="~/assets/css/nice-select.css">
+    <link rel="stylesheet" href="~/assets/css/style.css">
+
+    <style>
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            background: #ddd;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+
+            .slider:hover {
+                opacity: 1;
+            }
+
+        .select-job-items2 label {
+            margin-right: 10px;
+        }
+
+        .badge-success {
+            background-color: #28a745;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .badge-warning {
+            background-color: #ffc107;
+            color: black;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .job-location {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
+            display: inline-block;
+        }
+
+        .nav-icons {
+            position: sticky;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between
+        }
+
+        .nav-icon {
+            display: block;
+            font-size: 30px; /* Kích thước biểu tượng */
+            color: #fff; /* Màu sắc biểu tượng */
+            background-color: rgba(0, 0, 0, 0.7); /* Nền mờ */
+            border-radius: 50%; /* Hình tròn */
+            padding: 10px; /* Khoảng cách bên trong */
+            margin: 10px; /* Khoảng cách giữa hai biểu tượng */
+            text-align: center;
+            transition: background-color 0.3s; /* Hiệu ứng chuyển đổi khi hover */
+        }
+
+            .nav-icon:hover {
+                background-color: rgba(0, 0, 0, 1); /* Màu nền khi hover */
+            }
+
+        .left-icon {
+            left: 10px; /* Vị trí bên trái */
+        }
+
+        .right-icon {
+            right: 10px; /* Vị trí bên phải */
+        }
+
+
+    </style>
+</head>
+<body>
+    <h1 class="mb-4 text-center">Management Job</h1>
+    <!-- Navigation Icons -->
+    <div class="nav-icons">
+        <div class="items-link" style="text-align: left;">
+            <a asp-area="Identity" asp-page="/Admin/ManageUser/Index" class="nav-icon left-icon">
+                <i class="fas fa-chevron-left"></i>
+            </a>
+        </div>
+        <div class="items-link" style="text-align: right;">
+            <a asp-area="Identity" asp-page="/Admin/ManageUser/Index" class="nav-icon right-icon">
+                <i class="fas fa-chevron-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <main>
+        <!-- Job List Area Start -->
+        <div class="job-listing-area pt-120 pb-120">
+            <div class="container">
+                <div class="row">
+                    <!-- Left content -->
+                    <div class="col-xl-2 col-lg-2 col-md-3">
+                        <form asp-page="/Admin/ManagerJobPosting" method="get">
+                            <div class="job-category-listing mb-50">
+                                <div class="single-listing">
+                                    <div class="select-job-items2">
+                                        <label>Job Status:</label>
+                                        <select asp-for="SelectedStatus" onchange="this.form.submit();">
+                                            <option value="">All</option>
+                                            <option value="0">Accept</option>
+                                            <option value="1">Reject</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Right content -->
+                    <div class="col-xl-10 col-lg-10 col-md-9">
+                        <!-- Featured_job_start -->
+                        <section class="featured-job-area">
+                            <div class="container">
+                                <!-- Count of Job list Start -->
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="count-job mb-35">
+                                            <span>@Model.JobPostings.TotalRecords Jobs found</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Count of Job list End -->
+                                <!-- single-job-content -->
+                                @foreach (var job in Model.JobPostings.Data)
+                                {
+                                    <div class="single-job-items mb-30" style="padding: 15px; display: flex; justify-content: space-between; max-width: 1000px; margin: 0 auto;">
+                                            <div class="company-img">
+                                                <a href="#">
+                                                    <img src="@job.Recruiter?.CompanyImage" alt="@job.JobTitle" style="width: 80px; height: 80px;">
+                                                </a>
+                                            </div>
+                                            <div class="job-tittle job-tittle2" style="margin-left: 15px;">
+                                                <a asp-page="./Detail" asp-route-id="@job.Id" style="text-decoration: none;">
+                                                    <div style="display: flex; align-items: center;">
+                                                        <h4 style="margin: 0;">@job.JobTitle</h4>
+                                                        <span class="badge @((job.JobPostingStatus == 0 ? "badge-success" : "badge-warning"))" style="margin-left: 10px;">
+                                                            @(job.JobPostingStatus == 0 ? "Accept" : "Reject")
+                                                        </span>
+                                                    </div>
+                                                </a>
+                                                <ul class="d-flex align-items-center" style="list-style-type: none; padding-left: 0; margin-top: 5px;">
+                                                    <li style="margin-right: 20px;">@job.Recruiter.CompanyName</li>
+                                                    <li style="margin-right: 20px;">
+                                                        <i class="fas fa-map-marker-alt"></i>
+                                                        <span class="job-location">@job.JobLocation</span>
+                                                    </li>
+                                                    <li>@job.Salary đ</li>
+                                                </ul>
+                                            </div>
+                                            <div class="items-link" style="text-align: right;">
+                                                <a asp-page="./Detail" asp-route-id="@job.Id">
+                                                    @job.JobNature.JobNatureName
+                                                </a>
+                                                <span style="display: block; margin-top: 5px;">@job.PostDate.ToString("dd/MM/yyyy")</span>
+                                            </div>
+                                    </div>
+                                }
+                            </div>
+                        </section>
+                        <!-- Featured_job_end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Job List Area End -->
+        <!-- Pagination Start -->
+        <div class="pagination-area pb-115 text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="single-wrap d-flex justify-content-center">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination">
+                                    @if (Model.JobPostings.PageNumber > 1)
+                                    {
+                                        <li class="page-item">
+                                            <a class="page-link" asp-page="./Index" asp-route-pageNumber="@(Model.JobPostings.PageNumber - 1)" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                    }
+
+                                    @for (int i = 1; i <= Model.JobPostings.TotalPages; i++)
+                                    {
+                                        <li class="page-item @(Model.JobPostings.PageNumber == i ? "active" : "")">
+                                            <a class="page-link" asp-page="./Index" asp-route-pageNumber="@i" asp-route-selectedStatus="@Model.SelectedStatus">@i</a>
+                                        </li>
+                                    }
+
+                                    @if (Model.JobPostings.PageNumber < Model.JobPostings.TotalPages)
+                                    {
+                                        <li class="page-item">
+                                            <a class="page-link" asp-page="./Index" asp-route-pageNumber="@(Model.JobPostings.PageNumber + 1)" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Pagination End -->
+    </main>
+
+    <!-- JS here -->
+    <script>
+        // JavaScript code remains unchanged
+        // ...
+    </script>
+
+    <!-- All JS Custom Plugins Link Here here -->
+    <script src="~/assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="~/assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="~/assets/js/popper.min.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/jquery.slicknav.min.js"></script>
+    <script src="~/assets/js/owl.carousel.min.js"></script>
+    <script src="~/assets/js/slick.min.js"></script>
+    <script src="~/assets/js/price_rangs.js"></script>
+    <script src="~/assets/js/wow.min.js"></script>
+    <script src="~/assets/js/animated.headline.js"></script>
+    <script src="~/assets/js/jquery.magnific-popup.js"></script>
+    <script src="~/assets/js/jquery.scrollUp.min.js"></script>
+    <script src="~/assets/js/jquery.nice-select.min.js"></script>
+    <script src="~/assets/js/jquery.sticky.js"></script>
+    <script src="~/assets/js/contact.js"></script>
+    <script src="~/assets/js/jquery.form.js"></script>
+    <script src="~/assets/js/jquery.validate.min.js"></script>
+    <script src="~/assets/js/mail-script.js"></script>
+    <script src="~/assets/js/jquery.ajaxchimp.min.js"></script>
+    <script src="~/assets/js/plugins.js"></script>
+    <script src="~/assets/js/main.js"></script>
+</body>
+</html>

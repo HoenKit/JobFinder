@@ -24,6 +24,21 @@
         background-color: #f8bbd0; /* Light pink hover effect */
         color: #e91e63; /* Pink text on hover */
     }
+
+    .header-btn {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .btn-group {
+        display: flex;
+    }
+
+    .btn {
+        margin-left: 10px;
+    }
+
 </style>
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
@@ -38,6 +53,9 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                         <li class="dropdown-item">
                             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Admin/ManageUser/Index">Manage Users</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Admin/ManageJobPosting/Index">Manage Jobs</a>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -115,8 +133,11 @@
     else
     {
         <div class="header-btn d-none f-right d-lg-block ml-auto">
-            <a class="btn head-btn1" asp-area="Identity" asp-page="/Account/Register">Register</a>
-            <a class="btn head-btn2" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            <div class="btn-group">
+                <a class="btn head-btn1" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                <a class="btn head-btn2" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            </div>
         </div>
+
     }
 </ul>

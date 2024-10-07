@@ -49,7 +49,6 @@ namespace JobFinder.Areas.Identity.Pages.Admin.ManageUser
                 return NotFound();
             }
 
-            // Toggle ban/unban status
             await _appUserRepository.ToggleBanStatusAsync(user);
 
             return RedirectToPage("./Index");

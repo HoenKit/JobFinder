@@ -172,5 +172,60 @@ namespace JobFinder.Repository
                 .ToList();
         }
 
+        public PaginatedResult<JobPosting> GetAllJobPostings(int pageNumber, int pageSize, int? selectedStatus)
+        {
+            var query = _context.JobPosting
+                                .Include(p => p.JobNature)
+                                .Include(o => o.JobPosition)
+                                .Include(c => c.Recruiter)
+                                .Include(t => t.JobType)
+                                .AsQueryable();
+
+            if (selectedStatus.HasValue)
+            {
+                query = query.Where(p => p.JobPostingStatus == selectedStatus.Value);
+            }
+
+            query = query.OrderByDescending(p => p.PostDate);
+
+            var totalRecords = query.Count();
+
+            var paginatedData = query.Skip((pageNumber - 1) * pageSize)
+                                     .Take(pageSize)
+                                     .ToList();
+
+            return new PaginatedResult<JobPosting>
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize,
+                TotalRecords = totalRecords,
+                Data = paginatedData
+            };
+        }
+
+        public async Task<bool> UpdateJobPostingAsync(JobPosting jobPosting)
+        {
+            _context.JobPosting.Update(jobPosting);
+
+            var result = await _context.SaveChangesAsync();
+
+            return result > 0;
+        }
+
+        public async Task<JobPosting> GetJobPostingByIdAsync(int id)
+        {
+            return _context.JobPosting
+                .Include(j => j.Recruiter)
+                .Include(j => j.JobNature)
+                .FirstOrDefault(j => j.Id == id);
+        }
+
+        public async Task<bool> ToggleBanStatusAsync(JobPosting job)
+        {
+            job.JobPostingStatus = job.JobPostingStatus == 1 ? 0 : 1;
+            var result = await UpdateJobPostingAsync(job);
+            return result;
+        }
+
     }
 }

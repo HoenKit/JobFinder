@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
@@ -144,6 +144,10 @@ namespace JobFinder.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User logged in.");
 
+                    if (User.IsInRole("Administrator"))
+                    {
+                        return LocalRedirect("/Identity/Admin/ManageUser");
+                    }
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

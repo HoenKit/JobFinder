@@ -1,0 +1,33 @@
+﻿@page
+@model JobFinder.Areas.Identity.Pages.Admin.ManageJobPosting.AcceptRejectModel
+@{
+}
+<div class="container mt-5" style="width: 500px">
+    <div class="card">
+        <div class="card-header" style="background-color: #fb246a; color: white;">
+            <h1 class="text-center" style="color: white;">@(Model.JobPosting.JobPostingStatus == 1 ? "You want ACCEPT " : "You want REJECT ")@Model.JobPosting.JobTitle?</h1>
+        </div>
+        <div class="card-body">
+            <h5>Job Information</h5>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-4">Company Name:</dt>
+                <dd class="col-sm-8">@Model.JobPosting.Recruiter.CompanyName</dd>
+                <dt class="col-sm-4">Job Tittle:</dt>
+                <dd class="col-sm-8">@Model.JobPosting.JobTitle</dd>
+                <dt class="col-sm-4">Job Posting Status:</dt>
+                <dd class="col-sm-8">
+                    <span class="badge @(Model.JobPosting.JobPostingStatus == 1 ? "bg-danger" : "bg-success")">
+                        @(Model.JobPosting.JobPostingStatus == 1 ? "Reject" : "Accept")
+                    </span>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="text-center mt-4">
+        <form method="post" style="display: inline;">
+            <input type="submit" value="@(Model.JobPosting.JobPostingStatus == 1 ? "Accept" : "Reject")" class="btn btn-danger btn-lg" />
+        </form>
+        <a asp-page="./Index" class="btn btn-secondary btn-lg">Cancel</a>
+    </div>
+</div>

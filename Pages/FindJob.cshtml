@@ -44,6 +44,33 @@
             .slider:hover {
                 opacity: 1;
             }
+
+        .select-job-items2 label {
+            margin-right: 10px;
+        }
+
+        .badge-success {
+            background-color: #28a745;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .badge-warning {
+            background-color: #ffc107;
+            color: black;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .job-location {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
+            display: inline-block;
+        }
+
     </style>
 
 </head>
@@ -312,32 +339,33 @@
                                 <!-- single-job-content -->
                                 @foreach (var job in Model.JobPostings.Data)
                                 {
-                                    <div class="single-job-items mb-30" style="padding: 15px;">
-                                        <div class="job-items d-flex align-items-center">
+                                    <div class="single-job-items mb-30" style="padding: 15px; display: flex; justify-content: space-between; max-width: 1000px; margin: 0 auto;">
                                             <div class="company-img">
                                                 <a href="#">
-                                                    <img src="@job.Recruiter.CompanyImage" alt="@job.JobTitle" style="width: 80px; height: 80px;">
+                                                    <img src="@job.Recruiter?.CompanyImage" alt="@job.JobTitle" style="width: 80px; height: 80px;">
                                                 </a>
                                             </div>
-                                            <div class="job-tittle job-tittle2" style="margin-left: 15px;">
-                                                <a href="/FindJobDetail?Id=@job.Id">
-                                                    <h4>@job.JobTitle</h4>
+                                        <div class="job-tittle job-tittle2" style="margin-left: 15px; flex-grow: 1;">
+                                                <a asp-page="./Detail" asp-route-id="@job.Id" style="text-decoration: none;">
+                                                    <div style="display: flex; align-items: center;">
+                                                        <h4>@job.JobTitle</h4>
+                                                    </div>
                                                 </a>
                                                 <ul class="d-flex align-items-center" style="list-style-type: none; padding-left: 0; margin-top: 5px;">
                                                     <li style="margin-right: 20px;">@job.Recruiter.CompanyName</li>
                                                     <li style="margin-right: 20px;">
-                                                        <i class="fas fa-map-marker-alt"></i> @job.JobLocation
+                                                        <i class="fas fa-map-marker-alt"></i>
+                                                        <span class="job-location">@job.JobLocation</span>
                                                     </li>
                                                     <li>@job.Salary đ</li>
                                                 </ul>
                                             </div>
-                                            <div class="items-link f-right" style="margin-left: auto;">
-                                                <a href="/FindJobDetail?Id=@job.Id" >
+                                        <div class="items-link" style="text-align: right;">
+                                                <a asp-page="./Detail" asp-route-id="@job.Id">
                                                     @job.JobNature.JobNatureName
                                                 </a>
                                                 <span style="display: block; margin-top: 5px;">@job.PostDate.ToString("dd/MM/yyyy")</span>
                                             </div>
-                                        </div>
                                     </div>
                                 }
                                 <!-- single-job-content 

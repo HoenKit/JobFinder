@@ -7,7 +7,56 @@
 
 <head>
     <link rel="stylesheet" href="~/css/animations.css" />
+    <style>
+        .nav-icons {
+            position: sticky;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000; /* Để biểu tượng không bị che khuất */
+            display: flex;
+            justify-content: space-between
+        }
+
+        .nav-icon {
+            display: block;
+            font-size: 30px; /* Kích thước biểu tượng */
+            color: #fff; /* Màu sắc biểu tượng */
+            background-color: rgba(0, 0, 0, 0.7); /* Nền mờ */
+            border-radius: 50%; /* Hình tròn */
+            padding: 10px; /* Khoảng cách bên trong */
+            margin: 10px; /* Khoảng cách giữa hai biểu tượng */
+            text-align: center;
+            transition: background-color 0.3s; /* Hiệu ứng chuyển đổi khi hover */
+        }
+
+            .nav-icon:hover {
+                background-color: rgba(0, 0, 0, 1); /* Màu nền khi hover */
+            }
+
+        .left-icon {
+            left: 10px; /* Vị trí bên trái */
+        }
+
+        .right-icon {
+            right: 10px; /* Vị trí bên phải */
+        }
+
+    </style>
 </head>
+<body>
+    <!-- Navigation Icons -->
+    <div class="nav-icons">
+        <div class="items-link" style="text-align: left;">
+            <a asp-area="Identity" asp-page="/Admin/ManageJobPosting/Index" class="nav-icon left-icon">
+                <i class="fas fa-chevron-left"></i>
+            </a>
+        </div>
+        <div class="items-link" style="text-align: right;">
+            <a asp-area="Identity" asp-page="/Admin/ManageJobPosting/Index" class="nav-icon right-icon">
+                <i class="fas fa-chevron-right"></i>
+            </a>
+        </div>
+    </div>
 
 <h1 class="mb-4 text-center">User Management</h1>
 
@@ -22,11 +71,10 @@
                             Profile Status
                         </a>
                     </th>
-                    <th>Avatar</th>
-                    <th>User Name</th>
-                    <th>Email</th>
+                    <th style="width: 200px">User Name</th>
+                    <th style ="width: 300px">Email</th>
                     <th>Phone Number</th>
-                    <th>Actions</th>
+                    <th style="width: 340px">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,9 +92,6 @@
                             }
                         </td>
                         <td>
-                            <img src="@item.Avatar" alt="User Avatar" class="img-fluid" style="max-width: 50px; max-height: 50px;" />
-                        </td>
-                        <td>
                             @Html.DisplayFor(modelItem => item.UserName)
                         </td>
                         <td>
@@ -55,7 +100,7 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.PhoneNumber)
                         </td>
-                        <td>
+                        <td style="display: inline-block">
                             <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Detail</a>
                             <a asp-page="./BanUnban" asp-route-id="@item.Id" class="btn btn-danger">
                                 @(item.ProfileStatus == 1 ? "Unban User" : "Ban User")
@@ -104,7 +149,7 @@
     <p>Page @Model.CurrentPage of @Model.PaginatedUsers.TotalPages</p>
     <p>Total Users: @Model.PaginatedUsers.TotalRecords</p>
 </div>
-
+</body>
 <!-- JavaScript Start -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>

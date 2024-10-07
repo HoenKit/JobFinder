@@ -10,5 +10,13 @@ namespace JobFinder.Interface
         PaginatedResult<JobPosting> GetAllJobPostings(int pageNumber, int pageSize, string jobTitle, string location);
 
         IEnumerable<string> GetDistinctJobTitles();
+
+        PaginatedResult<JobPosting> GetAllJobPostings(int pageNumber, int pageSize, int? selectedStatus);
+
+        Task<bool> UpdateJobPostingAsync(JobPosting jobPosting);
+
+        Task<JobPosting> GetJobPostingByIdAsync(int id);
+
+        Task<bool> ToggleBanStatusAsync(JobPosting job);
     }
 }
