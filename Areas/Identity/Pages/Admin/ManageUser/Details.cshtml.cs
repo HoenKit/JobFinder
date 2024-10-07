@@ -22,7 +22,7 @@ namespace JobFinder.Areas.Identity.Pages.Admin.ManageUser
             AppUser = await _appUserRepository.GetUserByIdAsync(id);
             if (AppUser == null)
             {
-                return RedirectToPage("./Index"); // Chuyển hướng về danh sách nếu không tìm thấy người dùng
+                return RedirectToPage("./Index");
             }
 
             return Page();
@@ -33,7 +33,7 @@ namespace JobFinder.Areas.Identity.Pages.Admin.ManageUser
             AppUser = await _appUserRepository.GetUserByIdAsync(id);
             if (AppUser == null)
             {
-                return RedirectToPage("./Index"); // Chuyển hướng về danh sách nếu không tìm thấy người dùng
+                return RedirectToPage("./Index");
             }
 
             var success = await _appUserRepository.ToggleBanStatusAsync(AppUser);
@@ -42,7 +42,7 @@ namespace JobFinder.Areas.Identity.Pages.Admin.ManageUser
                 return RedirectToPage("./Index");
             }
 
-            return Page(); // Vẫn trả về trang chi tiết nếu không thành công
+            return Page();
         }
     }
 }
