@@ -90,6 +90,12 @@ namespace JobFinder.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                returnUrl ??= Url.Content("~/");
+                Response.Redirect(returnUrl);
+                return; // Exit the method to prevent further execution
+            }
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
                 ModelState.AddModelError(string.Empty, ErrorMessage);

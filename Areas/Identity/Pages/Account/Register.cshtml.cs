@@ -108,6 +108,12 @@ namespace JobFinder.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                returnUrl ??= Url.Content("~/");
+                Response.Redirect(returnUrl);
+                return;
+            }
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 /*            foreach (var provider in ExternalLogins) { 
