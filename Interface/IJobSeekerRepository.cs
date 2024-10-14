@@ -6,5 +6,7 @@ namespace JobFinder.Interface
     {
         public void AddJobSeeker( JobSeeker jobSeeker );
         public void UpdateJobSeeker(JobSeeker jobSeeker );
+
+        Task<JobSeeker?> GetJobSeekerByUserIdAsync(string userId);
     }
 }

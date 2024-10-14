@@ -1,6 +1,7 @@
 ﻿using JobFinder.Data;
 using JobFinder.Interface;
 using JobFinder.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace JobFinder.Repository
 {
@@ -15,6 +16,12 @@ namespace JobFinder.Repository
         {
             _context.Recruiter.Add(recruiter);
             _context.SaveChanges();
+        }
+
+        public async Task<Recruiter> GetRecruiterByUserIdAsync(string userId)
+        {
+            return await _context.Recruiter
+                                 .FirstOrDefaultAsync(r => r.UserId == userId);
         }
     }
 }

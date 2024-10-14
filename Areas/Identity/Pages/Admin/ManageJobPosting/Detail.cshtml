@@ -1,7 +1,7 @@
 ﻿@page
 @model JobFinder.Areas.Identity.Pages.Admin.ManageJobPosting.DetailModel
 @{
-    ViewData["Title"] = "Job Detail";
+    Layout = "~/Areas/Identity/Pages/Admin/Shared/_AdminLayout.cshtml";
 }
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -31,104 +31,104 @@
 <body>
     <main>
 
-        <!-- Hero Area Start-->
-        <div class="slider-area ">
-            <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="assets/img/hero/about.jpg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="hero-cap text-center">
-                                <h2>Job Information</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
+            <span class="mask  bg-gradient-primary  opacity-6"></span>
         </div>
-        <!-- Hero Area End -->
-        <!-- job post company Start -->
-        <div class="job-post-company pt-120 pb-120">
-            <div class="container">
-                <div class="row justify-content-between">
-                    <!-- Left Content -->
-                    <div class="col-xl-7 col-lg-8">
-                        <!-- job single -->
-                        <div class="single-job-items mb-50">
-                            <div class="job-items">
-                                <div class="company-img">
-                                    <a href="#">
-                                        <img src="@Model.JobPosting.Recruiter.CompanyImage" alt="@Model.JobPosting.JobTitle" style="width: 80px; height: 80px;">
-                                    </a>
-                                </div>
-                                <div class="job-tittle job-tittle2" style="margin-left: 15px;">
-                                    <div style="display: flex; align-items: center;">
-                                        <h4 style="margin: 0;">@Model.JobPosting.JobTitle</h4>
-                                        <span class="badge @((Model.JobPosting.JobPostingStatus == 0 ? "badge-success" : "badge-warning"))" style="margin-left: 10px;">
-                                            @(Model.JobPosting.JobPostingStatus == 0 ? "Accept" : "Reject")
-                                        </span>
+        <div class="card card-body mx-3 mx-md-4 mt-n6">
+            <div class="row gx-4 mb-2">
+                <div class="col-auto">
+                </div>
+                <div class="col-auto my-auto">
+                    <div class="h-100">
+                        <!-- Hero Area End -->
+                        <!-- job post company Start -->
+                        <div class="job-post-company pt-120 pb-120">
+                            <div class="container">
+                                <div class="row justify-content-between">
+                                    <!-- Left Content -->
+                                    <div class="col-xl-7 col-lg-8">
+                                        <!-- job single -->
+                                        <div class="single-job-items mb-50">
+                                            <div class="job-items">
+                                                <div class="company-img">
+                                                    <a href="#">
+                                                        <img src="@Model.JobPosting.Recruiter.CompanyImage" alt="@Model.JobPosting.JobTitle" style="width: 80px; height: 80px;">
+                                                    </a>
+                                                </div>
+                                                <div class="job-tittle job-tittle2" style="margin-left: 15px;">
+                                                    <div style="display: flex; align-items: center;">
+                                                        <h4 style="margin: 0;">@Model.JobPosting.JobTitle</h4>
+                                                        @if (Model.JobPosting.JobPostingStatus == 1)
+                                                        {
+                                                            <span class="badge badge-sm bg-gradient-secondary">Reject</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="badge badge-sm bg-gradient-success">Accept</span>
+                                                        }
+                                                    </div>
+                                                    <ul style="list-style-type: none; padding-left: 0; margin-top: 5px;">
+                                                        <li style="margin-right: 20px;">@Model.JobPosting.Recruiter.CompanyName</li>
+                                                        <li style="margin-right: 20px;">@Model.JobPosting.Recruiter.Address</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- job single End -->
+
+                                        <div class="job-post-details">
+                                            <div class="post-details1 mb-50">
+                                                <!-- Small Section Tittle -->
+                                                <div class="small-section-tittle">
+                                                    <h3>Description</h3>
+                                                    <h4>@Model.JobPosting.JobDescription</h4>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    </a>
-                                    <ul style="list-style-type: none; padding-left: 0; margin-top: 5px;">
-                                        <li style="margin-right: 20px;">@Model.JobPosting.Recruiter.CompanyName</li>
-                                        <li style="margin-right: 20px;">@Model.JobPosting.Recruiter.Address</li>
-                                    </ul>
+                                    <!-- Right Content -->
+                                    <div class="col-xl-4 col-lg-4">
+                                        <div class="post-details3  mb-50">
+                                            <!-- Small Section Tittle -->
+                                            <div class="small-section-tittle">
+                                                <h4>Job Overview</h4>
+                                            </div>
+                                            <ul>
+                                                <li>Posted date : <span>@Model.JobPosting.PostDate</span></li>
+                                                <li>Location : </li>
+                                                <li><span>@Model.JobPosting.JobLocation</span></li>
+                                                <li>Vacancy : <span>@Model.JobPosting.Vacancy</span></li>
+                                                <li>Job nature : <span>@Model.JobPosting.JobNature.JobNatureName</span></li>
+                                                <li>Salary :  <span>@Model.JobPosting.Salary</span></li>
+                                                <li>Expiration date : <span>@Model.JobPosting.ExpirationDate</span></li>
+                                            </ul>
+                                            <div class="apply-btn2">
+                                                <form method="post">
+                                                    <a asp-page="./AcceptReject" asp-route-id="@Model.JobPosting.Id" class="btn btn-danger">
+                                                        @(Model.JobPosting.JobPostingStatus == 1 ? "Accept job" : "Reject job")
+                                                    </a>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="post-details4  mb-50">
+                                            <!-- Small Section Tittle -->
+                                            <div class="small-section-tittle">
+                                                <h4>Company Contact</h4>
+                                            </div>
+
+                                            <ul>
+                                                <li>Name: <span>@Model.JobPosting.Recruiter.CompanyName </span></li>
+                                                <li>Phone: <span>@Model.JobPosting.Recruiter.CompanyPhone </span></li>
+                                                <li>Web : <span> <a href="@Model.JobPosting.Recruiter.CompanyWebsite" target="_blank"> @Model.JobPosting.Recruiter.CompanyWebsite</a></span></li>
+                                                <li>Email: <span>@Model.JobPosting.Recruiter.CompanyEmail</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- job single End -->
-
-                        <div class="job-post-details">
-                            <div class="post-details1 mb-50">
-                                <!-- Small Section Tittle -->
-                                <div class="small-section-tittle">
-                                    <h3>Description</h3>
-                                    <h4>@Model.JobPosting.JobDescription</h4>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- Right Content -->
-                    <div class="col-xl-4 col-lg-4">
-                        <div class="post-details3  mb-50">
-                            <!-- Small Section Tittle -->
-                            <div class="small-section-tittle">
-                                <h4>Job Overview</h4>
-                            </div>
-                            <ul>
-                                <li>Posted date : <span>@Model.JobPosting.PostDate</span></li>
-                                <li>Location : </li>
-                                <li><span>@Model.JobPosting.JobLocation</span></li>
-                                <li>Vacancy : <span>@Model.JobPosting.Vacancy</span></li>
-                                <li>Job nature : <span>@Model.JobPosting.JobNature.JobNatureName</span></li>
-                                <li>Salary :  <span>@Model.JobPosting.Salary</span></li>
-                                <li>Expiration date : <span>@Model.JobPosting.ExpirationDate</span></li>
-                            </ul>
-                            <div class="apply-btn2">
-                                <form method="post">
-                                    <a asp-page="./AcceptReject" asp-route-id="@Model.JobPosting.Id" class="btn btn-danger">
-                                        @(Model.JobPosting.JobPostingStatus == 1 ? "Accept job" : "Reject job")
-                                    </a>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="post-details4  mb-50">
-                            <!-- Small Section Tittle -->
-                            <div class="small-section-tittle">
-                                <h4>Company Contact</h4>
-                            </div>
-
-                            <ul>
-                                <li>Name: <span>@Model.JobPosting.Recruiter.CompanyName </span></li>
-                                <li>Phone: <span>@Model.JobPosting.Recruiter.CompanyPhone </span></li>
-                                <li>Web : <span> @Model.JobPosting.Recruiter.CompanyWebsite</span></li>
-                                <li>Email: <span>@Model.JobPosting.Recruiter.CompanyEmail</span></li>
-                            </ul>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
     </main>
 
 

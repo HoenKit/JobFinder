@@ -1,115 +1,78 @@
 ﻿@page
 @model JobFinder.Areas.Identity.Pages.Admin.ManageUser.IndexModel
-
 @{
-    ViewData["Title"] = "User Manage";
+    Layout = "~/Areas/Identity/Pages/Admin/Shared/_AdminLayout.cshtml";
 }
 
-<head>
-    <link rel="stylesheet" href="~/css/animations.css" />
-    <style>
-        .nav-icons {
-            position: sticky;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 1000; /* Để biểu tượng không bị che khuất */
-            display: flex;
-            justify-content: space-between
-        }
-
-        .nav-icon {
-            display: block;
-            font-size: 30px; /* Kích thước biểu tượng */
-            color: #fff; /* Màu sắc biểu tượng */
-            background-color: rgba(0, 0, 0, 0.7); /* Nền mờ */
-            border-radius: 50%; /* Hình tròn */
-            padding: 10px; /* Khoảng cách bên trong */
-            margin: 10px; /* Khoảng cách giữa hai biểu tượng */
-            text-align: center;
-            transition: background-color 0.3s; /* Hiệu ứng chuyển đổi khi hover */
-        }
-
-            .nav-icon:hover {
-                background-color: rgba(0, 0, 0, 1); /* Màu nền khi hover */
-            }
-
-        .left-icon {
-            left: 10px; /* Vị trí bên trái */
-        }
-
-        .right-icon {
-            right: 10px; /* Vị trí bên phải */
-        }
-
-    </style>
-</head>
-<body>
-    <!-- Navigation Icons -->
-    <div class="nav-icons">
-        <div class="items-link" style="text-align: left;">
-            <a asp-area="Identity" asp-page="/Admin/ManageJobPosting/Index" class="nav-icon left-icon">
-                <i class="fas fa-chevron-left"></i>
-            </a>
-        </div>
-        <div class="items-link" style="text-align: right;">
-            <a asp-area="Identity" asp-page="/Admin/ManageJobPosting/Index" class="nav-icon right-icon">
-                <i class="fas fa-chevron-right"></i>
-            </a>
-        </div>
-    </div>
-
-<h1 class="mb-4 text-center">User Management</h1>
-
-<div class="table-responsive d-flex justify-content-center">
-    <div style="max-width: 1200px; width: 100%;">
-        <table class="table table-striped table-bordered shadow rounded">
-            <thead class="table" style="background-color: #fb246a; color: white;">
-                <tr>
-                    <th>
-                        <a asp-page="./Index" asp-route-pageNumber="@Model.CurrentPage"
-                           asp-route-profileStatusFilter="@(Model.CurrentProfileStatusFilter == 0 ? 1 : Model.CurrentProfileStatusFilter == 1 ? null : 0)">
-                            Profile Status
-                        </a>
-                    </th>
-                    <th style="width: 200px">User Name</th>
-                    <th style ="width: 300px">Email</th>
-                    <th>Phone Number</th>
-                    <th style="width: 340px">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.PaginatedUsers.Data)
-                {
-                    <tr>
-                        <td>
-                            @if (item.ProfileStatus == 1)
+<div class="row">
+    <div class="col-12">
+        <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                    <h6 class="text-white text-capitalize ps-3">User table</h6>
+                </div>
+            </div>
+            <div class="card-body px-0 pb-2">
+                <div class="table-responsive p-0">
+                    <table class="table align-items-center mb-0">
+                        <thead>
+                            <tr>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">User Name</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    <a asp-page="./Index" asp-route-pageNumber="@Model.CurrentPage"
+                                       asp-route-profileStatusFilter="@(Model.CurrentProfileStatusFilter == 0 ? 1 : Model.CurrentProfileStatusFilter == 1 ? null : 0)">
+                                        Status
+                                    </a>
+                                </th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Phone</th>
+                                <th class="text-secondary opacity-7"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.PaginatedUsers.Data)
                             {
-                                <span class="badge bg-danger">Banned</span>
+                                <tr>
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-sm">@Html.DisplayFor(modelItem => item.UserName)</h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">@Html.DisplayFor(modelItem => item.Email)</p>
+                                    </td>
+                                    <td class="align-middle text-center text-sm">
+                                        @if (item.ProfileStatus == 1)
+                                        {
+                                            <span class="badge badge-sm bg-gradient-secondary">Banned</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge badge-sm bg-gradient-success">Active</span>
+                                        }
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <span class="text-secondary text-xs font-weight-bold">@Html.DisplayFor(modelItem => item.PhoneNumber)</span>
+                                    </td>
+                                    <td class="align-middle">
+                                        <a asp-page="./Details" asp-route-id="@item.Id" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                            VIew Detail
+                                        </a>
+                                    </td>
+                                    <td class="align-middle">
+                                        <a asp-page="./BanUnban" asp-route-id="@item.Id" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                            @(item.ProfileStatus == 1 ? "Unban" : "Ban")
+                                        </a>
+                                    </td>
+                                </tr>
                             }
-                            else
-                            {
-                                <span class="badge bg-success">Active</span>
-                            }
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.UserName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Email)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PhoneNumber)
-                        </td>
-                        <td style="display: inline-block">
-                            <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Detail</a>
-                            <a asp-page="./BanUnban" asp-route-id="@item.Id" class="btn btn-danger">
-                                @(item.ProfileStatus == 1 ? "Unban User" : "Ban User")
-                            </a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -120,20 +83,20 @@
             <div class="col-xl-12">
                 <div class="single-wrap d-flex justify-content-center">
                     <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-start">
+                        <ul class="d-flex align-items-center justify-content-between">
                             @for (int i = 1; i <= Model.PaginatedUsers.TotalPages; i++)
                             {
-                                <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                                <li class="btn btn-outline-primary btn-sm mb-0 @(i == Model.CurrentPage ? "active" : "")">
                                     <a class="page-link" asp-page="./Index"
                                        asp-route-pageNumber="@i"
                                        asp-route-profileStatusFilter="@Model.CurrentProfileStatusFilter">@i.ToString("D2")</a>
                                 </li>
                             }
-                            <li class="page-item @(Model.CurrentPage >= Model.PaginatedUsers.TotalPages ? "disabled" : "")">
+                            <li class="btn btn-outline-primary btn-sm mb-0 @(Model.CurrentPage >= Model.PaginatedUsers.TotalPages ? "disabled" : "")">
                                 <a class="page-link" asp-page="./Index"
                                    asp-route-pageNumber="@(Model.CurrentPage + 1)"
                                    asp-route-profileStatusFilter="@Model.CurrentProfileStatusFilter">
-                                    <span class="ti-angle-right"></span>
+                                    <i class='bx bx-right-arrow'></i>
                                 </a>
                             </li>
                         </ul>
@@ -144,24 +107,3 @@
     </div>
 </div>
 <!-- Pagination End -->
-
-<div class="text-center">
-    <p>Page @Model.CurrentPage of @Model.PaginatedUsers.TotalPages</p>
-    <p>Total Users: @Model.PaginatedUsers.TotalRecords</p>
-</div>
-</body>
-<!-- JavaScript Start -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('tbody tr').each(function (index) {
-            var row = $(this);
-            row.delay(index * 300).queue(function (next) {
-                row.css('animation', 'slideIn 0.5s forwards');
-                row.css('opacity', '1');
-                next();
-            });
-        });
-    });
-</script>
-<!-- JavaScript End -->

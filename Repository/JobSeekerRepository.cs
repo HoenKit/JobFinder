@@ -1,6 +1,7 @@
 ﻿using JobFinder.Data;
 using JobFinder.Interface;
 using JobFinder.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace JobFinder.Repository
 {
@@ -47,6 +48,12 @@ namespace JobFinder.Repository
             {
                 throw new InvalidOperationException("JobSeeker not found in the database");
             }
+        }
+
+        public async Task<JobSeeker> GetJobSeekerByUserIdAsync(string userId)
+        {
+            return await _context.JobSeeker
+                                 .FirstOrDefaultAsync(js => js.UserId == userId);
         }
     }
 }

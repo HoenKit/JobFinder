@@ -1,23 +1,25 @@
 ﻿using JobFinder.Interface;
 using JobFinder.Models;
 using JobFinder.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace JobFinder.Areas.Identity.Pages.Admin.ManageJobPosting
 {
-        public class DetailModel : PageModel
+    [Authorize(Roles = "Administrator")]
+    public class DetailModel : PageModel
+    {
+        private readonly IJobDetailRepository _jobDetailRepository;
+        private readonly IJobPostingRepository _JobPostingRepository;
+
+        public DetailModel(IJobPostingRepository jobPostingRepository, IJobDetailRepository jobDetailRepository)
         {
-            private readonly IJobDetailRepository _jobDetailRepository;
-            private readonly IJobPostingRepository _JobPostingRepository;
+            _jobDetailRepository = jobDetailRepository;
+            _JobPostingRepository = jobPostingRepository;
+        }
 
-            public DetailModel(IJobPostingRepository jobPostingRepository, IJobDetailRepository jobDetailRepository)
-            {
-                _jobDetailRepository = jobDetailRepository;
-                _JobPostingRepository = jobPostingRepository;
-            }
-
-            public JobPosting JobPosting { get; set; }
+        public JobPosting JobPosting { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int id)
         {

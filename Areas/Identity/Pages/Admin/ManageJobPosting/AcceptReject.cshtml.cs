@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using JobFinder.Models;
 using JobFinder.Interface;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace JobFinder.Areas.Identity.Pages.Admin.ManageJobPosting
 {
+    [Authorize(Roles = "Administrator")]
     public class AcceptRejectModel : PageModel
     {
         private readonly IJobPostingRepository _jobPostingRepository;

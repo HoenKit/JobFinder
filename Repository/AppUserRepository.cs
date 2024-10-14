@@ -59,5 +59,10 @@ namespace JobFinder.Repository
             var result = await _userManager.UpdateAsync(user);
             return result.Succeeded;
         }
+
+        public async Task<IList<string>> GetUserRolesAsync(AppUser user)
+        {
+            return await _userManager.GetRolesAsync(user);
+        }
     }
 }

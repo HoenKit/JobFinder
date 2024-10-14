@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using JobFinder.Models;
 using JobFinder.Interface;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JobFinder.Areas.Identity.Pages.Admin.ManageUser
 {
+    [Authorize(Roles = "Administrator")]
     public class BanUnbanModel : PageModel
     {
         private readonly IAppUserRepository _appUserRepository;
