@@ -3,9 +3,11 @@ using JobFinder.Interface;
 using JobFinder.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JobFinder.Areas.Identity.Pages.Admin.ManageUser
 {
+    [Authorize(Roles = "Administrator")]
     public class IndexModel : PageModel
     {
         private readonly IAppUserRepository _appUserRepository;

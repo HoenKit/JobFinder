@@ -1,11 +1,13 @@
 ﻿using JobFinder.Dtos;
 using JobFinder.Interface;
 using JobFinder.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace JobFinder.Areas.Identity.Pages.Admin.ManageJobPosting
 {
+    [Authorize(Roles = "Administrator")]
     public class IndexModel : PageModel
     {
         private readonly IJobPostingRepository _jobPostingRepository;

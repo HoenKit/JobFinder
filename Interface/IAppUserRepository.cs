@@ -9,6 +9,8 @@ namespace JobFinder.Interface
         Task<PaginatedResult<AppUser>> GetPaginatedUsersAsync(int pageNumber, int pageSize, int? profileStatusFilter);
         Task<AppUser> GetUserByIdAsync(string id);
         Task<bool> ToggleBanStatusAsync(AppUser user);
+        Task<IList<string>> GetUserRolesAsync(AppUser user);
+
     }
 
 }
