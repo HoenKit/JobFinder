@@ -18,10 +18,9 @@ namespace JobFinder.Repository
             _context.SaveChanges();
         }
 
-        public async Task<Recruiter> GetRecruiterByUserIdAsync(string userId)
+        public async Task<Recruiter?> GetRecruiterByUserIdAsync(string userId)
         {
-            return await _context.Recruiter
-                                 .FirstOrDefaultAsync(r => r.UserId == userId);
+            return await _context.Recruiter.FirstOrDefaultAsync(r => r.UserId == userId);
         }
     }
 }

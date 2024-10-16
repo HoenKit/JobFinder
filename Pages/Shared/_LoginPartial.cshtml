@@ -35,9 +35,9 @@
         display: flex;
     }
 
-    .btn {
+/*     .btn {
         margin-left: 10px;
-    }
+    } */
 
 </style>
 <ul class="navbar-nav">
@@ -47,7 +47,7 @@
         {
             <div class="header-btn d-none f-right d-lg-block ml-auto">
                 <div class="dropdown">
-                    <a href="#" class="btn btn-secondary dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a href="#" style="border-radius: 10px" class="btn btn-secondary dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                         Admin Menu
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
@@ -76,7 +76,7 @@
         {
             <div class="header-btn d-none f-right d-lg-block ml-auto">
                 <div class="dropdown">
-                    <a href="#" class="btn btn-secondary dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a href="#" style="border-radius: 10px" class="btn btn-secondary dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                         User Menu
                     </a>
 
@@ -105,7 +105,7 @@
         {
             <div class="header-btn d-none f-right d-lg-block ml-auto">
                 <div class="dropdown">
-                    <a href="#" class="btn btn-secondary dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a href="#" style="border-radius: 10px" class="btn btn-secondary dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                         Recruiter Menu
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
@@ -134,10 +134,9 @@
     {
         <div class="header-btn d-none f-right d-lg-block ml-auto">
             <div class="btn-group">
-                <a class="btn head-btn1" asp-area="Identity" asp-page="/Account/Register">Register</a>
-                <a class="btn head-btn2" asp-area="Identity" asp-page="/Account/Login">Login</a>
+               <a class="btn head-btn1" style="border-radius: 10px" asp-area="Identity" asp-page="/Account/Register">Register</a>
+               <a class="btn head-btn2" style="border-radius: 10px" asp-area="Identity" asp-page="/Account/Login">Login</a>
             </div>
         </div>
-
     }
 </ul>

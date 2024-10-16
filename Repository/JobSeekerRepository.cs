@@ -36,12 +36,13 @@ namespace JobFinder.Repository
                 existingJobSeeker.EducationLevel = jobSeeker.EducationLevel;
                 existingJobSeeker.Specialized = jobSeeker.Specialized;
                 existingJobSeeker.Experience = jobSeeker.Experience;
-                /*   existingJobSeeker.CV = jobSeeker.CV;
+                /* existingJobSeeker.CV = jobSeeker.CV;
                    existingJobSeeker.JobPositionId = jobSeeker.JobPositionId;
                 */
                 existingJobSeeker.UserId = jobSeeker.UserId;
 
                 // Save changes to the database
+                _context.JobSeeker.Update(jobSeeker);
                 _context.SaveChanges();
             }
             else
@@ -49,11 +50,11 @@ namespace JobFinder.Repository
                 throw new InvalidOperationException("JobSeeker not found in the database");
             }
         }
-
-        public async Task<JobSeeker> GetJobSeekerByUserIdAsync(string userId)
+        public async Task<JobSeeker?> GetJobSeekerByUserIdAsync(string userId)
         {
-            return await _context.JobSeeker
-                                 .FirstOrDefaultAsync(js => js.UserId == userId);
+            return await _context.JobSeeker.FirstOrDefaultAsync(js => js.UserId == userId);
         }
     }
 }
+
+

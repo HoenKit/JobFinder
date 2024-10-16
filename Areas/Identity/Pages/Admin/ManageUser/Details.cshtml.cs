@@ -33,18 +33,16 @@ namespace JobFinder.Areas.Identity.Pages.Admin.ManageUser
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
-            // Lấy thông tin người dùng (AppUser)
+
             AppUser = await _appUserRepository.GetUserByIdAsync(id);
             if (AppUser == null)
             {
                 return RedirectToPage("./Index");
             }
 
-            // Lấy thông tin JobSeeker hoặc Recruiter nếu có
             JobSeeker = await _jobSeekerRepository.GetJobSeekerByUserIdAsync(id);
             Recruiter = await _recruiterRepository.GetRecruiterByUserIdAsync(id);
 
-            // Kiểm tra nếu có thông tin JobSeeker hoặc Recruiter
             HasJobSeeker = JobSeeker != null;
             HasRecruiter = Recruiter != null;
 
