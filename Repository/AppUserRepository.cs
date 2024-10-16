@@ -19,25 +19,20 @@ namespace JobFinder.Repository
 
         public async Task<PaginatedResult<AppUser>> GetPaginatedUsersAsync(int pageNumber, int pageSize, int? profileStatusFilter = null)
         {
-            // Khởi tạo truy vấn với tất cả người dùng
             var query = _userManager.Users.AsQueryable();
 
-            // Nếu có bộ lọc, thêm điều kiện vào truy vấn
             if (profileStatusFilter.HasValue)
             {
                 query = query.Where(u => u.ProfileStatus == profileStatusFilter.Value);
             }
 
-            // Lấy tổng số lượng người dùng theo bộ lọc
             var totalRecords = await query.CountAsync();
 
-            // Thực hiện phân trang với Skip và Take
             var users = await query
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
 
-            // Trả về kết quả phân trang
             return new PaginatedResult<AppUser>
             {
                 PageNumber = pageNumber,
@@ -48,7 +43,7 @@ namespace JobFinder.Repository
         }
 
 
-        public async Task<AppUser> GetUserByIdAsync(string id)
+        public async Task<AppUser?> GetUserByIdAsync(string id)
         {
             return await _userManager.FindByIdAsync(id);
         }
