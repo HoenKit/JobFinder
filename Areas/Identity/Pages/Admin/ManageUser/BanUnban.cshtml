@@ -4,10 +4,12 @@
     Layout = "~/Areas/Identity/Pages/Admin/Shared/_AdminLayout.cshtml";
 }
 
-<div class="container mt-5" style="width: 500px">
+<div class="container mt-5" style="width: 500px;">
     <div class="card">
         <div class="card-header" style="background-color: #fb246a; color: white;">
-            <h1 class="text-center" style="color: white;">@(Model.AppUser.ProfileStatus == 1 ? "You want UNBAN " : "You want BAN ")@Model.AppUser.UserName?</h1>
+            <h1 class="text-center" style="color: white;">
+                @(Model.AppUser.ProfileStatus == 1 ? "You want UNBAN " : "You want BAN ")@Model.AppUser.UserName?
+            </h1>
         </div>
         <div class="card-body">
             <h5>User Information</h5>
@@ -23,13 +25,35 @@
                         @(Model.AppUser.ProfileStatus == 1 ? "Banned" : "Active")
                     </span>
                 </dd>
-            </dl>   
+            </dl>
         </div>
     </div>
     <div class="text-center mt-4">
-        <form method="post" style="display: inline;">
-            <input type="submit" value="@(Model.AppUser.ProfileStatus == 1 ? "Unban" : "Ban")" class="btn btn-danger btn-lg" />
-        </form>
+        <button popovertarget="form" class="btn btn-danger btn-lg">
+            @(Model.AppUser.ProfileStatus == 1 ? "Unban" : "Ban")
+        </button>
         <a asp-page="./Index" class="btn btn-secondary btn-lg">Cancel</a>
+    </div>
+
+    <div id="form" popover>
+        <div class="card mt-3">
+            <div class="card-header" style="background-color: #fb246a; color: white;">
+                <h1 class="text-center" style="color: white;">
+                    @(Model.AppUser.ProfileStatus == 1 ? "Reason for unban account " : "Reason for ban account ")@Model.AppUser.UserName?
+                </h1>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div class="form-group">
+                        <label for="reason">Reason</label>
+                        <input id="reason" name="Reason" class="form-control" placeholder="Please enter the reason..." />
+                        <span asp-validation-for="Reason" class="text-danger"></span>
+                    </div>
+                    <div class="text-center mt-4">
+                        <input type="submit" value="@(Model.AppUser.ProfileStatus == 1 ? "Unban" : "Ban")" class="btn btn-danger btn-lg mt-3" />
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
