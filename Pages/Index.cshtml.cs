@@ -9,12 +9,10 @@ namespace JobFinder.Pages
     public class IndexModel : PageModel
     {
         private readonly IJobPostingRepository _jobPostingRepository;
-        private readonly IjobpostingindexRepository _jobpostingindexRepository;
         private readonly IJobTypeRepository _jobTypeRepository;
-        public IndexModel(IJobPostingRepository jobPostingRepository, IjobpostingindexRepository jobpostingindexRepository, IJobTypeRepository jobTypeRepository)
+        public IndexModel(IJobPostingRepository jobPostingRepository, IJobTypeRepository jobTypeRepository)
         {
             _jobPostingRepository = jobPostingRepository;
-            _jobpostingindexRepository = jobpostingindexRepository;
             _jobTypeRepository = jobTypeRepository;
         }
 
@@ -22,10 +20,12 @@ namespace JobFinder.Pages
 
         public IEnumerable<string> JobTitles { get; set; }
         public List<JobPosting> LatestJobPostings { get; set; } = new List<JobPosting>();
+        public List<JobType> JobTypes { get; set; }
         public void OnGet(string jobTitle, string location)
         {
             JobTitles = _jobPostingRepository.GetDistinctJobTitles();
-            LatestJobPostings =  _jobpostingindexRepository.GetLatestJobPostings();
+            LatestJobPostings =  _jobPostingRepository.GetLatestJobPostings();
+            JobTypes = _jobTypeRepository.GetAllJobTypes();
         }
 
     }

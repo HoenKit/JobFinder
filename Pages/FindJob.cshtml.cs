@@ -4,6 +4,7 @@ using JobFinder.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
+using System.Drawing.Printing;
 
 namespace JobFinder.Pages
 {
@@ -40,11 +41,14 @@ namespace JobFinder.Pages
         [BindProperty(SupportsGet = true)]
         public decimal? MaxSalary { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int pageNumber = 1)
+        public async Task<IActionResult> OnGetAsync(int jobTypeId, int pageNumber = 1, int pageSize = 10)
         {
             JobTypes = _jobTypeRepository.GetAllJobType();
             CurrentPage = pageNumber;
             JobPostings = _jobPostingRepository.GetAllJobPostings(pageNumber, PageSize, JobTypeFilter, ExperienceFilter, postedWithin, MinSalary, MaxSalary, JobTypeId, fullAddress);
+
+            JobTypeId = jobTypeId;
+            JobPostings = _jobPostingRepository.GetJobPostingsByJobType(jobTypeId, pageNumber, pageSize);
             return Page();
         }
 

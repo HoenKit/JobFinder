@@ -4,6 +4,7 @@
     {
         public int Id { get; set; }
         public string JobTypeName { get; set; }
+        public string JobTypeAvatar {  get; set; }
         public ICollection<JobPosting> JobPostings { get; set; }
     }
 }

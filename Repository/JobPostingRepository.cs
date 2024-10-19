@@ -14,6 +14,7 @@ namespace JobFinder.Repository
         {
             _context = context;
         }
+        public List<JobPosting> LatestJobPostings { get; set; } = new List<JobPosting>();
         public PaginatedResult<JobPosting> GetAllJobPostings(int pageNumber, int pageSize, string[] jobTypeFilter, string[] experienceFilter, int? postedWithin, decimal? minSalary, decimal? maxSalary, int jobTypeId, string address)
         {
             var query = _context.JobPosting
@@ -227,5 +228,38 @@ namespace JobFinder.Repository
             return result;
         }
 
+        public  List<JobPosting> GetLatestJobPostings(int count = 4)
+=>
+             _context.JobPosting
+              .Include(j => j.Recruiter)
+              .Include(j => j.JobNature)
+              .OrderByDescending(j => j.PostDate)
+              .Take(count)
+              .ToList();
+        
+        public PaginatedResult<JobPosting> GetJobPostingsByJobType(int jobTypeId, int pageNumber, int pageSize)
+        {
+            var query = _context.JobPosting
+                .Include(j => j.JobType)
+                .Include(j => j.Recruiter)
+                .Include(j => j.JobNature)
+                .Where(j => j.JobTypeId == jobTypeId)
+                .AsQueryable();
+
+            var totalRecords = query.Count();
+
+            var jobPostings = query.Skip((pageNumber - 1) * pageSize)
+                                   .Take(pageSize)
+                                   .ToList();
+
+            return new PaginatedResult<JobPosting>
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize,
+                TotalRecords = totalRecords,
+                Data = jobPostings
+            };
+
+        }
     }
 }
