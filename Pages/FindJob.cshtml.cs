@@ -45,10 +45,16 @@ namespace JobFinder.Pages
         {
             JobTypes = _jobTypeRepository.GetAllJobType();
             CurrentPage = pageNumber;
-            JobPostings = _jobPostingRepository.GetAllJobPostings(pageNumber, PageSize, JobTypeFilter, ExperienceFilter, postedWithin, MinSalary, MaxSalary, JobTypeId, fullAddress);
-
             JobTypeId = jobTypeId;
-            JobPostings = _jobPostingRepository.GetJobPostingsByJobType(jobTypeId, pageNumber, pageSize);
+            if (jobTypeId > 0) 
+            {
+                JobPostings = _jobPostingRepository.GetJobPostingsByJobType(jobTypeId, pageNumber, PageSize);
+            }
+            else
+            {
+                JobPostings = _jobPostingRepository.GetAllJobPostings(pageNumber, PageSize, JobTypeFilter, ExperienceFilter, postedWithin, MinSalary, MaxSalary, JobTypeId, fullAddress);
+            }
+
             return Page();
         }
 
