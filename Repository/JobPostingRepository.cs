@@ -228,7 +228,7 @@ namespace JobFinder.Repository
             return result;
         }
 
-        public  List<JobPosting> GetLatestJobPostings(int count = 4)
+        public  List<JobPosting> GetLatestJobPostings(int count = 5)
 =>
              _context.JobPosting
               .Include(j => j.Recruiter)
