@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace JobFinder.Areas.Identity.Pages.Admin
+namespace JobFinder.Areas.Identity.Pages.RecruiterInfo
 {
-    public class dashboardModel : PageModel
+    public class AboutModel : PageModel
     {
         public void OnGet()
         {
