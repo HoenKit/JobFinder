@@ -152,7 +152,7 @@ namespace JobFinder.Areas.Identity.Pages.Account
 
                     if (User.IsInRole("Administrator"))
                     {
-                        return LocalRedirect("/Identity/Admin/ManageUser");
+                        return LocalRedirect("/Identity/Admin/Dashboard");
                     }
                     return LocalRedirect(returnUrl);
                 }

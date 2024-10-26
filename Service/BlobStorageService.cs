@@ -1,4 +1,5 @@
-﻿using Azure.Storage.Blobs.Models;
+﻿
+using Azure.Storage.Blobs.Models;
 using Azure.Storage.Blobs;
 
 namespace JobFinder.Service
