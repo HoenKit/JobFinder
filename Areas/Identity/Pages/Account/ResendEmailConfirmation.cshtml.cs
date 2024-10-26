@@ -82,7 +82,7 @@ namespace JobFinder.Areas.Identity.Pages.Account
                 "Confirm your email",
                 $@"
                 <div style='font-family: Arial, sans-serif;'>
-                <h2 style='color: #2c3e50;'>Welcome to [Your App Name]!</h2>
+                <h2 style='color: #2c3e50;'>Welcome to JobFinder!</h2>
                  <p style='font-size: 16px; color: #34495e;'>
                     We're excited to have you on board! Please confirm your email address to activate your account. </p>
                     <div style='text-align: center; margin-top: 20px;'>
