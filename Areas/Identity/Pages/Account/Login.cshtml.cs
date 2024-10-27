@@ -154,6 +154,9 @@ namespace JobFinder.Areas.Identity.Pages.Account
                     {
                         return LocalRedirect("/Identity/Admin/Dashboard");
                     }
+                    if (User.IsInRole("Recruiter")) {
+                        return LocalRedirect("/Identity/RecruiterInfo/Index");
+                    }
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

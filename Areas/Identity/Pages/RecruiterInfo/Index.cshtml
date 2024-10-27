@@ -1,10 +1,10 @@
 ﻿@page
 @model JobFinder.Areas.Identity.Pages.RecruiterInfo.IndexModel
 @{
-    ViewData["CompanyName"] = "Company Name";
-    ViewData["Address"] = "221 Trần Cao Vân, Quận Thanh Khê, Thành Phố Đà Nẵng";
-    ViewData["StaffSize"] = "1000";
-    ViewData["CompanyImage"] = "CompanyImage";
+    ViewData["CompanyName"] = Model.Recruiter.CompanyName;
+    ViewData["Address"] = Model.Recruiter.Address;
+    ViewData["StaffSize"] = Model.Recruiter.StaffSize;
+    ViewData["CompanyImage"] = Model.Recruiter.CompanyImage;
     Layout = "~/Areas/Identity/Pages/RecruiterInfo/Shared/_RecruiterLayout.cshtml";
 }
 <div class="col-lg-8 mb-md-0 mb-4" style="margin-top: 20px;">
@@ -19,30 +19,7 @@
                         <div>
                             <div class="limited-text" style="white-space: pre-line;">
                                 Company Description
-                                **Our Mission
-                                To help people achieve their dreams. That's why we call our employees "Dream-Makers"​.
-
-                                **Our Vision
-                                Deliver a superior solution for recruiting high quality professionals. We guarantee results, offer fast, flexible, professional service, and we do it with love for our customers and job seekers!
-
-                                **Our Values
-
-                                >> Wow! Service
-                                We delight our Customers and Job Seekers with extraordinary service! We follow the golden rule: “Treat others the way we would like to be treated”.
-
-                                >> Straight Talk!
-                                We communicate honestly, openly and directly to strengthen trust and move forward. We don’t gossip or complain behind others’ backs, we communicate directly and take responsibility for change.
-
-                                >> Own It!
-                                We take responsibility and take ownership for our actions and for delivering results. We make and keep our commitments. This means we do what we say we will do.
-
-                                >> Improve It!
-                                We achieve excellence through continuous improvement. We develop and grow ourselves and each other through coaching, training and stretching beyond our comfort zone. We take initiative and take action to make improvement.
-                                --------------------------------------------------------------------------------------------------------------------------
-
-                                VietnamWorks has launched Mobile App – the fastest & easiest way to get your dream jobs
-                                Now available on Appstore at: http://bit.ly/VNW_iOSApp
-                                Now available on Google Play at: http://bit.ly/VNW_AndroidApp
+                                @Model.Recruiter.CompanyDescription
                             </div>
                             <a style="display: flex;flex-wrap: wrap;justify-content: flex-end; cursor: pointer;" onclick="toggleText(this)">See more</a>
                         </div>
@@ -67,301 +44,40 @@
                             <h4>Page posts</h4>
                         </div>
                         <div>
-                            <ul class="cards-container" style="display: flex; overflow-x: auto; list-style-type: none; padding: 0; gap: 15px;">
+                            <ul href="" class="cards-container" style="display: flex; overflow-x: auto; list-style-type: none; padding: 0; gap: 15px;">
                                 <!-- Thẻ card1 thứ nhất -->
-                                <li style="min-width: 300px; margin-right: 0px;">
-                                    <div class="card1">
-                                        <div class="card-header1">
-                                            <img src="your-logo.png" alt="VietnamWorks Logo" class="logo1">
-                                            <div style="margin-left: 10px;">
-                                                <div class="header-content1">
-                                                    <h3>VietnamWorks</h3>
-                                                    <p>11/12/2024</p>
-                                                </div>
-                                                <div>
-                                                    <button class="menu-btn1" onclick="toggleMenu(this)">•••</button>
-                                                    <div class="dropdown-menu1">
-                                                        <ul style="display: flex; flex-direction: column;">
-                                                            <li onclick="deletePost()">Delete</li>
-                                                            <li onclick="editPost()">Edit</li>
-                                                        </ul>
+                                @foreach (var job in Model.JobPostings)
+                                {
+                                    <li style="min-width: 300px; margin-right: 0px;">
+                                        <div class="card1">
+                                            <div class="card-header1">
+                                                <img src="your-logo.png" alt="@ViewData" class="logo1">
+                                                <div style="margin-left: 10px;">
+                                                    <div class="header-content1">
+                                                        <h3>@job.Recruiter.CompanyName</h3>
+                                                        <p>@job.PostDate</p>
+                                                    </div>
+                                                    <div>
+                                                        <button class="menu-btn1" onclick="toggleMenu(this)">•••</button>
+                                                        <div class="dropdown-menu1">
+                                                            <ul style="display: flex; flex-direction: column;">
+                                                                <li onclick="deletePost()">Delete</li>
+                                                                <li onclick="editPost()">Edit</li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="card-body1">
-                                            <p><strong>Job Title</strong></p>
-                                            <div class="limited-text" style="white-space: pre-line; max-height: none">
-                                                Nếu một ngày AI thay thế công việc của chính bạn và nhiều người khác, đâu sẽ là những kỹ năng bạn chiếm lợi thế để giữ ghế và năng lực thích nghi?
-
-                                                Để vẫn lạc quan trước cơn sóng trí tuệ nhân tạo và sinh tồn ở bất kỳ môi trường nào, bạn nhất định phải có bí quyết trau dồi kỹ năng cái mà công nghệ AI sẽ khó lòng theo kịp bạn.
-
-                                                Bí quyết giúp bản thân cảm thấy có giá trị là khi chúng ta liên tục sạc đầy kiến thức mới mỗi ngày, đặc biệt là những bộ kỹ năng mềm cấp bách. Chính vì thế, 𝗩𝗶𝗲𝘁𝗻𝗮𝗺𝗪𝗼𝗿𝗸𝘀 𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴 𝗦𝗲𝗮𝘀𝗼𝗻 𝟮 hân hạnh trở lại với ngàn kho kiến thức mới, lợi hại hơn sẽ giúp bạn luôn tự tin trong xuyên suốt quá trình đi làm và phát triển sự nghiệp.
-
-                                                Truy cập ngay VietnamWorks E-learning hot hit nhất năm: https://lnkd.in/g8BbgveV
-
-                                                Đồng hành cùng VietnamWorks E-learning Season 2 là những Mentor dày dặn kinh nghiệm đang tại vị ở những vị trí nòng cốt của doanh nghiệp, sẽ mang đến những chia sẻ thực tiễn qua chuỗi bài giảng vô cùng hấp dẫn:
-
-                                                𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴: Từ A-Z: Hiểu về luật lao động và quyền lợi cơ bản dành cho người đi làm| 𝗖𝗼𝗮𝗰𝗵: Lê Phương Quyên - Quản lý nhân sự tại Đồng hồ Hải Triều
-
-                                                𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴: Chinh phục sếp, đồng nghiệp nhờ kỹ năng thuyết trình thu hút
-                                                𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴: Văn hoá ứng xử chuyên nghiệp & những kịch bản ứng biến nơi công sở| Đồng dẫn dắt bởi 𝗖𝗼𝗮𝗰𝗵 Đặng Thúy Quỳnh - Nhà đào tạo và huấn luyện xây dựng thương hiệu cá nhân
-
-                                                𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴: Lần đầu làm sếp, chuẩn bị hành trang gì để tự tin & sẵn sàng| 𝗖𝗼𝗮𝗰𝗵 Đoàn Ngọc Hưng - Giám đốc kinh doanh tại AIA Exchange
-
-                                                Bạn đã sẵn sàng học hết sức - giỏi hết mức cùng VietnamWorks E-learning Season 2 chưa?
-
-                                                Hãy để VietnamWorks giúp bạn khám phá một kho tàng kiến thức đồ sộ, đa dạng và HOÀN TOÀN MIỄN PHÍ tại VietnamWorks E-learning Season 2 ngay hôm nay: https://lnkd.in/g8BbgveV
-                                            </div>
-                                            <a style="display: flex; justify-content: flex-end; cursor: pointer; color: gray" href="#">See more</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- Thẻ card1 thứ hai -->
-                                <li style="min-width: 300px; margin-right: 0px;">
-                                    <div class="card1">
-                                        <div class="card-header1">
-                                            <img src="your-logo.png" alt="VietnamWorks Logo" class="logo1">
-                                            <div style="margin-left: 10px;">
-                                                <div class="header-content1">
-                                                    <h3>VietnamWorks</h3>
-                                                    <p>11/12/2024</p>
+                                            <div class="card-body1">
+                                                <p><strong>@job.JobTitle</strong></p>
+                                                <div class="limited-text" style="white-space: pre-line; max-height: none">
+                                                    @job.JobDescription
                                                 </div>
-                                                <div>
-                                                    <button class="menu-btn1" onclick="toggleMenu(this)">•••</button>
-                                                    <div class="dropdown-menu1">
-                                                        <ul style="display: flex; flex-direction: column;">
-                                                            <li onclick="deletePost()">Delete</li>
-                                                            <li onclick="editPost()">Edit</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
+                                                <a style="display: flex; justify-content: flex-end; cursor: pointer; color: gray" href="#">See more</a>
                                             </div>
                                         </div>
-                                        <div class="card-body1">
-                                            <p><strong>Job Title</strong></p>
-                                            <div class="limited-text" style="white-space: pre-line; max-height: none">
-                                                Nếu một ngày AI thay thế công việc của chính bạn và nhiều người khác, đâu sẽ là những kỹ năng bạn chiếm lợi thế để giữ ghế và năng lực thích nghi?
-
-                                                Để vẫn lạc quan trước cơn sóng trí tuệ nhân tạo và sinh tồn ở bất kỳ môi trường nào, bạn nhất định phải có bí quyết trau dồi kỹ năng cái mà công nghệ AI sẽ khó lòng theo kịp bạn.
-
-                                                Bí quyết giúp bản thân cảm thấy có giá trị là khi chúng ta liên tục sạc đầy kiến thức mới mỗi ngày, đặc biệt là những bộ kỹ năng mềm cấp bách. Chính vì thế, 𝗩𝗶𝗲𝘁𝗻𝗮𝗺𝗪𝗼𝗿𝗸𝘀 𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴 𝗦𝗲𝗮𝘀𝗼𝗻 𝟮 hân hạnh trở lại với ngàn kho kiến thức mới, lợi hại hơn sẽ giúp bạn luôn tự tin trong xuyên suốt quá trình đi làm và phát triển sự nghiệp.
-
-                                                Truy cập ngay VietnamWorks E-learning hot hit nhất năm: https://lnkd.in/g8BbgveV
-
-                                                Đồng hành cùng VietnamWorks E-learning Season 2 là những Mentor dày dặn kinh nghiệm đang tại vị ở những vị trí nòng cốt của doanh nghiệp, sẽ mang đến những chia sẻ thực tiễn qua chuỗi bài giảng vô cùng hấp dẫn:
-
-                                                𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴: Từ A-Z: Hiểu về luật lao động và quyền lợi cơ bản dành cho người đi làm| 𝗖𝗼𝗮𝗰𝗵: Lê Phương Quyên - Quản lý nhân sự tại Đồng hồ Hải Triều
-
-                                                𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴: Chinh phục sếp, đồng nghiệp nhờ kỹ năng thuyết trình thu hút
-                                                𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴: Văn hoá ứng xử chuyên nghiệp & những kịch bản ứng biến nơi công sở| Đồng dẫn dắt bởi 𝗖𝗼𝗮𝗰𝗵 Đặng Thúy Quỳnh - Nhà đào tạo và huấn luyện xây dựng thương hiệu cá nhân
-
-                                                𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴: Lần đầu làm sếp, chuẩn bị hành trang gì để tự tin & sẵn sàng| 𝗖𝗼𝗮𝗰𝗵 Đoàn Ngọc Hưng - Giám đốc kinh doanh tại AIA Exchange
-
-                                                Bạn đã sẵn sàng học hết sức - giỏi hết mức cùng VietnamWorks E-learning Season 2 chưa?
-
-                                                Hãy để VietnamWorks giúp bạn khám phá một kho tàng kiến thức đồ sộ, đa dạng và HOÀN TOÀN MIỄN PHÍ tại VietnamWorks E-learning Season 2 ngay hôm nay: https://lnkd.in/g8BbgveV
-                                            </div>
-                                            <a style="display: flex; justify-content: flex-end; cursor: pointer; color: gray" href="#">See more</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- Thẻ card1 thứ ba -->
-                                <li style="min-width: 300px; margin-right: 0px;">
-                                    <div class="card1">
-                                        <div class="card-header1">
-                                            <img src="your-logo.png" alt="VietnamWorks Logo" class="logo1">
-                                            <div style="margin-left: 10px;">
-                                                <div class="header-content1">
-                                                    <h3>VietnamWorks</h3>
-                                                    <p>11/12/2024</p>
-                                                </div>
-                                                <div>
-                                                    <button class="menu-btn1" onclick="toggleMenu(this)">•••</button>
-                                                    <div class="dropdown-menu1">
-                                                        <ul style="display: flex; flex-direction: column;">
-                                                            <li onclick="deletePost()">Delete</li>
-                                                            <li onclick="editPost()">Edit</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-body1">
-                                            <p><strong>Job Title</strong></p>
-                                            <div class="limited-text" style="white-space: pre-line; max-height: none">
-                                                Nếu một ngày AI thay thế công việc của chính bạn và nhiều người khác, đâu sẽ là những kỹ năng bạn chiếm lợi thế để giữ ghế và năng lực thích nghi?
-
-                                                Để vẫn lạc quan trước cơn sóng trí tuệ nhân tạo và sinh tồn ở bất kỳ môi trường nào, bạn nhất định phải có bí quyết trau dồi kỹ năng cái mà công nghệ AI sẽ khó lòng theo kịp bạn.
-
-                                                Bí quyết giúp bản thân cảm thấy có giá trị là khi chúng ta liên tục sạc đầy kiến thức mới mỗi ngày, đặc biệt là những bộ kỹ năng mềm cấp bách. Chính vì thế, 𝗩𝗶𝗲𝘁𝗻𝗮𝗺𝗪𝗼𝗿𝗸𝘀 𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴 𝗦𝗲𝗮𝘀𝗼𝗻 𝟮 hân hạnh trở lại với ngàn kho kiến thức mới, lợi hại hơn sẽ giúp bạn luôn tự tin trong xuyên suốt quá trình đi làm và phát triển sự nghiệp.
-
-                                                Truy cập ngay VietnamWorks E-learning hot hit nhất năm: https://lnkd.in/g8BbgveV
-
-                                                Đồng hành cùng VietnamWorks E-learning Season 2 là những Mentor dày dặn kinh nghiệm đang tại vị ở những vị trí nòng cốt của doanh nghiệp, sẽ mang đến những chia sẻ thực tiễn qua chuỗi bài giảng vô cùng hấp dẫn:
-
-                                                𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴: Từ A-Z: Hiểu về luật lao động và quyền lợi cơ bản dành cho người đi làm| 𝗖𝗼𝗮𝗰𝗵: Lê Phương Quyên - Quản lý nhân sự tại Đồng hồ Hải Triều
-
-                                                𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴: Chinh phục sếp, đồng nghiệp nhờ kỹ năng thuyết trình thu hút
-                                                𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴: Văn hoá ứng xử chuyên nghiệp & những kịch bản ứng biến nơi công sở| Đồng dẫn dắt bởi 𝗖𝗼𝗮𝗰𝗵 Đặng Thúy Quỳnh - Nhà đào tạo và huấn luyện xây dựng thương hiệu cá nhân
-
-                                                𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴: Lần đầu làm sếp, chuẩn bị hành trang gì để tự tin & sẵn sàng| 𝗖𝗼𝗮𝗰𝗵 Đoàn Ngọc Hưng - Giám đốc kinh doanh tại AIA Exchange
-
-                                                Bạn đã sẵn sàng học hết sức - giỏi hết mức cùng VietnamWorks E-learning Season 2 chưa?
-
-                                                Hãy để VietnamWorks giúp bạn khám phá một kho tàng kiến thức đồ sộ, đa dạng và HOÀN TOÀN MIỄN PHÍ tại VietnamWorks E-learning Season 2 ngay hôm nay: https://lnkd.in/g8BbgveV
-                                            </div>
-                                            <a style="display: flex; justify-content: flex-end; cursor: pointer; color: gray" href="#">See more</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- Thẻ card1 thứ tư -->
-                                <li style="min-width: 300px; margin-right: 0px;">
-                                    <div class="card1">
-                                        <div class="card-header1">
-                                            <img src="your-logo.png" alt="VietnamWorks Logo" class="logo1">
-                                            <div style="margin-left: 10px;">
-                                                <div class="header-content1">
-                                                    <h3>VietnamWorks</h3>
-                                                    <p>11/12/2024</p>
-                                                </div>
-                                                <div>
-                                                    <button class="menu-btn1" onclick="toggleMenu(this)">•••</button>
-                                                    <div class="dropdown-menu1">
-                                                        <ul style="display: flex; flex-direction: column;">
-                                                            <li onclick="deletePost()">Delete</li>
-                                                            <li onclick="editPost()">Edit</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-body1">
-                                            <p><strong>Job Title</strong></p>
-                                            <div class="limited-text" style="white-space: pre-line; max-height: none">
-                                                Nếu một ngày AI thay thế công việc của chính bạn và nhiều người khác, đâu sẽ là những kỹ năng bạn chiếm lợi thế để giữ ghế và năng lực thích nghi?
-
-                                                Để vẫn lạc quan trước cơn sóng trí tuệ nhân tạo và sinh tồn ở bất kỳ môi trường nào, bạn nhất định phải có bí quyết trau dồi kỹ năng cái mà công nghệ AI sẽ khó lòng theo kịp bạn.
-
-                                                Bí quyết giúp bản thân cảm thấy có giá trị là khi chúng ta liên tục sạc đầy kiến thức mới mỗi ngày, đặc biệt là những bộ kỹ năng mềm cấp bách. Chính vì thế, 𝗩𝗶𝗲𝘁𝗻𝗮𝗺𝗪𝗼𝗿𝗸𝘀 𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴 𝗦𝗲𝗮𝘀𝗼𝗻 𝟮 hân hạnh trở lại với ngàn kho kiến thức mới, lợi hại hơn sẽ giúp bạn luôn tự tin trong xuyên suốt quá trình đi làm và phát triển sự nghiệp.
-
-                                                Truy cập ngay VietnamWorks E-learning hot hit nhất năm: https://lnkd.in/g8BbgveV
-
-                                                Đồng hành cùng VietnamWorks E-learning Season 2 là những Mentor dày dặn kinh nghiệm đang tại vị ở những vị trí nòng cốt của doanh nghiệp, sẽ mang đến những chia sẻ thực tiễn qua chuỗi bài giảng vô cùng hấp dẫn:
-
-                                                𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴: Từ A-Z: Hiểu về luật lao động và quyền lợi cơ bản dành cho người đi làm| 𝗖𝗼𝗮𝗰𝗵: Lê Phương Quyên - Quản lý nhân sự tại Đồng hồ Hải Triều
-
-                                                𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴: Chinh phục sếp, đồng nghiệp nhờ kỹ năng thuyết trình thu hút
-                                                𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴: Văn hoá ứng xử chuyên nghiệp & những kịch bản ứng biến nơi công sở| Đồng dẫn dắt bởi 𝗖𝗼𝗮𝗰𝗵 Đặng Thúy Quỳnh - Nhà đào tạo và huấn luyện xây dựng thương hiệu cá nhân
-
-                                                𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴: Lần đầu làm sếp, chuẩn bị hành trang gì để tự tin & sẵn sàng| 𝗖𝗼𝗮𝗰𝗵 Đoàn Ngọc Hưng - Giám đốc kinh doanh tại AIA Exchange
-
-                                                Bạn đã sẵn sàng học hết sức - giỏi hết mức cùng VietnamWorks E-learning Season 2 chưa?
-
-                                                Hãy để VietnamWorks giúp bạn khám phá một kho tàng kiến thức đồ sộ, đa dạng và HOÀN TOÀN MIỄN PHÍ tại VietnamWorks E-learning Season 2 ngay hôm nay: https://lnkd.in/g8BbgveV
-                                            </div>
-                                            <a style="display: flex; justify-content: flex-end; cursor: pointer; color: gray" href="#">See more</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- Thẻ card1 thứ năm -->
-                                <li style="min-width: 300px; margin-right: 0px;">
-                                    <div class="card1">
-                                        <div class="card-header1">
-                                            <img src="your-logo.png" alt="VietnamWorks Logo" class="logo1">
-                                            <div style="margin-left: 10px;">
-                                                <div class="header-content1">
-                                                    <h3>VietnamWorks</h3>
-                                                    <p>11/12/2024</p>
-                                                </div>
-                                                <div>
-                                                    <button class="menu-btn1" onclick="toggleMenu(this)">•••</button>
-                                                    <div class="dropdown-menu1">
-                                                        <ul style="display: flex; flex-direction: column;">
-                                                            <li onclick="deletePost()">Delete</li>
-                                                            <li onclick="editPost()">Edit</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-body1">
-                                            <p><strong>Job Title</strong></p>
-                                            <div class="limited-text" style="white-space: pre-line; max-height: none">
-                                                Nếu một ngày AI thay thế công việc của chính bạn và nhiều người khác, đâu sẽ là những kỹ năng bạn chiếm lợi thế để giữ ghế và năng lực thích nghi?
-
-                                                Để vẫn lạc quan trước cơn sóng trí tuệ nhân tạo và sinh tồn ở bất kỳ môi trường nào, bạn nhất định phải có bí quyết trau dồi kỹ năng cái mà công nghệ AI sẽ khó lòng theo kịp bạn.
-
-                                                Bí quyết giúp bản thân cảm thấy có giá trị là khi chúng ta liên tục sạc đầy kiến thức mới mỗi ngày, đặc biệt là những bộ kỹ năng mềm cấp bách. Chính vì thế, 𝗩𝗶𝗲𝘁𝗻𝗮𝗺𝗪𝗼𝗿𝗸𝘀 𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴 𝗦𝗲𝗮𝘀𝗼𝗻 𝟮 hân hạnh trở lại với ngàn kho kiến thức mới, lợi hại hơn sẽ giúp bạn luôn tự tin trong xuyên suốt quá trình đi làm và phát triển sự nghiệp.
-
-                                                Truy cập ngay VietnamWorks E-learning hot hit nhất năm: https://lnkd.in/g8BbgveV
-
-                                                Đồng hành cùng VietnamWorks E-learning Season 2 là những Mentor dày dặn kinh nghiệm đang tại vị ở những vị trí nòng cốt của doanh nghiệp, sẽ mang đến những chia sẻ thực tiễn qua chuỗi bài giảng vô cùng hấp dẫn:
-
-                                                𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴: Từ A-Z: Hiểu về luật lao động và quyền lợi cơ bản dành cho người đi làm| 𝗖𝗼𝗮𝗰𝗵: Lê Phương Quyên - Quản lý nhân sự tại Đồng hồ Hải Triều
-
-                                                𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴: Chinh phục sếp, đồng nghiệp nhờ kỹ năng thuyết trình thu hút
-                                                𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴: Văn hoá ứng xử chuyên nghiệp & những kịch bản ứng biến nơi công sở| Đồng dẫn dắt bởi 𝗖𝗼𝗮𝗰𝗵 Đặng Thúy Quỳnh - Nhà đào tạo và huấn luyện xây dựng thương hiệu cá nhân
-
-                                                𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴: Lần đầu làm sếp, chuẩn bị hành trang gì để tự tin & sẵn sàng| 𝗖𝗼𝗮𝗰𝗵 Đoàn Ngọc Hưng - Giám đốc kinh doanh tại AIA Exchange
-
-                                                Bạn đã sẵn sàng học hết sức - giỏi hết mức cùng VietnamWorks E-learning Season 2 chưa?
-
-                                                Hãy để VietnamWorks giúp bạn khám phá một kho tàng kiến thức đồ sộ, đa dạng và HOÀN TOÀN MIỄN PHÍ tại VietnamWorks E-learning Season 2 ngay hôm nay: https://lnkd.in/g8BbgveV
-                                            </div>
-                                            <a style="display: flex; justify-content: flex-end; cursor: pointer; color: gray" href="#">See more</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- Thẻ card1 thứ sáu -->
-                                <li style="min-width: 300px; margin-right: 0px;">
-                                    <div class="card1">
-                                        <div class="card-header1">
-                                            <img src="your-logo.png" alt="VietnamWorks Logo" class="logo1">
-                                            <div style="margin-left: 10px;">
-                                                <div class="header-content1">
-                                                    <h3>VietnamWorks</h3>
-                                                    <p>11/12/2024</p>
-                                                </div>
-                                                <div>
-                                                    <button class="menu-btn1" onclick="toggleMenu(this)">•••</button>
-                                                    <div class="dropdown-menu1">
-                                                        <ul style="display: flex; flex-direction: column;">
-                                                            <li onclick="deletePost()">Delete</li>
-                                                            <li onclick="editPost()">Edit</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-body1">
-                                            <p><strong>Job Title</strong></p>
-                                            <div class="limited-text" style="white-space: pre-line; max-height: none">
-                                                Nếu một ngày AI thay thế công việc của chính bạn và nhiều người khác, đâu sẽ là những kỹ năng bạn chiếm lợi thế để giữ ghế và năng lực thích nghi?
-
-                                                Để vẫn lạc quan trước cơn sóng trí tuệ nhân tạo và sinh tồn ở bất kỳ môi trường nào, bạn nhất định phải có bí quyết trau dồi kỹ năng cái mà công nghệ AI sẽ khó lòng theo kịp bạn.
-
-                                                Bí quyết giúp bản thân cảm thấy có giá trị là khi chúng ta liên tục sạc đầy kiến thức mới mỗi ngày, đặc biệt là những bộ kỹ năng mềm cấp bách. Chính vì thế, 𝗩𝗶𝗲𝘁𝗻𝗮𝗺𝗪𝗼𝗿𝗸𝘀 𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴 𝗦𝗲𝗮𝘀𝗼𝗻 𝟮 hân hạnh trở lại với ngàn kho kiến thức mới, lợi hại hơn sẽ giúp bạn luôn tự tin trong xuyên suốt quá trình đi làm và phát triển sự nghiệp.
-
-                                                Truy cập ngay VietnamWorks E-learning hot hit nhất năm: https://lnkd.in/g8BbgveV
-
-                                                Đồng hành cùng VietnamWorks E-learning Season 2 là những Mentor dày dặn kinh nghiệm đang tại vị ở những vị trí nòng cốt của doanh nghiệp, sẽ mang đến những chia sẻ thực tiễn qua chuỗi bài giảng vô cùng hấp dẫn:
-
-                                                𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴: Từ A-Z: Hiểu về luật lao động và quyền lợi cơ bản dành cho người đi làm| 𝗖𝗼𝗮𝗰𝗵: Lê Phương Quyên - Quản lý nhân sự tại Đồng hồ Hải Triều
-
-                                                𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴: Chinh phục sếp, đồng nghiệp nhờ kỹ năng thuyết trình thu hút
-                                                𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴: Văn hoá ứng xử chuyên nghiệp & những kịch bản ứng biến nơi công sở| Đồng dẫn dắt bởi 𝗖𝗼𝗮𝗰𝗵 Đặng Thúy Quỳnh - Nhà đào tạo và huấn luyện xây dựng thương hiệu cá nhân
-
-                                                𝗘-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴: Lần đầu làm sếp, chuẩn bị hành trang gì để tự tin & sẵn sàng| 𝗖𝗼𝗮𝗰𝗵 Đoàn Ngọc Hưng - Giám đốc kinh doanh tại AIA Exchange
-
-                                                Bạn đã sẵn sàng học hết sức - giỏi hết mức cùng VietnamWorks E-learning Season 2 chưa?
-
-                                                Hãy để VietnamWorks giúp bạn khám phá một kho tàng kiến thức đồ sộ, đa dạng và HOÀN TOÀN MIỄN PHÍ tại VietnamWorks E-learning Season 2 ngay hôm nay: https://lnkd.in/g8BbgveV
-                                            </div>
-                                            <a style="display: flex; justify-content: flex-end; cursor: pointer; color: gray" href="#">See more</a>
-                                        </div>
-                                    </div>
-                                </li>
+                                    </li>
+                                }
                         </div>
                         <hr class="artdeco-divider mt4 mb4" style="margin: 10px 0;">
                         <div>

@@ -19,6 +19,7 @@ namespace JobFinder.Interface
 
         Task<bool> ToggleBanStatusAsync(JobPosting job);
         List<JobPosting> GetLatestJobPostings(int count = 5);
+        Task<List<JobPosting>> GetJobPostingsByRecruiterAsync(int recruiterId);
         PaginatedResult<JobPosting> GetJobPostingsByJobType(int jobTypeId, int pageNumber, int pageSize);
     }
 }

@@ -110,7 +110,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                         <li class="dropdown-item">
-                            Company : @UserManager.GetUserName(User)
+                            <a class="dropdown-item" asp-area="Identity" asp-page="/RecruiterInfo/Index" title="Manage">Company : @UserManager.GetUserName(User)</a>
                         </li>
                         <li>
                             <hr class="dropdown-divider">

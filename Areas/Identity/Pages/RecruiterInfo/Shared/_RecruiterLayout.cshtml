@@ -68,24 +68,24 @@
                                     <h4 style="margin: 0;">@CompanyName</h4>
                                 </div>
                                 <ul style="list-style-type: none; padding-left: 0; margin-top: 5px;">
-                                    <li style="margin-right: 20px;">@Address| @StaffSize people</li>
+                                    <li style="margin-right: 20px;">@Address| StaffSize : @StaffSize  people</li>
                                 </ul>
                             </div>
                             <div style=" bottom: 5px; position: absolute; width: 100%;">
                                 <nav>
                                     <ul style="display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; gap: 20px;">
                                         <li style="color">
-                                            <a href="../Areas/Identity/Pages/RecruiterInfo/Index.cshtml" style="color: black">
+                                            <a asp-page="./Index" style="color: black">
                                                 Home
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="../Areas/Identity/Pages/RecruiterInfo/About.cshtml" style="color: black">
+                                            <a asp-page="./About" style="color: black">
                                                 About
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="../Areas/Identity/Pages/RecruiterInfo/Posts.cshtml" style="color: black">
+                                            <a asp-page="./Posts" style="color: black">
                                                 Posts
                                             </a>
                                         </li>
