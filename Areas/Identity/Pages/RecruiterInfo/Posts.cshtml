@@ -1,9 +1,9 @@
 ﻿@page
 @model JobFinder.Areas.Identity.Pages.RecruiterInfo.PostsModel
 @{
-    ViewData["CompanyName"] = "Company Name";
-    ViewData["Address"] = "221 Trần Cao Vân, Quận Thanh Khê, Thành Phố Đà Nẵng";
-    ViewData["StaffSize"] = "1000";
-    ViewData["CompanyImage"] = "CompanyImage";
+    ViewData["CompanyName"] = Model.Recruiter.CompanyName;
+    ViewData["Address"] = Model.Recruiter.Address;
+    ViewData["StaffSize"] = Model.Recruiter.StaffSize;
+    ViewData["CompanyImage"] = Model.Recruiter.CompanyImage;
     Layout = "~/Areas/Identity/Pages/RecruiterInfo/Shared/_RecruiterLayout.cshtml";
 }

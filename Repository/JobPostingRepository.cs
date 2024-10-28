@@ -261,5 +261,12 @@ namespace JobFinder.Repository
             };
 
         }
+
+        public async Task<List<JobPosting>> GetJobPostingsByRecruiterAsync(int recruiterId)
+        {
+            return await _context.JobPosting
+                      .Where(j => j.RecruiterId == recruiterId)
+                      .ToListAsync();
+        }
     }
 }
