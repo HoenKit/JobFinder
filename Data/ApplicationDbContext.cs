@@ -14,6 +14,7 @@ namespace JobFinder.Data
         public DbSet<JobSeeker> JobSeeker { get; set; }
         public DbSet<JobType> JobType { get; set; }
         public DbSet<Recruiter> Recruiter { get; set; }
+        public DbSet<Application> Application { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

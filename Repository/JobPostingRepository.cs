@@ -268,5 +268,33 @@ namespace JobFinder.Repository
                       .Where(j => j.RecruiterId == recruiterId)
                       .ToListAsync();
         }
+
+        public async Task<PaginatedResult<JobPosting>> GetJobPostingsByRecruiterAsync(int Recruiterid, int pageNumber, int pageSize)
+        {
+            var query = _context.JobPosting
+                .Include(j => j.JobType)
+                .Include(j => j.Recruiter)
+                .Include(j => j.JobNature)
+                .Where(j => j.RecruiterId == Recruiterid)
+                .AsQueryable();
+
+            var totalRecords = await query.CountAsync().ConfigureAwait(false);
+
+            var jobPostings = await query.Skip((pageNumber - 1) * pageSize)
+                                         .Take(pageSize)
+                                         .ToListAsync()
+                                         .ConfigureAwait(false);
+
+            return new PaginatedResult<JobPosting>
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize,
+                TotalRecords = totalRecords,
+                Data = jobPostings
+            };
+
+        }
+
+
     }
 }

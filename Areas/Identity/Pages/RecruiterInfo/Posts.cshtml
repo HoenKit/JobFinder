@@ -7,3 +7,40 @@
     ViewData["CompanyImage"] = Model.Recruiter.CompanyImage;
     Layout = "~/Areas/Identity/Pages/RecruiterInfo/Shared/_RecruiterLayout.cshtml";
 }
+<div class="col-lg-8 mb-md-0 mb-4" style="margin-top: 20px;">
+    <div class="card">
+        <div class="single-job-items mb-50" style="padding: 30px 10px; margin-bottom: 0.00; display: block;">
+            @foreach (var job in Model.JobPostings)
+            {
+                <div class="single-job-items mb-30" style="padding: 15px; display: flex; justify-content: space-between; max-width: 100%; margin-bottom: 20px;">
+                    <div class="company-img">
+                        <a href="/FindJobDetail?Id=@job.Id">
+                            <img src="@job.Recruiter?.CompanyImage" alt="@job.JobTitle" style="width: 80px; height: 80px;">
+                        </a>
+                    </div>
+                    <div class="job-tittle job-tittle2" style="margin-left: 15px; flex-grow: 1;">
+                        <a asp-page="./FindJobDetail" asp-route-id="@job.Id" style="text-decoration: none;">
+                            <div style="display: flex; align-items: center;">
+                                <h4>@job.JobTitle</h4>
+                            </div>
+                        </a>
+                        <ul class="d-flex align-items-center" style="list-style-type: none; padding-left: 0; margin-top: 5px;">
+                            <li style="margin-right: 20px;">@job.Recruiter.CompanyName</li>
+                            <li style="margin-right: 20px;">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span class="job-location">@job.JobLocation</span>
+                            </li>
+                            <li>@job.Salary đ</li>
+                        </ul>
+                    </div>
+                    <div class="items-link" style="text-align: right;">
+                        <a asp-page="./PostDetail" asp-route-id="@job.Id">
+                            @job.JobNature.JobNatureName
+                        </a>
+                        <span style="display: block; margin-top: 5px;">@job.PostDate.ToString("dd/MM/yyyy")</span>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

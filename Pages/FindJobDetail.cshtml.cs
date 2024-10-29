@@ -2,39 +2,79 @@ using JobFinder.Interface;
 using JobFinder.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Security.Claims;
 
 namespace JobFinder.Pages
 {
     public class FindJobDetailModel : PageModel
     {
-        private readonly IJobDetailRepository _jobDetailRepository;
-
-        public FindJobDetailModel(IJobDetailRepository jobDetailRepository)
+        private readonly IJobPostingRepository _jobPostingRepository;
+        private readonly IApplicationRepository _applicationRepository;
+        private readonly IJobSeekerRepository _jobSeekerRepository;
+        public FindJobDetailModel(IJobPostingRepository jobPostingRepository, IApplicationRepository applicationRepository, IJobSeekerRepository jobSeekerRepository)
         {
-            _jobDetailRepository = jobDetailRepository;
+            _jobPostingRepository = jobPostingRepository;
+            _applicationRepository = applicationRepository;
+            _jobSeekerRepository = jobSeekerRepository;
         }
         public bool IsApplied { get; set; } = false;  
         public bool IsAuthenticated => User.Identity.IsAuthenticated;
         public JobPosting JobPosting { get; set; }
 
-        public void OnGet(int id)
+        public async Task OnGetAsync(int id)
         {
-            JobPosting = _jobDetailRepository.GetJobPostingById(id);
+            JobPosting = await _jobPostingRepository.GetJobPostingByIdAsync(id);
+
+            if (IsAuthenticated)
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var jobSeeker = await _jobSeekerRepository.GetJobSeekerByUserIdAsync(userId);
+
+                if (jobSeeker != null)
+                {
+                    var existingApplication = await _applicationRepository.GetApplicationExistAsync(jobSeeker.Id, id);
+                    IsApplied = existingApplication != null; 
+                }
+            }
         }
 
-        public IActionResult OnPost(int id)
+
+        public async Task<IActionResult> OnPostAsync(int id)
         {
-            if (!User.Identity.IsAuthenticated)
+            if (!IsAuthenticated)
             {
                 return RedirectToPage("./Account/Login", new { area = "Identity" });
             }
 
-            JobPosting = _jobDetailRepository.GetJobPostingById(id);
+            JobPosting = await _jobPostingRepository.GetJobPostingByIdAsync(id);
 
-            IsApplied = true;
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var jobSeeker = await _jobSeekerRepository.GetJobSeekerByUserIdAsync(userId);
+            if (jobSeeker == null)
+            {
+                ModelState.AddModelError(string.Empty, "Job seeker not found.");
+                return Page();
+            }
 
+            var existingApplication = await _applicationRepository.GetApplicationExistAsync(jobSeeker.Id, id);
 
-            return Page(); 
+            if (existingApplication != null)
+            {
+                IsApplied = true; 
+                return Page();
+            }
+
+            var application = new Application
+            {
+                JobSeekerId = jobSeeker.Id,
+                JobPostingId = id,
+                ApplicationDate = DateTime.Now
+            };
+
+            await _applicationRepository.AddApplication(application);
+            IsApplied = true; 
+
+            return Page();
         }
     }
 }
