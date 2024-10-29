@@ -18,17 +18,17 @@ namespace JobFinder.Repository
             _context.SaveChanges();
         }
 
-        public void UpdateJobSeeker(JobSeeker jobSeeker)
+        public async Task UpdateJobSeeker(JobSeeker jobSeeker)
         {
             if (jobSeeker == null)
             {
                 throw new ArgumentNullException(nameof(jobSeeker), "JobSeeker object is null");
             }
 
-            var existingJobSeeker = _context.JobSeeker.FirstOrDefault(js => js.Id == jobSeeker.Id);
+            var existingJobSeeker = await GetJobSeekerByUserIdAsync(jobSeeker.UserId);
+
             if (existingJobSeeker != null)
             {
-                // Update each field
                 existingJobSeeker.FirstName = jobSeeker.FirstName;
                 existingJobSeeker.LastName = jobSeeker.LastName;
                 existingJobSeeker.Birthday = jobSeeker.Birthday;
@@ -36,20 +36,19 @@ namespace JobFinder.Repository
                 existingJobSeeker.EducationLevel = jobSeeker.EducationLevel;
                 existingJobSeeker.Specialized = jobSeeker.Specialized;
                 existingJobSeeker.Experience = jobSeeker.Experience;
-                /* existingJobSeeker.CV = jobSeeker.CV;
-                   existingJobSeeker.JobPositionId = jobSeeker.JobPositionId;
-                */
+                existingJobSeeker.CV = jobSeeker.CV;
                 existingJobSeeker.UserId = jobSeeker.UserId;
 
-                // Save changes to the database
-                _context.JobSeeker.Update(jobSeeker);
-                _context.SaveChanges();
+                _context.JobSeeker.Update(existingJobSeeker);
+
+                await _context.SaveChangesAsync();
             }
             else
             {
                 throw new InvalidOperationException("JobSeeker not found in the database");
             }
         }
+
         public async Task<JobSeeker?> GetJobSeekerByUserIdAsync(string userId)
         {
             return await _context.JobSeeker.FirstOrDefaultAsync(js => js.UserId == userId);

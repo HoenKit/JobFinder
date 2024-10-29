@@ -44,5 +44,20 @@ namespace JobFinder.Service
             var downloadInfo = await blobClient.DownloadAsync();
             return downloadInfo.Value.Content;
         }
+
+        //Delete file if exists
+        public async Task DeleteFileIfExistsAsync(string fileName)
+        {
+            var containerClient = _blobServiceClient.GetBlobContainerClient(_containerName);
+            var blobClient = containerClient.GetBlobClient(fileName);
+
+            // Check if the blob exists
+            var exists = await blobClient.ExistsAsync();
+            if (exists)
+            {
+                // Delete the blob if it exists
+                await blobClient.DeleteAsync();
+            }
+        }
     }
 }

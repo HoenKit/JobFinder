@@ -3,7 +3,9 @@
 @{
     ViewData["Title"] = "Profile";
     ViewData["ActivePage"] = ManageNavPages.Index;
+    var cvUrl = Model.JobSeeker?.CV;
 }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <style>
     /* Ensuring that the form and its contents are fully responsive */
@@ -74,14 +76,201 @@
     h5 {
         color: #fb246a;
     }
+
+    /* Avatar display */
+    .avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    /* Popup container - can be anything you want */
+    .popup {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 1050; /* Ensure it's above other elements, including the save button */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Popup content */
+    .popup-content {
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        width: 300px;
+        text-align: center;
+    }
+
+    img[alt="CV Thumbnail"] {
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .popup-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 15px;
+    }
+
+    .popup-content-CV {
+        position: relative;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        max-width: 520px;
+        max-height: 760px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+    }
+
+    #imagePopup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+        z-index: 1050;
+        overflow: hidden;
+    }
+
+    .no-scroll {
+        overflow: hidden;
+    }
+
+    /* Close button */
+    .close-btn {
+        cursor: pointer;
+        color: red;
+        float: right;
+        font-size: 20px;
+        margin-right: 10px;
+    }
+
+    /* Edit and Delete buttons */
+    .button-container {
+        margin-top: -20px;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .popup-btn {
+        padding: 10px 15px;
+        margin: 5px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .edit-btn {
+        background-color: #4CAF50; /* Green */
+        color: white;
+        width: 30%;
+    }
+
+    .delete-btn {
+        background-color: #f44336; /* Red */
+        color: white;
+        width: 30%;
+    }
+
+    body.modal-open {
+        pointer-events: none; /* Disable pointer events for the body */
+    }
+
+    #popupModal {
+        pointer-events: auto; /* Enable pointer events for the popup */
+    }
 </style>
+
 
 <h5>@ViewData["Title"]</h5>
 <partial name="_StatusMessage" for="StatusMessage" />
 
 <div class="row">
+    <div class="col-md-4 col-sm-12">
+        <div class="text-center mb-3">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNL_ZnOTpXSvhf1UaK7beHey2BX42U6solRA&s" alt="Avatar" class="avatar" id="avatarImage" />
+
+            <!-- The Popup -->
+            <div class="popup" id="popupModal">
+                <div class="popup-dialog">
+                    <div class="popup-content">
+                        <div class="popup-header">
+                            <span class="close-btn" id="closeBtn">&times;</span>
+                            <h3>Profile photo</h3>
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNL_ZnOTpXSvhf1UaK7beHey2BX42U6solRA&s" alt="Avatar" style="width: 150px; height: 150px; border-radius: 50%;" />
+                        </div>
+                        <hr />
+                        <div class="popup-footer">
+                            <div class="button-container">
+                                <button class="popup-btn edit-btn" id="editBtn">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="popup-btn delete-btn" id="deleteBtn">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <!-- CV Upload Section -->
+        <div class="text-center">
+            @if (!string.IsNullOrEmpty(Model.JobSeeker?.CV))
+            {
+                <h5>Your CV</h5>
+                @if (Model.JobSeeker.CV.EndsWith(".png") || Model.JobSeeker.CV.EndsWith(".jpg") || Model.JobSeeker.CV.EndsWith(".jpeg") || Model.JobSeeker.CV.EndsWith(".gif"))
+                {
+                    <!-- Display the small thumbnail image -->
+                    <img src="@Model.JobSeeker?.CV" alt="CV Thumbnail" style="width: 100px; height: 100px; cursor: pointer; object-fit: cover; border-radius: 8px;" onclick="showImagePopup()" />
+
+                    <!-- Hidden popup for larger image -->
+                    <div id="imagePopup" class="popup">
+                        <div class="popup-content-CV">
+                            <span class="close-btn" onclick="closeImagePopup()">&times;</span>
+                            <img src="@Model.JobSeeker?.CV" alt="CV Image" class="popup-image" />
+                            <a href="@Model.JobSeeker?.CV" class="btn btn-success" style="background-color:#fb246a" download>Download CV</a>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <!-- Provide link to view and download the CV if it's not an image -->
+                    <a href="@Model.JobSeeker?.CV" target="_blank">View CV</a>
+                    <a href="@Model.JobSeeker?.CV" class="btn btn-success" style="background-color:#fb246a" download>Download CV</a>
+                }
+            }
+
+            else
+            {
+                <p>No CV uploaded yet.</p>
+            }
+        </div>
+    </div>
+
     <div class="col-md-8 col-sm-12 mx-auto">
-        <form id="profile-form" method="post">
+        <form id="profile-form" method="post" enctype="multipart/form-data">
+            @* enctype="multipart/form-data" *@
+            @Html.AntiForgeryToken()
             <!-- Username and Phone number row -->
             <div class="row mb-3">
                 <div class="col-md-6 col-sm-12">
@@ -103,16 +292,16 @@
             <div class="row mb-3">
                 <div class="col-md-6 col-sm-12">
                     <div class="form-floating">
-                        <input asp-for="Input.FirstName" class="form-control" placeholder="First name" required />
+                        <input asp-for="Input.FirstName" class="form-control" id="firstName" type="text" placeholder="First name" required oninput="validateName(this)" />
                         <label asp-for="Input.FirstName">First name</label>
-                        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                        <span id="firstNameError" asp-validation-for="Input.FirstName" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-12">
                     <div class="form-floating">
-                        <input asp-for="Input.LastName" class="form-control" placeholder="Last name" required />
+                        <input asp-for="Input.LastName" class="form-control" id="lastName" type="text" placeholder="Last name" required oninput="validateName(this)" />
                         <label asp-for="Input.LastName">Last name</label>
-                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                        <span id="lastNameError" asp-validation-for="Input.LastName" class="text-danger"></span>
                     </div>
                 </div>
             </div>
@@ -156,7 +345,7 @@
                 <div class="col-md-6 col-sm-12">
                     <div class="form-floating">
                         <input asp-for="Input.Experience" type="number" class="form-control" required />
-                        <label asp-for="Input.Experience">Experience(y)</label>
+                        <label asp-for="Input.Experience">Experience (y)</label>
                         <span asp-validation-for="Input.Experience" class="text-danger"></span>
                     </div>
                 </div>
@@ -197,6 +386,7 @@
                     </div>
                 </div>
             </div>
+
             <!-- Address field with modal -->
             <div class="form-floating mb-3 position-relative">
                 <input asp-for="Input.Address" id="Input.Address" class="form-control" required readonly />
@@ -207,13 +397,40 @@
                 </a>
             </div>
 
-            <button style="background-color:#fb246a" id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+            <!-- CV Upload -->
+            <div class="form-group mb-3">
+                <label for="UploadCV">Upload CV</label>
+                <input type="file" id="UploadCV" name="UploadCV" class="form-control" />
+            </div>
+
+            <button style="background-color:#fb246a" id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Update</button>
         </form>
     </div>
 </div>
 
 
+
 <script>
+    function showImagePopup() {
+        document.getElementById("imagePopup").style.display = "flex";
+        document.body.classList.add("no-scroll");
+    }
+
+    function closeImagePopup() {
+        document.getElementById("imagePopup").style.display = "none";
+        document.body.classList.remove("no-scroll");
+    }
+
+    // Đóng popup khi nhấn ra ngoài nội dung
+    window.onclick = function (event) {
+        const popup = document.getElementById("imagePopup");
+        if (event.target === popup) {
+            popup.style.display = "none";
+            document.body.classList.remove("no-scroll");
+        }
+    }
+
+    //API province
     document.addEventListener("DOMContentLoaded", function () {
         fetchProvinces();
 
@@ -232,93 +449,138 @@
             }
         }
 
-    async function fetchProvinces() {
-        try {
-            const response = await fetch("https://provinces.open-api.vn/api/p/");
-            const provinces = await response.json();
+        async function fetchProvinces() {
+            try {
+                const response = await fetch("https://provinces.open-api.vn/api/p/");
+                const provinces = await response.json();
 
-            const provinceSelect = document.getElementById("province");
-            provinceSelect.innerHTML = '';
+                const provinceSelect = document.getElementById("province");
+                provinceSelect.innerHTML = '';
 
-            const defaultOption = document.createElement("option");
-            defaultOption.value = "";
-            defaultOption.textContent = "Select a province/city";
-            provinceSelect.appendChild(defaultOption);
+                const defaultOption = document.createElement("option");
+                defaultOption.value = "";
+                defaultOption.textContent = "Select a province/city";
+                provinceSelect.appendChild(defaultOption);
 
-            provinces.forEach(province => {
-                const option = document.createElement("option");
-                option.value = province.name;
-                option.textContent = province.name;
-                option.setAttribute("data-code", province.code);
-                provinceSelect.appendChild(option);
-            });
-        } catch (error) {
-            console.error("Error fetching provinces:", error);
-        }
-    }
-
-    async function fetchDistricts(provinceName) {
-        const provinceSelect = document.getElementById("province");
-        const selectedOption = provinceSelect.options[provinceSelect.selectedIndex];
-        const provinceCode = selectedOption.getAttribute("data-code");
-
-        try {
-            const response = await fetch(`https://provinces.open-api.vn/api/p/${provinceCode}?depth=2`);
-            const provinceData = await response.json();
-
-            const districtSelect = document.getElementById("district");
-            districtSelect.innerHTML = '<option value="">Select a district</option>';
-
-            if (provinceData.districts && provinceData.districts.length > 0) {
-                provinceData.districts.forEach(district => {
+                provinces.forEach(province => {
                     const option = document.createElement("option");
-                    option.value = district.name;
-                    option.textContent = district.name;
-                    districtSelect.appendChild(option);
+                    option.value = province.name;
+                    option.textContent = province.name;
+                    option.setAttribute("data-code", province.code);
+                    provinceSelect.appendChild(option);
                 });
+            } catch (error) {
+                console.error("Error fetching provinces:", error);
             }
-        } catch (error) {
-            console.error("Error fetching districts:", error);
         }
-    }
 
-    document.getElementById("province").addEventListener("change", function () {
-        const provinceName = this.value;
-        if (provinceName) {
-            fetchDistricts(provinceName);
+        async function fetchDistricts(provinceName) {
+            const provinceSelect = document.getElementById("province");
+            const selectedOption = provinceSelect.options[provinceSelect.selectedIndex];
+            const provinceCode = selectedOption.getAttribute("data-code");
+
+            try {
+                const response = await fetch(`https://provinces.open-api.vn/api/p/${provinceCode}?depth=2`);
+                const provinceData = await response.json();
+
+                const districtSelect = document.getElementById("district");
+                districtSelect.innerHTML = '<option value="">Select a district</option>';
+
+                if (provinceData.districts && provinceData.districts.length > 0) {
+                    provinceData.districts.forEach(district => {
+                        const option = document.createElement("option");
+                        option.value = district.name;
+                        option.textContent = district.name;
+                        districtSelect.appendChild(option);
+                    });
+                }
+            } catch (error) {
+                console.error("Error fetching districts:", error);
+            }
         }
-    });
 
-
-    document.getElementById("saveAddressButton").addEventListener("click", function () {
-        const address = document.getElementById('addressDetail').value;
-        const district = document.getElementById('district').value;
-        const provinceSelect = document.getElementById('province');
-        const province = provinceSelect.options[provinceSelect.selectedIndex].text;
-
-
-        if (address && district && province) {
-            const Address = `${address}, ${district}, ${province}`;
-
-            document.getElementById('Input.Address').value = Address;
-
-            $('#editAddressModal').modal('hide');
-        } else {
-            alert("Please fill all fields before saving.");
-        }
-    });
-
-
-    document.getElementById('profile-form').addEventListener('submit', function (event) {
-
-        const Address = document.getElementById('Input.Address').value;
-
-        if (!Address) {
-            alert("Please enter the full address before saving.");
-            event.preventDefault();
-        }
-    });
+        document.getElementById("province").addEventListener("change", function () {
+            const provinceName = this.value;
+            if (provinceName) {
+                fetchDistricts(provinceName);
+            }
         });
+
+
+        document.getElementById("saveAddressButton").addEventListener("click", function () {
+            const address = document.getElementById('addressDetail').value;
+            const district = document.getElementById('district').value;
+            const provinceSelect = document.getElementById('province');
+            const province = provinceSelect.options[provinceSelect.selectedIndex].text;
+
+
+            if (address && district && province) {
+                const Address = `${address}, ${district}, ${province}`;
+
+                document.getElementById('Input.Address').value = Address;
+
+                $('#editAddressModal').modal('hide');
+            } else {
+                alert("Please fill all fields before saving.");
+            }
+        });
+
+
+        document.getElementById('profile-form').addEventListener('submit', function (event) {
+
+            const Address = document.getElementById('Input.Address').value;
+
+            if (!Address) {
+                alert("Please enter the full address before saving.");
+                event.preventDefault();
+            }
+        });
+    });
+
+
+    // Get elements
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get elements
+        var avatarImage = document.getElementById("avatarImage");
+        var popupModal = document.getElementById("popupModal");
+        var closeBtn = document.getElementById("closeBtn");
+        var editBtn = document.getElementById("editBtn");
+        var deleteBtn = document.getElementById("deleteBtn");
+
+        // Show the popup and disable interactions with the rest of the page
+        avatarImage.onclick = function () {
+            popupModal.style.display = "flex";
+            document.body.classList.add("modal-open");
+        }
+
+        // Close the popup and re-enable interactions with the rest of the page
+        closeBtn.onclick = function () {
+            popupModal.style.display = "none";
+            document.body.classList.remove("modal-open");
+        }
+
+        // Close the popup if the user clicks outside the popup content
+        window.onclick = function (event) {
+            if (event.target == popupModal) {
+                popupModal.style.display = "none";
+                document.body.classList.remove("modal-open");
+            }
+        }
+
+        // Edit button functionality (replace with actual logic)
+        editBtn.onclick = function () {
+            alert("Edit button clicked!");
+        }
+
+        // Delete button functionality (replace with actual logic)
+        deleteBtn.onclick = function () {
+            if (confirm("Are you sure you want to delete this photo?")) {
+                alert("Photo deleted!");
+                popupModal.style.display = "none"; // Close the popup after deletion
+                document.body.classList.remove("modal-open");
+            }
+        }
+    });
 </script>
 
 @section Scripts {
