@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using JobFinder.Data;
 using JobFinder.Interface;
 using JobFinder.Models;
+using JobFinder.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -21,16 +22,21 @@ namespace JobFinder.Areas.Identity.Pages.Account.Manage
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IJobSeekerRepository _jobSeekerRepository;
+        private readonly BlobStorageService _blobStorageService;
+        private readonly IJobPositionRepository _positionRepository;
 
         public IndexModel(
             UserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager,
-            IJobSeekerRepository jobSeekerRepository)
+            IJobSeekerRepository jobSeekerRepository,
+            BlobStorageService blobStorageService,
+            IJobPositionRepository positionRepository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _jobSeekerRepository = jobSeekerRepository;
-
+            _blobStorageService = blobStorageService;
+            _positionRepository = positionRepository;
         }
 
         /// <summary>
@@ -54,6 +60,17 @@ namespace JobFinder.Areas.Identity.Pages.Account.Manage
         [BindProperty]
         public InputModel Input { get; set; }
 
+        public JobSeeker JobSeeker { get; set; }
+
+        [BindProperty]
+        public IFormFile UploadCV { get; set; }
+
+        public string CV { get; set; }
+
+
+
+        /* public ICollection<JobPosition> JobPositions { get; set; } = new List<JobPosition>();*/
+
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -64,20 +81,22 @@ namespace JobFinder.Areas.Identity.Pages.Account.Manage
             [Phone(ErrorMessage = "Please enter a valid phone number.")]
             [Display(Name = "Phone number")]
             [RegularExpression(@"^(\+84\d{9,10}|0\d{9,10})$", ErrorMessage = "Please enter a valid Phone number and contain 10 to 11 digits.")]
-            public string PhoneNumber { get; set; }
 
+            public string PhoneNumber { get; set; }
 
             [Required(ErrorMessage = "First name is required")]
             [Display(Name = "First name")]
             [StringLength(30, ErrorMessage = "First name cannot be longer than 30 characters.")]
-            [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "First name cannot contain numbers.")]
+            [RegularExpression(@"^[a-zA-ZÀ-ÿ\u1EA0-\u1EFF\s]+$", ErrorMessage = "First name cannot contain numbers or special characters.")]
             public string FirstName { get; set; }
 
             [Required(ErrorMessage = "Last name is required")]
             [Display(Name = "Last name")]
             [StringLength(30, ErrorMessage = "Last name cannot be longer than 30 characters.")]
-            [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Last name cannot contain numbers.")]
+            [RegularExpression(@"^[a-zA-ZÀ-ÿ\u1EA0-\u1EFF\s]+$", ErrorMessage = "Last name cannot contain numbers or special characters.")]
             public string LastName { get; set; }
+
+
 
 
             [Required(ErrorMessage = "Birthday is required")]
@@ -113,6 +132,11 @@ namespace JobFinder.Areas.Identity.Pages.Account.Manage
             [RegularExpression(@"^[0-9]+$", ErrorMessage = "Experience must be a positive number.")]
             public string Experience { get; set; }
 
+
+            /*
+             [BindProperty]
+             public int JobPositionId { get; set; }*/
+
             /* [Display(Name = "CV URL")]
              public string CV { get; set; }
 
@@ -143,11 +167,6 @@ namespace JobFinder.Areas.Identity.Pages.Account.Manage
 
             if (jobSeeker != null)
             {
-                /* var addressParts = jobSeeker.Address?.Split(",");
-                 string address = addressParts.Length > 0 ? addressParts[0] : string.Empty;
-                 string district = addressParts.Length > 1 ? addressParts[1] : string.Empty;
-                 string province = addressParts.Length > 2 ? addressParts[2] : string.Empty;*/
-
                 Input.FirstName = jobSeeker.FirstName;
                 Input.LastName = jobSeeker.LastName;
                 Input.Birthday = jobSeeker.Birthday;
@@ -155,8 +174,10 @@ namespace JobFinder.Areas.Identity.Pages.Account.Manage
                 Input.EducationLevel = jobSeeker.EducationLevel;
                 Input.Specialized = jobSeeker.Specialized;
                 Input.Experience = jobSeeker.Experience;
-                /* Input.Province = province;   
-                 Input.District = district;*/
+                /* Input.JobPositionId = jobSeeker.JobPositionId;*/
+                JobSeeker = jobSeeker;
+                /*JobPositions = _positionRepository.GetJobPositions() ?? new List<JobPosition>();*/
+                Console.WriteLine("Loaded CV URL: " + JobSeeker?.CV);
                 ModelState.AddModelError(string.Empty, "JobSeeker profile not found. Please complete your profile.");
                 return;
             }
@@ -172,10 +193,11 @@ namespace JobFinder.Areas.Identity.Pages.Account.Manage
             }
 
             await LoadAsync(user);
+            Console.WriteLine("CV URL: " + JobSeeker?.CV);
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(IFormFile UploadCV)
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
@@ -194,6 +216,7 @@ namespace JobFinder.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
+            // Handle phone number update
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
             if (Input.PhoneNumber != phoneNumber)
             {
@@ -205,12 +228,14 @@ namespace JobFinder.Areas.Identity.Pages.Account.Manage
                 }
             }
 
+            // Get job seeker profile
             var jobSeeker = await _jobSeekerRepository.GetJobSeekerByUserIdAsync(user.Id);
             if (jobSeeker == null)
             {
                 return NotFound($"Unable to load job seeker profile for user with ID '{_userManager.GetUserId(User)}'.");
             }
 
+            // Update other profile properties
             jobSeeker.FirstName = Input.FirstName;
             jobSeeker.LastName = Input.LastName;
             jobSeeker.Birthday = Input.Birthday;
@@ -219,16 +244,46 @@ namespace JobFinder.Areas.Identity.Pages.Account.Manage
             jobSeeker.Specialized = Input.Specialized;
             jobSeeker.Experience = Input.Experience;
             jobSeeker.UserId = user.Id;
-            /* jobSeeker.CV = Input.CV;
-               jobSeeker.JobPositionId = Input.JobPositionId;*/
 
-            // Save changes to JobSeeker
-            /*await _context.SaveChangesAsync();*/
-            _jobSeekerRepository.UpdateJobSeeker(jobSeeker);
+            // Handle CV upload
+            if (UploadCV != null && UploadCV.Length > 0)
+            {
+                var allowedExtensions = new[] { ".pdf", ".png", ".jpg", ".jpeg", ".gif" };
+                var fileExtension = Path.GetExtension(UploadCV.FileName);
 
+                if (!allowedExtensions.Contains(fileExtension))
+                {
+                    ModelState.AddModelError("CV", "Only files of type PDF, PNG, JPG, JPEG, or GIF are accepted.");
+                    await LoadAsync(user);
+                    return Page();
+                }
+
+                // Delete the old CV if it exists
+                if (!string.IsNullOrEmpty(jobSeeker.CV))
+                {
+                    var oldCVName = Path.GetFileName(new Uri(jobSeeker.CV).LocalPath);
+                    await _blobStorageService.DeleteFileIfExistsAsync(oldCVName);
+                }
+
+                var uniqueFileName = Guid.NewGuid().ToString() + fileExtension;
+
+                using (var stream = UploadCV.OpenReadStream())
+                {
+                    await _blobStorageService.UploadFileAsync(uniqueFileName, stream);
+                }
+
+                // Update CV URL
+                jobSeeker.CV = $"https://jobfinderuploads.blob.core.windows.net/uploads/{uniqueFileName}";
+                // Call the new method to update just the CV
+                /*await _jobSeekerRepository.UpdateCVJobSeeker(jobSeeker);*/
+            }
+
+            // Save all changes to the JobSeeker
+            await _jobSeekerRepository.UpdateJobSeeker(jobSeeker);
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your profile has been updated";
+            StatusMessage = "Your profile has been updated.";
             return RedirectToPage();
+
         }
     }
 }
