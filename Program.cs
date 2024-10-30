@@ -52,7 +52,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 
     // Configure Lockout settings
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5); // Lock for 5 minutes
-    options.Lockout.MaxFailedAccessAttempts = 3; // Lock after 3 failed attempts
+    options.Lockout.MaxFailedAccessAttempts = 5; // Lock after 5 failed attempts
     options.Lockout.AllowedForNewUsers = true;
 
     // Configure User settings
@@ -101,7 +101,7 @@ builder.Services.AddScoped<IRecruiterRepository, RecruiterRepository>();
 builder.Services.AddScoped<IJobPostingRepository, JobPostingRepository>();
 builder.Services.AddScoped<IAppUserRepository, AppUserRepository>();
 builder.Services.AddScoped<IJobTypeRepository, JobTypeRepository>();
-builder.Services.AddScoped<IJobDetailRepository, JobDetailRepository>();
+builder.Services.AddScoped<IApplicationRepository, ApplicationRepository>();
 //Config Blob
 builder.Services.AddSingleton<BlobStorageService>(provider =>
         new BlobStorageService(builder.Configuration.GetValue<string>("AzureBlobStorage:ConnectionString")));

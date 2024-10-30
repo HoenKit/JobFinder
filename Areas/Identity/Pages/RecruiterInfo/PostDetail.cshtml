@@ -1,8 +1,7 @@
 ﻿@page
-@model JobFinder.Pages.FindJobDetailModel
-@{
-    ViewData["Title"] = "Find Job Detail";
-}
+@model JobFinder.Areas.Identity.Pages.RecruiterInfo.PostDetailModel
+
+
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
@@ -100,21 +99,7 @@
                                 <li>Salary :  <span>@Model.JobPosting.Salary</span></li>
                                 <li>Expiration date : <span>@Model.JobPosting.ExpirationDate</span></li>
                             </ul>
-                            <div class="apply-btn2">
-                                <form method="post" id="applyForm">
-                                    <button type="submit" class="btn btn-primary" id="applyButton"
-                                            onclick="confirmApply(event)"
-                                    @(Model.IsApplied ? "disabled" : "")>
-                                        @if (Model.IsApplied)
-                                        {
-                                            <span>Already Applied</span>
-                                        }
-                                        else
-                                        {
-                                            <span>Apply Now</span>
-                                        }
-                                    </button>
-                                </form>
+
                             </div>
                         </div>
                         <div class="post-details4  mb-50">
@@ -135,19 +120,34 @@
             </div>
         </div>
         <!-- job post company End -->
-
-
+        <!-- Applied Job Seekers Section Start -->
+        <div class="applied-job-seekers pt-120 pb-120">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="section-title text-center mb-50">
+                            <h3>Applied Job Seekers</h3>
+                        </div>
+                        <div class="applied-job-seekers-list">
+                            @foreach (var jobSeeker in Model.AppliedJobSeekers)
+                            {
+                                <div class="job-seeker-item d-flex align-items-center p-3 mb-3 border rounded" style="background-color: #f9f9f9;">
+                                    <p class="me-4 mb-0"><strong>Name:</strong> @jobSeeker.FirstName @jobSeeker.LastName</p>
+                                    <p class="me-4 mb-0"><strong>Email:</strong> @(jobSeeker.User?.Email ?? "No email available")</p>
+                                    <p class="me-4 mb-0"><strong>Education:</strong> @jobSeeker.EducationLevel</p>
+                                    <p class="me-4 mb-0"><strong>Specialized:</strong> @jobSeeker.Specialized</p>
+                                    <p class="mb-0"><strong>Experience:</strong> @jobSeeker.Experience</p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
     </main>
 
 
-    <script type="text/javascript">
-        function confirmApply(event) {
-            event.preventDefault(); // Prevent the default form submission
-            if (confirm("Are you sure you want to apply for this job?")) {
-                document.getElementById("applyForm").submit(); // Submit the form if confirmed
-            }
-        }
-    </script>
 
     <!-- JS here -->
     <!-- All JS Custom Plugins Link Here here -->

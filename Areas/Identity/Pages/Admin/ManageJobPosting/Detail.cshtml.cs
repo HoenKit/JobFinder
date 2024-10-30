@@ -10,12 +10,10 @@ namespace JobFinder.Areas.Identity.Pages.Admin.ManageJobPosting
     [Authorize(Roles = "Administrator")]
     public class DetailModel : PageModel
     {
-        private readonly IJobDetailRepository _jobDetailRepository;
         private readonly IJobPostingRepository _JobPostingRepository;
 
-        public DetailModel(IJobPostingRepository jobPostingRepository, IJobDetailRepository jobDetailRepository)
+        public DetailModel(IJobPostingRepository jobPostingRepository)
         {
-            _jobDetailRepository = jobDetailRepository;
             _JobPostingRepository = jobPostingRepository;
         }
 
