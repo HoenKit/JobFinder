@@ -126,8 +126,8 @@
         background-color: #fff;
         padding: 20px;
         border-radius: 8px;
-        max-width: 520px;
-        max-height: 760px;
+        max-width: 470px;
+        max-height: 690px;
         text-align: center;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         overflow: hidden;
@@ -149,6 +149,13 @@
 
     .no-scroll {
         overflow: hidden;
+    }
+
+    #cv-download-container a {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 150px;
     }
 
     /* Close button */
@@ -234,7 +241,7 @@
         <hr />
 
         <!-- CV Upload Section -->
-        <div class="text-center">
+        <div class="text-center" id="cv-download-container">
             @if (!string.IsNullOrEmpty(Model.JobSeeker?.CV))
             {
                 <h5>Your CV</h5>
@@ -345,7 +352,7 @@
                 <div class="col-md-6 col-sm-12">
                     <div class="form-floating">
                         <input asp-for="Input.Experience" type="number" class="form-control" required />
-                        <label asp-for="Input.Experience">Experience (y)</label>
+                        <label asp-for="Input.Experience">Experience</label>
                         <span asp-validation-for="Input.Experience" class="text-danger"></span>
                     </div>
                 </div>
@@ -397,10 +404,34 @@
                 </a>
             </div>
 
+            <hr />
+
+            <div class="form-floating mb-3 position-relative">
+                <select asp-for="Input.JobPositionId" class="form-control" required>
+                    @if (Model.JobPositions != null && Model.JobPositions.Any())
+                    {
+                        foreach (var position in Model.JobPositions)
+                        {
+                            var isSelected = (position.Id == Model.Input.JobPositionId) ? "selected" : "";
+                            <option value="@position.Id">
+                                @position.JobPositionName
+                            </option>
+                        }
+                    }
+                    else
+                    {
+                        <option value="">No positions available</option>
+                    }
+                </select>
+                <label asp-for="Input.JobPositionId" class="form-label">Job Position</label>
+                <span asp-validation-for="Input.JobPositionId" class="text-danger"></span>
+            </div>
+
             <!-- CV Upload -->
-            <div class="form-group mb-3">
+            <div class="mb-3">
                 <label for="UploadCV">Upload CV</label>
                 <input type="file" id="UploadCV" name="UploadCV" class="form-control" />
+                <div class="form-text">Accepted formats: PDF, PNG, JPG, JPEG</div>
             </div>
 
             <button style="background-color:#fb246a" id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Update</button>
@@ -421,7 +452,6 @@
         document.body.classList.remove("no-scroll");
     }
 
-    // Đóng popup khi nhấn ra ngoài nội dung
     window.onclick = function (event) {
         const popup = document.getElementById("imagePopup");
         if (event.target === popup) {
