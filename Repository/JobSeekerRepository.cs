@@ -38,6 +38,7 @@ namespace JobFinder.Repository
                 existingJobSeeker.Experience = jobSeeker.Experience;
                 existingJobSeeker.CV = jobSeeker.CV;
                 existingJobSeeker.UserId = jobSeeker.UserId;
+                existingJobSeeker.JobPositionId = jobSeeker.JobPositionId;
 
                 _context.JobSeeker.Update(existingJobSeeker);
 
