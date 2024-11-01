@@ -265,7 +265,7 @@ namespace JobFinder.Repository
         public async Task<List<JobPosting>> GetJobPostingsByRecruiterAsync(int recruiterId)
         {
             return await _context.JobPosting
-                      .Where(j => j.RecruiterId == recruiterId)
+                      .Where(j => j.RecruiterId == recruiterId && j.JobPostingStatus == 0)
                       .ToListAsync();
         }
 

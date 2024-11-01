@@ -22,5 +22,11 @@ namespace JobFinder.Repository
         {
             return await _context.Recruiter.FirstOrDefaultAsync(r => r.UserId == userId);
         }
+
+        public async Task UpdateCompanyAsync(Recruiter Recruiter)
+        {
+            _context.Recruiter.Update(Recruiter);
+            await _context.SaveChangesAsync();
+        }
     }
 }

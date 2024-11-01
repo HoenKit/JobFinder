@@ -3,7 +3,7 @@
 @{
     ViewData["CompanyName"] = Model.Recruiter.CompanyName;
     ViewData["Address"] = Model.Recruiter.Address;
-    ViewData["StaffSize"] = Model.Recruiter.StaffSize;
+    ViewData["StaffSize"] = Model.Recruiter.StaffSize.ToString();
     ViewData["CompanyImage"] = Model.Recruiter.CompanyImage;
     Layout = "~/Areas/Identity/Pages/RecruiterInfo/Shared/_RecruiterLayout.cshtml";
 }
@@ -25,7 +25,7 @@
                         </div>
                         <hr class="artdeco-divider mt4 mb4" style="margin: 10px 0;">
                         <div>
-                            <a style="display: flex;flex-wrap: wrap;justify-content: flex-end; align-items: center; color: black" href="../Areas/Identity/Pages/RecruiterInfo/About.cshtml">Show all Detail <i class='bx bxs-chevron-right'></i></a>
+                            <a style="display: flex;flex-wrap: wrap;justify-content: flex-end; align-items: center; color: black" asp-page="./About">Show all Detail <i class='bx bxs-chevron-right'></i></a>
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,11 @@
                                                         <button class="menu-btn1" onclick="toggleMenu(this)">•••</button>
                                                         <div class="dropdown-menu1">
                                                             <ul style="display: flex; flex-direction: column;">
-                                                                <li onclick="deletePost()">Delete</li>
+                                                                <li>
+                                                                    <form method="post" asp-page-handler="ToggleStatus" asp-route-jobPostingId="@job.Id" style="display: inline;">
+                                                                        <button type="submit" style="background: none; border: none; color: inherit; cursor: pointer;">Delete</button>
+                                                                    </form>
+                                                                </li>
                                                                 <li onclick="editPost()">Edit</li>
                                                             </ul>
                                                         </div>
@@ -73,7 +77,7 @@
                                                 <div class="limited-text" style="white-space: pre-line; max-height: none">
                                                     @job.JobDescription
                                                 </div>
-                                                <a style="display: flex; justify-content: flex-end; cursor: pointer; color: gray" href="#">See more</a>
+                                                <a style="display: flex; justify-content: flex-end; cursor: pointer; color: gray" asp-page="./PostDetail" asp-route-id="@job.Id">See more</a>
                                             </div>
                                         </div>
                                     </li>
@@ -81,7 +85,7 @@
                         </div>
                         <hr class="artdeco-divider mt4 mb4" style="margin: 10px 0;">
                         <div>
-                            <a style="display: flex;flex-wrap: wrap;justify-content: flex-end; align-items: center; color: black" href="../Areas/Identity/Pages/RecruiterInfo/Posts.cshtml">Show all Posts <i class='bx bxs-chevron-right'></i></a>
+                            <a style="display: flex;flex-wrap: wrap;justify-content: flex-end; align-items: center; color: black" asp-page="./Posts">Show all Posts <i class='bx bxs-chevron-right'></i></a>
                         </div>
                     </div>
                 </div>

@@ -3,7 +3,7 @@
 @{
     ViewData["CompanyName"] = Model.Recruiter.CompanyName;
     ViewData["Address"] = Model.Recruiter.Address;
-    ViewData["StaffSize"] = Model.Recruiter.StaffSize;
+    ViewData["StaffSize"] = Model.Recruiter.StaffSize.ToString();
     ViewData["CompanyImage"] = Model.Recruiter.CompanyImage;
     Layout = "~/Areas/Identity/Pages/RecruiterInfo/Shared/_RecruiterLayout.cshtml";
 }
