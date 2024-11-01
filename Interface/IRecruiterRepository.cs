@@ -7,5 +7,7 @@ namespace JobFinder.Interface
         public void AddRecruiter(Recruiter recruiter);
 
         Task<Recruiter?> GetRecruiterByUserIdAsync(string userId);
+
+        Task UpdateCompanyAsync(Recruiter Recruiter);
     }
 }

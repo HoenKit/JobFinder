@@ -100,6 +100,8 @@
                                 <li>Salary :  <span>@Model.JobPosting.Salary</span></li>
                                 <li>Expiration date : <span>@Model.JobPosting.ExpirationDate</span></li>
                             </ul>
+                            @if (User.IsInRole("Users"))
+                            {
                             <div class="apply-btn2">
                                 <form method="post" id="applyForm">
                                     <button type="submit" class="btn btn-primary" id="applyButton"
@@ -116,6 +118,7 @@
                                     </button>
                                 </form>
                             </div>
+                            }
                         </div>
                         <div class="post-details4  mb-50">
                             <!-- Small Section Tittle -->
