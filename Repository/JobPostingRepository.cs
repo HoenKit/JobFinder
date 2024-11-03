@@ -14,6 +14,12 @@ namespace JobFinder.Repository
         {
             _context = context;
         }
+        //add JobPosting
+        public void AddJobPosting(JobPosting jobPosting)
+        {
+            _context.JobPosting.Add(jobPosting);
+            _context.SaveChanges();
+        }
         public List<JobPosting> LatestJobPostings { get; set; } = new List<JobPosting>();
         public PaginatedResult<JobPosting> GetAllJobPostings(int pageNumber, int pageSize, string[] jobTypeFilter, string[] experienceFilter, int? postedWithin, decimal? minSalary, decimal? maxSalary, int jobTypeId, string address)
         {
