@@ -7,7 +7,7 @@
 <!-- Custom styles for navigation -->
 <style>
     .nav-link {
-        font-size: 16px;
+        font-size: 74%;
         font-weight: 500;
         padding: 10px 15px;
         color: #333; /* Default text color */
@@ -35,6 +35,11 @@
     <li class="nav-item">
         <a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">
             <i class="fas fa-user"></i> Profile
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @ManageNavPages.ApplicationJobNavClass(ViewContext)" id="ApplicationJob" asp-page="./ApplicationJob">
+            <i class="fas fa-briefcase"></i> Application
         </a>
     </li>
     <li class="nav-item">

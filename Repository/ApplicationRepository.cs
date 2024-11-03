@@ -37,5 +37,26 @@ namespace JobFinder.Repository
                         .Select(a => a.JobSeeker) 
                         .ToListAsync();
         }
+
+
+
+    /*    public async Task<List<Application>> GetApplicationByJobSeekerIdAsync(int jobSeekerId)
+        {
+            return await _context.Application
+                        .Where(a => a.JobSeekerId == jobSeekerId)
+                        .Include(a => a.JobPosting)
+                        .ToListAsync();
+        }*/
+
+        public async Task<List<Application>> GetApplicationsWithDetailsByJobSeekerIdAsync(int jobSeekerId)
+        {
+            return await _context.Application
+                .Where(a => a.JobSeekerId == jobSeekerId)
+                .Include(a => a.JobPosting)    
+                .ThenInclude(j => j.Recruiter)     
+                .ToListAsync();
+        }
+
+
     }
 }
