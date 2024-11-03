@@ -1,0 +1,135 @@
+﻿@page
+@model JobFinder.Areas.Identity.Pages.Account.Manage.ApplicationJobModel
+@{
+    ViewData["Title"] = "Manage Your Applications";
+}
+<style>
+    .application-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 15px;
+        background-color: #ffffff;
+    }
+
+    .company-logo {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }
+
+    .job-info {
+        font-size: 0.9rem;
+        color: #888;
+    }
+
+    .job-title {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #333;
+        margin-top: 10px;
+    }
+
+    .job-description {
+        font-size: 0.9rem;
+        color: #666;
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+
+    .status-badge {
+        border-radius: 5px;
+        padding: 5px 10px;
+        color: white;
+        font-size: 0.8rem;
+    }
+
+    .status-waiting {
+        background-color: #007bff;
+    }
+
+    .status-rejected {
+        background-color: #dc3545;
+    }
+
+    .status-approved {
+        background-color: #28a745;
+    }
+
+    .see-more-link {
+        text-decoration: none;
+        color: #fb246a;
+        font-weight: bold;
+    }
+
+        .see-more-link:hover {
+            color: #d91a5a;
+        }
+
+    .status-and-link {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+    }
+</style>
+
+<div class="container">
+    <h2 class="text-center mb-4">Your Applications</h2>
+    <div class="row">
+        @if (Model.Applications != null && Model.Applications.Any())
+        {
+            @foreach (var app in Model.Applications)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="application-card shadow-sm">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            @if (app.JobPosting.Recruiter != null)
+                            {
+                                @if (!string.IsNullOrEmpty(app.JobPosting.Recruiter.CompanyImage))
+                                {
+                                    <img src="@app.JobPosting.Recruiter.CompanyImage" alt="Company Logo" class="company-logo" />
+                                }
+                                else
+                                {
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTurdMzEfDHVOFkM3HL8gA4_-eK_ey49UttQ1b0eWK3-Ghn-kSRKYj_ZPwttzeE8n0qq0A&usqp=CAU" alt="Default Company Logo" class="company-logo" />
+                                }
+                            }
+                            <div class="job-info text-right">
+                                <span>@app.JobPosting.Recruiter?.CompanyName</span><br />
+                                <small>@app.JobPosting.PostDate.ToString("M/d/yyyy")</small>
+                            </div>
+                        </div>
+                        <div class="job-title">
+                            @app.JobPosting.JobTitle
+                        </div>
+                        <div class="job-description">
+                            @app.JobPosting.JobDescription
+                        </div>
+
+                        <div class="status-and-link">
+                            <div class="status-badge @(app.ApplicationStatus == 2 ? "status-waiting" : app.ApplicationStatus == 0 ? "status-approved" : "status-rejected")">
+                                @if (app.ApplicationStatus == 2)
+                                {
+                                    <span>Waiting</span>
+                                }
+                                else if (app.ApplicationStatus == 0)
+                                {
+                                    <span>Approved</span>
+                                }
+                                else
+                                {
+                                    <span>Rejected</span>
+                                }
+                            </div>
+                            <a href="/FindJobDetail?id=@app.JobPostingId" class="see-more-link">See more</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p class="text-center">You have not applied for any jobs yet.</p>
+        }
+    </div>
+</div>
