@@ -116,7 +116,7 @@
                             <hr class="dropdown-divider">
                         </li>
                         <li class="dropdown-item">
-                            <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Company</a>
+                            <a class="dropdown-item" @* asp-area="Identity" asp-page="/Account/Manage/Index" *@ title="Manage">Company</a>
                         </li>
                         <li class="dropdown-item">
                             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">

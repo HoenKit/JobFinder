@@ -95,6 +95,7 @@ PayOS payOS = new PayOS(
 builder.Services.AddSingleton(payOS);
 
 //Config Repository
+builder.Services.AddScoped<IJobNatureRepository, JobNatureRepository>();
 builder.Services.AddScoped<IJobPositionRepository, JobPositionRepository>();
 builder.Services.AddScoped<IJobSeekerRepository, JobSeekerRepository>();
 builder.Services.AddScoped<IRecruiterRepository, RecruiterRepository>();

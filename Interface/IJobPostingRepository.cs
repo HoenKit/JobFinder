@@ -5,6 +5,9 @@ namespace JobFinder.Interface
 {
     public interface IJobPostingRepository
     {
+        //add JobPosting
+        public void AddJobPosting(JobPosting jobPosting);
+
         PaginatedResult<JobPosting> GetAllJobPostings(int pageNumber, int pageSize, string[] jobTypeFilter, string[] experienceFilter, int? postedWithin, decimal? minSalary, decimal? maxSalary, int jobTypeId, string address);
 
         PaginatedResult<JobPosting> GetAllJobPostings(int pageNumber, int pageSize, string jobTitle, string location);

@@ -14,9 +14,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JobFinder.Areas.Identity.Pages.Account.Manage
 {
+    [Authorize(Roles = "Users")]
     public class IndexModel : PageModel
     {
         private readonly UserManager<AppUser> _userManager;
