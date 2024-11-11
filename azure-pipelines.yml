@@ -37,7 +37,6 @@ steps:
   inputs:
     packageType: 'sdk'
     version: '5.0.8'
-    installationPath: $(Agent.ToolsDirectory)/dotnet
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet publish $(buildConfiguration)'
