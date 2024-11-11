@@ -301,6 +301,26 @@ namespace JobFinder.Repository
 
         }
 
+        public List<JobPosting> GetJobPostingsByRecruiterAndJobSeeker(int recruiterId, int jobSeekerId)
+        {
+            var jobPostings = _context.JobPosting
+                .Where(jp => jp.RecruiterId == recruiterId && jp.Applications.Any(app => app.JobSeekerId == jobSeekerId))
+                .Include(jp => jp.Recruiter)
+                .Include(a => a.Applications)
+                .ToList();
 
+            return jobPostings;
+        }
+
+        public async Task<List<JobPosting>> GetJobPostingsWithApplicationsByJobSeekerAsync(int recruiterId, int jobSeekerId)
+        {
+            var jobPostings = await _context.JobPosting
+                .Include(jp => jp.Applications)
+                .ThenInclude(app => app.JobSeeker)
+                .Where(jp => jp.RecruiterId == recruiterId && jp.Applications.Any(app => app.JobSeekerId == jobSeekerId))
+                .ToListAsync();
+
+            return jobPostings;
+        }
     }
 }

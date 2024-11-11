@@ -1,11 +1,13 @@
 using JobFinder.Interface;
 using JobFinder.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
 
 namespace JobFinder.Areas.Identity.Pages.RecruiterInfo
 {
+    [Authorize(Roles = "Recruiter")]
     public class AboutModel : PageModel
     {
         private readonly IRecruiterRepository _recruiterRepository;

@@ -54,6 +54,14 @@ namespace JobFinder.Repository
         {
             return await _context.JobSeeker.FirstOrDefaultAsync(js => js.UserId == userId);
         }
+
+        public JobSeeker GetJobSeekerById(string userId)
+        {
+            return _context.JobSeeker
+                .Include(js => js.User)
+                .Include(s => s.Applications)
+                .FirstOrDefault(js => js.UserId == userId);
+        }
     }
 }
 
