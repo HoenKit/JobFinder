@@ -33,11 +33,6 @@ steps:
     projects: '$(tests)'
     arguments: '--configuration $(buildConfiguration)'
 
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version: '5.0.7'
-
 - task: DotNetCoreCLI@2
   displayName: 'dotnet publish $(buildConfiguration)'
   inputs:
