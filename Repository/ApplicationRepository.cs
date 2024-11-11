@@ -57,6 +57,69 @@ namespace JobFinder.Repository
                 .ToListAsync();
         }
 
+        public async Task<int> GetAcceptedApplicationsCountAsync(int jobPostingId)
+        {
+            return await _context.Application.CountAsync(a => a.JobPostingId == jobPostingId && a.ApplicationStatus == 2);
+        }
 
+        public async Task<JobSeeker> GetJobSeekerByIdAsync(int id)
+        {
+            return await _context.JobSeeker
+                .Include(js => js.User)
+                .FirstOrDefaultAsync(js => js.Id == id);
+        }
+
+        public async Task<IEnumerable<Application>> GetApplicationsByJobSeekerIdAsync(int jobSeekerId)
+        {
+            return await _context.Application
+                .Include(a => a.JobPosting).
+                Include(js => js.JobSeeker)
+                .Where(a => a.JobSeekerId == jobSeekerId)
+                .ToListAsync();
+        }
+
+        public List<Application> GetApplicationsByJobSeekerId(string jobSeekerId)
+        {
+            return _context.Application
+                .Include(a => a.JobPosting)
+                .Where(a => a.JobSeekerId.Equals(jobSeekerId))
+                .ToList();
+        }
+
+        public async Task<Application> GetApplicationByIdAsync(int applicationId)
+        {
+            return await _context.Application.FindAsync(applicationId);
+        }
+
+        public async Task UpdateApplicationAsync(Application application)
+        {
+            _context.Application.Update(application);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<Application>> GetApplicationsByJobPosting(int jobPostingId)
+        {
+            return await _context.Application
+                .Where(a => a.JobPostingId == jobPostingId && a.ApplicationStatus == 2)
+                .Include(a => a.JobSeeker)
+                .ThenInclude(js => js.User)
+                .ToListAsync();
+        }
+
+
+        public async Task<Application> GetApplicationWithDetails(int applicationId)
+        {
+            return await _context.Application
+                .Include(a => a.JobSeeker)
+                .ThenInclude(js => js.User)
+                .FirstOrDefaultAsync(a => a.Id == applicationId);
+        }
+
+        public async Task UpdateApplication(Application application)
+        {
+            _context.Application.Update(application);
+            await _context.SaveChangesAsync();
+        }
     }
+}
 }

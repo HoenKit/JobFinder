@@ -57,9 +57,9 @@
                         </ul>
                         <hr class="horizontal gray-light my-2">
                         <div>
-                        <a asp-page="./BanUnban" asp-route-id="@Model.AppUser.Id" class="btn btn-outline-primary btn-sm mb-0" data-toggle="tooltip" data-original-title="Edit user">
-                            @(@Model.AppUser.ProfileStatus == 1 ? "Unban" : "Ban")
-                        </a>
+                            <a asp-page="./BanUnban" asp-route-id="@Model.AppUser.Id" class="btn btn-outline-primary btn-sm mb-0" data-toggle="tooltip" data-original-title="Edit user">
+                                @(@Model.AppUser.ProfileStatus == 1 ? "Unban" : "Ban")
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -82,13 +82,13 @@
                                 <ul class="list-group">
                                     <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Full Name:</strong> @Model.JobSeeker.FirstName @Model.JobSeeker.LastName</li>
                                     <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Birthday:</strong> @Model.JobSeeker.Birthday</li>
-                                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Address:</strong> @Model.JobSeeker.Birthday</li>
+                                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Address:</strong> @Model.JobSeeker.Address</li>
                                     <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Education Level:</strong> @Model.JobSeeker.EducationLevel</li>
                                     <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Specialized:</strong> @Model.JobSeeker.Specialized</li>
                                     <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Experience:</strong> @Model.JobSeeker.Experience year</li>
                                     <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Register Date:</strong> @Model.JobSeeker.RegisterDate</li>
                                 </ul>
-                            </div>  
+                            </div>
                         </div>
                     </div>
                 }

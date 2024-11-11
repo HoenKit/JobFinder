@@ -119,6 +119,20 @@
                                 </form>
                             </div>
                             }
+                            @if (User.IsInRole("Recruiter") && Model.JobPosting.RecruiterId == Model.Recruiter.Id)
+                            {
+                                <div class="apply-btn2 position-relative">
+                                    @if (Model.NumberOfAcceptedApplications > 0)
+                                    {
+                                        <span class="badge" style="position: absolute;top: -13px;right: 93px;">
+                                            @Model.NumberOfAcceptedApplications
+                                        </span>
+                                    }
+                                    <a asp-area="Identity" asp-page="/RecruiterInfo/ListJobSeeker" asp-route-jobPostingId="@Model.JobPosting.Id" class="btn btn-danger">
+                                        List Applicants
+                                    </a>
+                                </div>
+                            }
                         </div>
                         <div class="post-details4  mb-50">
                             <!-- Small Section Tittle -->

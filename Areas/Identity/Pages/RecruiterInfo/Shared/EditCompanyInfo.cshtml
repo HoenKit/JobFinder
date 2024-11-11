@@ -32,34 +32,34 @@
             </div>
         }
         <div class="row">
-    <div class="col-md-8 col-sm-12 mx-auto">
-        <form id="profile-form" method="post">
-            <!-- Username and Phone number row -->
-            <div class="row mb-3">
-                <div class="col-md-6 col-sm-12">
-                    <div class="form-floating">
-                                <input asp-for="Recruiter.CompanyName" class="form-control" placeholder="Company Name"/>
+            <div class="col-md-8 col-sm-12 mx-auto">
+                <form id="profile-form" method="post" enctype="multipart/form-data">
+                    <!-- Username and Phone number row -->
+                    <div class="row mb-3">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-floating">
+                                <input asp-for="Recruiter.CompanyName" class="form-control" placeholder="Company Name" />
                                 <label asp-for="Recruiter.CompanyName">Company Name</label>
                                 <span asp-validation-for="Recruiter.CompanyName" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-12">
-                    <div class="form-floating">
-                                <input asp-for="Recruiter.CompanyPhone" class="form-control" placeholder="Phone number"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-floating">
+                                <input asp-for="Recruiter.CompanyPhone" class="form-control" placeholder="Phone number" />
                                 <label asp-for="Recruiter.CompanyPhone">Phone</label>
                                 <span asp-validation-for="Recruiter.CompanyPhone" class="text-danger"></span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="row mb-3">
-                <div class="col-md-6 col-sm-12">
-                    <div class="form-floating">
-                                <input asp-for="Recruiter.CompanyEmail" class="form-control" placeholder="Email Company"/>
+                    <div class="row mb-3">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-floating">
+                                <input asp-for="Recruiter.CompanyEmail" class="form-control" placeholder="Email Company" />
                                 <label asp-for="Recruiter.CompanyEmail">Email Company</label>
                                 <span asp-validation-for="Recruiter.CompanyEmail" class="text-danger"></span>
-                    </div>
-                </div>
+                            </div>
+                        </div>
                         <div class="col-md-6 col-sm-12">
                             <div class="form-floating">
                                 <input asp-for="Recruiter.CompanyWebsite" class="form-control" placeholder="Website" />
@@ -69,14 +69,14 @@
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <div class="form-floating">
-                                <input asp-for="Recruiter.StaffSize" class="form-control" placeholder="Staff Size"/>
+                                <input asp-for="Recruiter.StaffSize" class="form-control" placeholder="Staff Size" />
                                 <label asp-for="Recruiter.StaffSize">Staff Size(people)</label>
                                 <span asp-validation-for="Recruiter.StaffSize" class="text-danger"></span>
                             </div>
                         </div>
-            </div>
+                    </div>
 
-            <hr />
+                    <hr />
                     <div class="modal fade" id="editAddressModal" tabindex="-1" aria-labelledby="editAddressModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -103,7 +103,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="addressDetail">Address</label>
-                                        <input type="text" id="addressDetail" name="addressDetail" class="form-control" placeholder="Please enter your Address."/>
+                                        <input type="text" id="addressDetail" name="addressDetail" class="form-control" placeholder="Please enter your Address." />
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -132,8 +132,13 @@
                              oninput="updateCompanyDescription()">
                             @Model.Recruiter.CompanyDescription
                         </div>
-                        <!-- Thêm một input để gửi nội dung -->
                         <input type="hidden" id="CompanyDescription" name="CompanyDescription" />
+                    </div>
+
+                    <!-- avatar Upload -->
+                    <div class="form-group mb-3">
+                        <label for="UploadAvatar">Upload avatar</label>
+                        <input type="file" id="UploadAvatar" name="UploadAvatar" class="form-control" />
                     </div>
 
                     <button style="background-color:#fb246a" id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
@@ -160,47 +165,47 @@
         }
 
         document.getElementById('profile-form').addEventListener('submit', function (event) {
-    let isValid = true;
-    let errorMessages = [];
+            let isValid = true;
+            let errorMessages = [];
 
-    // Validate CompanyName (no special characters, length between 3-50)
-    const companyName = document.getElementById('Recruiter_CompanyName').value;
-    const companyNamePattern = /^[a-zA-Z\s]{3,50}$/;
-    if (!companyNamePattern.test(companyName)) {
-        errorMessages.push("Please enter a valid Company Name (only letters and spaces, 3-50 characters).");
-        isValid = false;
-    }
+            // Validate CompanyName (no special characters, length between 3-50)
+            const companyName = document.getElementById('Recruiter_CompanyName').value;
+            const companyNamePattern = /^[a-zA-Z\s]{3,50}$/;
+            if (!companyNamePattern.test(companyName)) {
+                errorMessages.push("Please enter a valid Company Name (only letters and spaces, 3-50 characters).");
+                isValid = false;
+            }
 
-    // Validate CompanyPhone (should contain only numbers, exactly 10 digits)
-    const companyPhone = document.getElementById('Recruiter_CompanyPhone').value;
-    const phonePattern = /^\d{10}$/;
-    if (!phonePattern.test(companyPhone)) {
-        errorMessages.push("Please enter a valid Phone Number (exactly 10 digits).");
-        isValid = false;
-    }
+            // Validate CompanyPhone (should contain only numbers, exactly 10 digits)
+            const companyPhone = document.getElementById('Recruiter_CompanyPhone').value;
+            const phonePattern = /^\d{10}$/;
+            if (!phonePattern.test(companyPhone)) {
+                errorMessages.push("Please enter a valid Phone Number (exactly 10 digits).");
+                isValid = false;
+            }
 
-    // Validate StaffSize (integer between 1 and 10000)
-    const staffSize = document.getElementById('Recruiter_StaffSize').value;
-    const staffSizePattern = /^[1-9]\d{0,3}$/;
-    if (staffSize && !staffSizePattern.test(staffSize)) {
-        errorMessages.push("Please enter a valid Staff Size (number between 1 and 10000).");
-        isValid = false;
-    }
+            // Validate StaffSize (integer between 1 and 10000)
+            const staffSize = document.getElementById('Recruiter_StaffSize').value;
+            const staffSizePattern = /^[1-9]\d{0,3}$/;
+            if (staffSize && !staffSizePattern.test(staffSize)) {
+                errorMessages.push("Please enter a valid Staff Size (number between 1 and 10000).");
+                isValid = false;
+            }
 
-    // Validate CompanyWebsite (valid URL format)
-    const website = document.getElementById('Recruiter_CompanyWebsite').value;
-    const websitePattern = /^(https?:\/\/)?([\w\-]+(\.[\w\-]+)+)(\/[\w\-.~:\/?#\[\]!$&'()*+,;=%]*)?$/;
-    if (website && !websitePattern.test(website)) {
-        errorMessages.push("Please enter a valid website URL.");
-        isValid = false;
-    }
+            // Validate CompanyWebsite (valid URL format)
+            const website = document.getElementById('Recruiter_CompanyWebsite').value;
+            const websitePattern = /^(https?:\/\/)?([\w\-]+(\.[\w\-]+)+)(\/[\w\-.~:\/?#\[\]!$&'()*+,;=%]*)?$/;
+            if (website && !websitePattern.test(website)) {
+                errorMessages.push("Please enter a valid website URL.");
+                isValid = false;
+            }
 
-    // Display all error messages if there are any
-    if (!isValid) {
-        event.preventDefault();
-        alert(errorMessages.join("\n"));
-    }
-});
+            // Display all error messages if there are any
+            if (!isValid) {
+                event.preventDefault();
+                alert(errorMessages.join("\n"));
+            }
+        });
 
 
         document.addEventListener("DOMContentLoaded", function () {
@@ -215,7 +220,7 @@
                     document.getElementById('province').value = parts[2]; // Province
                 } else {
                     // Handle case where parts are not sufficient
-                    document.getElementById('addressDetail').value = '';
+                    document.getElementById('addressDetail').value = ''; s
                     document.getElementById('district').value = '';
                     document.getElementById('province').value = '';
                 }

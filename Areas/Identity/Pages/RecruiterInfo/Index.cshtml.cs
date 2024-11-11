@@ -5,9 +5,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JobFinder.Areas.Identity.Pages.RecruiterInfo
 {
+    [Authorize(Roles = "Recruiter")]
     public class IndexModel : PageModel
     {
         private readonly IRecruiterRepository _recruiterRepository;
