@@ -25,6 +25,7 @@ namespace JobFinder.Interface
         Task<List<JobPosting>> GetJobPostingsByRecruiterAsync(int recruiterId);
         PaginatedResult<JobPosting> GetJobPostingsByJobType(int jobTypeId, int pageNumber, int pageSize);
         Task<PaginatedResult<JobPosting>> GetJobPostingsByRecruiterAsync(int Recruiterid, int pageNumber, int pageSize);
-
+        List<JobPosting> GetJobPostingsByRecruiterAndJobSeeker(int recruiterId, int jobSeekerId);
+        Task<List<JobPosting>> GetJobPostingsWithApplicationsByJobSeekerAsync(int recruiterId, int jobSeekerId);
     }
 }

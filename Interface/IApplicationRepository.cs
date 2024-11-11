@@ -13,5 +13,14 @@ namespace JobFinder.Interface
         // Get Application by JobSeekerId
         /*Task<List<Application>> GetApplicationByJobSeekerIdAsync(int jobSeekerId);*/
         Task<List<Application>> GetApplicationsWithDetailsByJobSeekerIdAsync(int jobSeekerId);
+        Task<int> GetAcceptedApplicationsCountAsync(int jobPostingId);
+        Task<JobSeeker> GetJobSeekerByIdAsync(int id);
+        Task<IEnumerable<Application>> GetApplicationsByJobSeekerIdAsync(int jobSeekerId);
+        List<Application> GetApplicationsByJobSeekerId(string jobSeekerId);
+        Task<Application> GetApplicationByIdAsync(int applicationId);
+        Task UpdateApplicationAsync(Application application);
+        Task<List<Application>> GetApplicationsByJobPosting(int jobPostingId);
+        Task<Application> GetApplicationWithDetails(int applicationId);
+        Task UpdateApplication(Application application);
     }
 }

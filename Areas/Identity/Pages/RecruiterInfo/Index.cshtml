@@ -45,13 +45,11 @@
                         </div>
                         <div>
                             <ul href="" class="cards-container" style="display: flex; overflow-x: auto; list-style-type: none; padding: 0; gap: 15px;">
-                                <!-- Thẻ card1 thứ nhất -->
                                 @foreach (var job in Model.JobPostings)
                                 {
                                     <li style="min-width: 300px; margin-right: 0px;">
                                         <div class="card1">
                                             <div class="card-header1">
-                                                <img src="your-logo.png" alt="@ViewData" class="logo1">
                                                 <div style="margin-left: 10px;">
                                                     <div class="header-content1">
                                                         <h3>@job.Recruiter.CompanyName</h3>
@@ -77,7 +75,7 @@
                                                 <div class="limited-text" style="white-space: pre-line; max-height: none">
                                                     @job.JobDescription
                                                 </div>
-                                                <a style="display: flex; justify-content: flex-end; cursor: pointer; color: gray" asp-page="./PostDetail" asp-route-id="@job.Id">See more</a>
+                                                <a style="display: flex; justify-content: flex-end; cursor: pointer; color: gray" asp-page="/FindJobDetail" asp-route-id="@job.Id">See more</a>
                                             </div>
                                         </div>
                                     </li>
