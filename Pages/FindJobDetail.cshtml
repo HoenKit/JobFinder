@@ -27,6 +27,15 @@
     <link rel="stylesheet" href="assets/css/slick.css">
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .badge {
+            font-size: 0.75rem;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 5px 7px;
+        }
+    </style>
 </head>
 <body>
     <main>
@@ -102,22 +111,22 @@
                             </ul>
                             @if (User.IsInRole("Users"))
                             {
-                            <div class="apply-btn2">
-                                <form method="post" id="applyForm">
-                                    <button type="submit" class="btn btn-primary" id="applyButton"
-                                            onclick="confirmApply(event)"
-                                    @(Model.IsApplied ? "disabled" : "")>
-                                        @if (Model.IsApplied)
-                                        {
-                                            <span>Already Applied</span>
-                                        }
-                                        else
-                                        {
-                                            <span>Apply Now</span>
-                                        }
-                                    </button>
-                                </form>
-                            </div>
+                                <div class="apply-btn2">
+                                    <form method="post" id="applyForm">
+                                        <button type="submit" class="btn btn-primary" id="applyButton"
+                                                onclick="confirmApply(event)"
+                                        @(Model.IsApplied ? "disabled" : "")>
+                                            @if (Model.IsApplied)
+                                            {
+                                                <span>Already Applied</span>
+                                            }
+                                            else
+                                            {
+                                                <span>Apply Now</span>
+                                            }
+                                        </button>
+                                    </form>
+                                </div>
                             }
                             @if (User.IsInRole("Recruiter") && Model.JobPosting.RecruiterId == Model.Recruiter.Id)
                             {
@@ -153,54 +162,50 @@
         </div>
         <!-- job post company End -->
 
-
-    </main>
-
-
-    <script type="text/javascript">
-        function confirmApply(event) {
-            event.preventDefault(); // Prevent the default form submission
-            if (confirm("Are you sure you want to apply for this job?")) {
-                document.getElementById("applyForm").submit(); // Submit the form if confirmed
+        <script type="text/javascript">
+            function confirmApply(event) {
+                event.preventDefault();
+                if (confirm("Are you sure you want to apply for this job?")) {
+                    document.getElementById("applyForm").submit();
+                }
             }
-        }
-    </script>
+        </script>
 
-    <!-- JS here -->
-    <!-- All JS Custom Plugins Link Here here -->
+        <!-- JS here -->
+        <!-- All JS Custom Plugins Link Here here -->
 
-    <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
-    <!-- Jquery, Popper, Bootstrap -->
-    <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
-    <script src="./assets/js/popper.min.js"></script>
-    <script src="./assets/js/bootstrap.min.js"></script>
-    <!-- Jquery Mobile Menu -->
-    <script src="./assets/js/jquery.slicknav.min.js"></script>
+        <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+        <!-- Jquery, Popper, Bootstrap -->
+        <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+        <script src="./assets/js/popper.min.js"></script>
+        <script src="./assets/js/bootstrap.min.js"></script>
+        <!-- Jquery Mobile Menu -->
+        <script src="./assets/js/jquery.slicknav.min.js"></script>
 
-    <!-- Jquery Slick , Owl-Carousel Plugins -->
-    <script src="./assets/js/owl.carousel.min.js"></script>
-    <script src="./assets/js/slick.min.js"></script>
-    <script src="./assets/js/price_rangs.js"></script>
+        <!-- Jquery Slick , Owl-Carousel Plugins -->
+        <script src="./assets/js/owl.carousel.min.js"></script>
+        <script src="./assets/js/slick.min.js"></script>
+        <script src="./assets/js/price_rangs.js"></script>
 
-    <!-- One Page, Animated-HeadLin -->
-    <script src="./assets/js/wow.min.js"></script>
-    <script src="./assets/js/animated.headline.js"></script>
-    <script src="./assets/js/jquery.magnific-popup.js"></script>
+        <!-- One Page, Animated-HeadLin -->
+        <script src="./assets/js/wow.min.js"></script>
+        <script src="./assets/js/animated.headline.js"></script>
+        <script src="./assets/js/jquery.magnific-popup.js"></script>
 
-    <!-- Scrollup, nice-select, sticky -->
-    <script src="./assets/js/jquery.scrollUp.min.js"></script>
-    <script src="./assets/js/jquery.nice-select.min.js"></script>
-    <script src="./assets/js/jquery.sticky.js"></script>
+        <!-- Scrollup, nice-select, sticky -->
+        <script src="./assets/js/jquery.scrollUp.min.js"></script>
+        <script src="./assets/js/jquery.nice-select.min.js"></script>
+        <script src="./assets/js/jquery.sticky.js"></script>
 
-    <!-- contact js -->
-    <script src="./assets/js/contact.js"></script>
-    <script src="./assets/js/jquery.form.js"></script>
-    <script src="./assets/js/jquery.validate.min.js"></script>
-    <script src="./assets/js/mail-script.js"></script>
-    <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+        <!-- contact js -->
+        <script src="./assets/js/contact.js"></script>
+        <script src="./assets/js/jquery.form.js"></script>
+        <script src="./assets/js/jquery.validate.min.js"></script>
+        <script src="./assets/js/mail-script.js"></script>
+        <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
 
-    <!-- Jquery Plugins, main Jquery -->
-    <script src="./assets/js/plugins.js"></script>
-    <script src="./assets/js/main.js"></script>
+        <!-- Jquery Plugins, main Jquery -->
+        <script src="./assets/js/plugins.js"></script>
+        <script src="./assets/js/main.js"></script>
 </body>
 </html>
