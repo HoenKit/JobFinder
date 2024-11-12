@@ -1,0 +1,1650 @@
+Folder PATH listing for volume Disk
+Volume serial number is 1801-F9E0
+D:\SEM7\PRN221\PROJECT\JOBFINDER
+¦   .gitignore
+¦   appsettings.Development.json
+¦   appsettings.json
+¦   azure-pipelines.yml
+¦   cautru.txt
+¦   JobFinder.csproj
+¦   JobFinder.csproj.user
+¦   JobFinder.sln
+¦   Program.cs
+¦   README.md
+¦   ScaffoldingReadMe.txt
+¦   
++---.github
+¦   +---workflows
++---Areas
+¦   +---Identity
+¦       +---Pages
+¦           ¦   Error.cshtml
+¦           ¦   Error.cshtml.cs
+¦           ¦   _ValidationScriptsPartial.cshtml
+¦           ¦   _ViewImports.cshtml
+¦           ¦   _ViewStart.cshtml
+¦           ¦   
+¦           +---Account
+¦           ¦   ¦   AccessDenied.cshtml
+¦           ¦   ¦   AccessDenied.cshtml.cs
+¦           ¦   ¦   ConfirmEmail.cshtml
+¦           ¦   ¦   ConfirmEmail.cshtml.cs
+¦           ¦   ¦   ConfirmEmailChange.cshtml
+¦           ¦   ¦   ConfirmEmailChange.cshtml.cs
+¦           ¦   ¦   ExternalLogin.cshtml
+¦           ¦   ¦   ExternalLogin.cshtml.cs
+¦           ¦   ¦   ForgotPassword.cshtml
+¦           ¦   ¦   ForgotPassword.cshtml.cs
+¦           ¦   ¦   ForgotPasswordConfirmation.cshtml
+¦           ¦   ¦   ForgotPasswordConfirmation.cshtml.cs
+¦           ¦   ¦   Lockout.cshtml
+¦           ¦   ¦   Lockout.cshtml.cs
+¦           ¦   ¦   Login.cshtml
+¦           ¦   ¦   Login.cshtml.cs
+¦           ¦   ¦   LoginWith2fa.cshtml
+¦           ¦   ¦   LoginWith2fa.cshtml.cs
+¦           ¦   ¦   LoginWithRecoveryCode.cshtml
+¦           ¦   ¦   LoginWithRecoveryCode.cshtml.cs
+¦           ¦   ¦   Logout.cshtml
+¦           ¦   ¦   Logout.cshtml.cs
+¦           ¦   ¦   Register.cshtml
+¦           ¦   ¦   Register.cshtml.cs
+¦           ¦   ¦   RegisterConfirmation.cshtml
+¦           ¦   ¦   RegisterConfirmation.cshtml.cs
+¦           ¦   ¦   RegisterRecruiter.cshtml
+¦           ¦   ¦   RegisterRecruiter.cshtml.cs
+¦           ¦   ¦   ResendEmailConfirmation.cshtml
+¦           ¦   ¦   ResendEmailConfirmation.cshtml.cs
+¦           ¦   ¦   ResetPassword.cshtml
+¦           ¦   ¦   ResetPassword.cshtml.cs
+¦           ¦   ¦   ResetPasswordConfirmation.cshtml
+¦           ¦   ¦   ResetPasswordConfirmation.cshtml.cs
+¦           ¦   ¦   _StatusMessage.cshtml
+¦           ¦   ¦   _ViewImports.cshtml
+¦           ¦   ¦   
+¦           ¦   +---Manage
+¦           ¦           ChangePassword.cshtml
+¦           ¦           ChangePassword.cshtml.cs
+¦           ¦           DeletePersonalData.cshtml
+¦           ¦           DeletePersonalData.cshtml.cs
+¦           ¦           Disable2fa.cshtml
+¦           ¦           Disable2fa.cshtml.cs
+¦           ¦           DownloadPersonalData.cshtml
+¦           ¦           DownloadPersonalData.cshtml.cs
+¦           ¦           Email.cshtml
+¦           ¦           Email.cshtml.cs
+¦           ¦           EnableAuthenticator.cshtml
+¦           ¦           EnableAuthenticator.cshtml.cs
+¦           ¦           ExternalLogins.cshtml
+¦           ¦           ExternalLogins.cshtml.cs
+¦           ¦           GenerateRecoveryCodes.cshtml
+¦           ¦           GenerateRecoveryCodes.cshtml.cs
+¦           ¦           Index.cshtml
+¦           ¦           Index.cshtml.cs
+¦           ¦           ManageNavPages.cs
+¦           ¦           PersonalData.cshtml
+¦           ¦           PersonalData.cshtml.cs
+¦           ¦           ResetAuthenticator.cshtml
+¦           ¦           ResetAuthenticator.cshtml.cs
+¦           ¦           SetPassword.cshtml
+¦           ¦           SetPassword.cshtml.cs
+¦           ¦           ShowRecoveryCodes.cshtml
+¦           ¦           ShowRecoveryCodes.cshtml.cs
+¦           ¦           TwoFactorAuthentication.cshtml
+¦           ¦           TwoFactorAuthentication.cshtml.cs
+¦           ¦           _Layout.cshtml
+¦           ¦           _ManageNav.cshtml
+¦           ¦           _StatusMessage.cshtml
+¦           ¦           _ViewImports.cshtml
+¦           ¦           
+¦           +---Admin
+¦           ¦   +---Dashboard
+¦           ¦   ¦       Index.cshtml
+¦           ¦   ¦       Index.cshtml.cs
+¦           ¦   ¦       
+¦           ¦   +---ManageJobPosting
+¦           ¦   ¦       AcceptReject.cshtml
+¦           ¦   ¦       AcceptReject.cshtml.cs
+¦           ¦   ¦       Detail.cshtml
+¦           ¦   ¦       Detail.cshtml.cs
+¦           ¦   ¦       Index.cshtml
+¦           ¦   ¦       Index.cshtml.cs
+¦           ¦   ¦       
+¦           ¦   +---ManageUser
+¦           ¦   ¦       BanUnban.cshtml
+¦           ¦   ¦       BanUnban.cshtml.cs
+¦           ¦   ¦       Details.cshtml
+¦           ¦   ¦       Details.cshtml.cs
+¦           ¦   ¦       Index.cshtml
+¦           ¦   ¦       Index.cshtml.cs
+¦           ¦   ¦       
+¦           ¦   +---Shared
+¦           ¦           _AdminLayout.cshtml
+¦           ¦           
+¦           +---RecruiterInfo
+¦               ¦   About.cshtml
+¦               ¦   About.cshtml.cs
+¦               ¦   Index.cshtml
+¦               ¦   Index.cshtml.cs
+¦               ¦   PostDetail.cshtml
+¦               ¦   PostDetail.cshtml.cs
+¦               ¦   Posts.cshtml
+¦               ¦   Posts.cshtml.cs
+¦               ¦   
+¦               +---Shared
+¦                       _RecruiterLayout.cshtml
+¦                       
++---bin
+¦   +---Debug
+¦       +---net8.0
+¦           ¦   appsettings.Development.json
+¦           ¦   appsettings.json
+¦           ¦   Azure.Core.dll
+¦           ¦   Azure.Identity.dll
+¦           ¦   Azure.Storage.Blobs.dll
+¦           ¦   Azure.Storage.Common.dll
+¦           ¦   BouncyCastle.Cryptography.dll
+¦           ¦   dotnet-aspnet-codegenerator-design.dll
+¦           ¦   Humanizer.dll
+¦           ¦   JobFinder.deps.json
+¦           ¦   JobFinder.dll
+¦           ¦   JobFinder.exe
+¦           ¦   JobFinder.pdb
+¦           ¦   JobFinder.runtimeconfig.json
+¦           ¦   JobFinder.staticwebassets.runtime.json
+¦           ¦   MailKit.dll
+¦           ¦   Microsoft.AspNetCore.Authentication.Google.dll
+¦           ¦   Microsoft.AspNetCore.Cryptography.Internal.dll
+¦           ¦   Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+¦           ¦   Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
+¦           ¦   Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+¦           ¦   Microsoft.AspNetCore.Identity.UI.dll
+¦           ¦   Microsoft.AspNetCore.Razor.Language.dll
+¦           ¦   Microsoft.Bcl.AsyncInterfaces.dll
+¦           ¦   Microsoft.Build.dll
+¦           ¦   Microsoft.Build.Framework.dll
+¦           ¦   Microsoft.CodeAnalysis.AnalyzerUtilities.dll
+¦           ¦   Microsoft.CodeAnalysis.CSharp.dll
+¦           ¦   Microsoft.CodeAnalysis.CSharp.Features.dll
+¦           ¦   Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+¦           ¦   Microsoft.CodeAnalysis.dll
+¦           ¦   Microsoft.CodeAnalysis.Elfie.dll
+¦           ¦   Microsoft.CodeAnalysis.Features.dll
+¦           ¦   Microsoft.CodeAnalysis.Razor.dll
+¦           ¦   Microsoft.CodeAnalysis.Scripting.dll
+¦           ¦   Microsoft.CodeAnalysis.Workspaces.dll
+¦           ¦   Microsoft.Data.SqlClient.dll
+¦           ¦   Microsoft.DiaSymReader.dll
+¦           ¦   Microsoft.DotNet.Scaffolding.Shared.dll
+¦           ¦   Microsoft.EntityFrameworkCore.Abstractions.dll
+¦           ¦   Microsoft.EntityFrameworkCore.Design.dll
+¦           ¦   Microsoft.EntityFrameworkCore.dll
+¦           ¦   Microsoft.EntityFrameworkCore.Relational.dll
+¦           ¦   Microsoft.EntityFrameworkCore.SqlServer.dll
+¦           ¦   Microsoft.Extensions.DependencyInjection.Abstractions.dll
+¦           ¦   Microsoft.Extensions.DependencyInjection.dll
+¦           ¦   Microsoft.Extensions.DependencyModel.dll
+¦           ¦   Microsoft.Extensions.FileProviders.Embedded.dll
+¦           ¦   Microsoft.Extensions.Identity.Core.dll
+¦           ¦   Microsoft.Extensions.Identity.Stores.dll
+¦           ¦   Microsoft.Extensions.Options.dll
+¦           ¦   Microsoft.Identity.Client.dll
+¦           ¦   Microsoft.Identity.Client.Extensions.Msal.dll
+¦           ¦   Microsoft.IdentityModel.Abstractions.dll
+¦           ¦   Microsoft.IdentityModel.JsonWebTokens.dll
+¦           ¦   Microsoft.IdentityModel.Logging.dll
+¦           ¦   Microsoft.IdentityModel.Protocols.dll
+¦           ¦   Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+¦           ¦   Microsoft.IdentityModel.Tokens.dll
+¦           ¦   Microsoft.NET.StringTools.dll
+¦           ¦   Microsoft.SqlServer.Server.dll
+¦           ¦   Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
+¦           ¦   Microsoft.VisualStudio.Web.CodeGeneration.dll
+¦           ¦   Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
+¦           ¦   Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+¦           ¦   Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+¦           ¦   Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+¦           ¦   Microsoft.Win32.SystemEvents.dll
+¦           ¦   MimeKit.dll
+¦           ¦   Mono.TextTemplating.dll
+¦           ¦   Newtonsoft.Json.dll
+¦           ¦   NuGet.Common.dll
+¦           ¦   NuGet.Configuration.dll
+¦           ¦   NuGet.DependencyResolver.Core.dll
+¦           ¦   NuGet.Frameworks.dll
+¦           ¦   NuGet.LibraryModel.dll
+¦           ¦   NuGet.Packaging.dll
+¦           ¦   NuGet.ProjectModel.dll
+¦           ¦   NuGet.Protocol.dll
+¦           ¦   NuGet.Versioning.dll
+¦           ¦   payos-lib-backend-dotnet.dll
+¦           ¦   System.ClientModel.dll
+¦           ¦   System.CodeDom.dll
+¦           ¦   System.Composition.AttributedModel.dll
+¦           ¦   System.Composition.Convention.dll
+¦           ¦   System.Composition.Hosting.dll
+¦           ¦   System.Composition.Runtime.dll
+¦           ¦   System.Composition.TypedParts.dll
+¦           ¦   System.Configuration.ConfigurationManager.dll
+¦           ¦   System.Drawing.Common.dll
+¦           ¦   System.IdentityModel.Tokens.Jwt.dll
+¦           ¦   System.IO.Hashing.dll
+¦           ¦   System.Memory.Data.dll
+¦           ¦   System.Reflection.MetadataLoadContext.dll
+¦           ¦   System.Runtime.Caching.dll
+¦           ¦   System.Security.Cryptography.ProtectedData.dll
+¦           ¦   System.Security.Permissions.dll
+¦           ¦   System.Windows.Extensions.dll
+¦           ¦   
+¦           +---af
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---ar
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---az
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---bg
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---bn-BD
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---cs
+¦           ¦       Humanizer.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Features.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Scripting.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Workspaces.resources.dll
+¦           ¦       
+¦           +---da
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---de
+¦           ¦       Humanizer.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Features.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Scripting.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Workspaces.resources.dll
+¦           ¦       
+¦           +---el
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---es
+¦           ¦       Humanizer.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Features.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Scripting.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Workspaces.resources.dll
+¦           ¦       
+¦           +---fa
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---fi-FI
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---fr
+¦           ¦       Humanizer.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Features.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Scripting.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Workspaces.resources.dll
+¦           ¦       
+¦           +---fr-BE
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---he
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---hr
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---hu
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---hy
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---id
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---is
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---it
+¦           ¦       Humanizer.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Features.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Scripting.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Workspaces.resources.dll
+¦           ¦       
+¦           +---ja
+¦           ¦       Humanizer.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Features.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Scripting.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Workspaces.resources.dll
+¦           ¦       
+¦           +---ko
+¦           ¦       Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Features.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Scripting.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Workspaces.resources.dll
+¦           ¦       
+¦           +---ko-KR
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---ku
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---lv
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---ms-MY
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---mt
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---nb
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---nb-NO
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---nl
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---pl
+¦           ¦       Humanizer.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Features.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Scripting.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Workspaces.resources.dll
+¦           ¦       
+¦           +---pt
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---pt-BR
+¦           ¦       Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Features.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Scripting.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Workspaces.resources.dll
+¦           ¦       
+¦           +---ro
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---ru
+¦           ¦       Humanizer.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Features.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Scripting.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Workspaces.resources.dll
+¦           ¦       
+¦           +---runtimes
+¦           ¦   +---unix
+¦           ¦   ¦   +---lib
+¦           ¦   ¦       +---net6.0
+¦           ¦   ¦               Microsoft.Data.SqlClient.dll
+¦           ¦   ¦               
+¦           ¦   +---win
+¦           ¦   ¦   +---lib
+¦           ¦   ¦       +---net6.0
+¦           ¦   ¦       ¦       Microsoft.Data.SqlClient.dll
+¦           ¦   ¦       ¦       System.Runtime.Caching.dll
+¦           ¦   ¦       ¦       
+¦           ¦   ¦       +---net7.0
+¦           ¦   ¦               Microsoft.Win32.SystemEvents.dll
+¦           ¦   ¦               System.Drawing.Common.dll
+¦           ¦   ¦               System.Security.Cryptography.ProtectedData.dll
+¦           ¦   ¦               System.Windows.Extensions.dll
+¦           ¦   ¦               
+¦           ¦   +---win-arm
+¦           ¦   ¦   +---native
+¦           ¦   ¦           Microsoft.Data.SqlClient.SNI.dll
+¦           ¦   ¦           
+¦           ¦   +---win-arm64
+¦           ¦   ¦   +---native
+¦           ¦   ¦           Microsoft.Data.SqlClient.SNI.dll
+¦           ¦   ¦           
+¦           ¦   +---win-x64
+¦           ¦   ¦   +---native
+¦           ¦   ¦           Microsoft.Data.SqlClient.SNI.dll
+¦           ¦   ¦           
+¦           ¦   +---win-x86
+¦           ¦       +---native
+¦           ¦               Microsoft.Data.SqlClient.SNI.dll
+¦           ¦               
+¦           +---sk
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---sl
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---sr
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---sr-Latn
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---sv
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---th-TH
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---tr
+¦           ¦       Humanizer.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Features.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Scripting.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Workspaces.resources.dll
+¦           ¦       
+¦           +---uk
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---uz-Cyrl-UZ
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---uz-Latn-UZ
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---vi
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---zh-CN
+¦           ¦       Humanizer.resources.dll
+¦           ¦       
+¦           +---zh-Hans
+¦           ¦       Humanizer.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Features.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Scripting.resources.dll
+¦           ¦       Microsoft.CodeAnalysis.Workspaces.resources.dll
+¦           ¦       
+¦           +---zh-Hant
+¦                   Humanizer.resources.dll
+¦                   Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+¦                   Microsoft.CodeAnalysis.CSharp.resources.dll
+¦                   Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+¦                   Microsoft.CodeAnalysis.Features.resources.dll
+¦                   Microsoft.CodeAnalysis.resources.dll
+¦                   Microsoft.CodeAnalysis.Scripting.resources.dll
+¦                   Microsoft.CodeAnalysis.Workspaces.resources.dll
+¦                   
++---Data
+¦   ¦   ApplicationDbContext.cs
+¦   ¦   
+¦   +---Migrations
+¦           00000000000000_CreateIdentitySchema.cs
+¦           00000000000000_CreateIdentitySchema.Designer.cs
+¦           20240922061700_AddModelsAndDatas.cs
+¦           20240922061700_AddModelsAndDatas.Designer.cs
+¦           20240926111831_v1.cs
+¦           20240926111831_v1.Designer.cs
+¦           ApplicationDbContextModelSnapshot.cs
+¦           
++---Dtos
+¦       PaginatedResult.cs
+¦       
++---Interface
+¦       IApplicationRepository.cs
+¦       IAppUserRepository.cs
+¦       IDashboardRepository.cs
+¦       IJobPositionRepository.cs
+¦       IJobPostingRepository.cs
+¦       IJobSeekerRepository.cs
+¦       IJobTypeRepository.cs
+¦       IRecruiterRepository.cs
+¦       
++---Models
+¦   ¦   Application.cs
+¦   ¦   AppUser.cs
+¦   ¦   JobNature.cs
+¦   ¦   JobPosition.cs
+¦   ¦   JobPosting.cs
+¦   ¦   JobSeeker.cs
+¦   ¦   JobType.cs
+¦   ¦   Recruiter.cs
+¦   ¦   
+¦   +---PayOs
+¦           CreatePaymentLinkRequest.cs
+¦           Response.cs
+¦           
++---obj
+¦   ¦   JobFinder.csproj.nuget.dgspec.json
+¦   ¦   JobFinder.csproj.nuget.g.props
+¦   ¦   JobFinder.csproj.nuget.g.targets
+¦   ¦   project.assets.json
+¦   ¦   project.nuget.cache
+¦   ¦   
+¦   +---Debug
+¦       +---net8.0
+¦           ¦   .NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+¦           ¦   apphost.exe
+¦           ¦   JobFinder.AssemblyInfo.cs
+¦           ¦   JobFinder.AssemblyInfoInputs.cache
+¦           ¦   JobFinder.assets.cache
+¦           ¦   JobFinder.csproj.AssemblyReference.cache
+¦           ¦   JobFinder.csproj.BuildWithSkipAnalyzers
+¦           ¦   JobFinder.csproj.CopyComplete
+¦           ¦   JobFinder.csproj.CoreCompileInputs.cache
+¦           ¦   JobFinder.csproj.FileListAbsolute.txt
+¦           ¦   JobFinder.dll
+¦           ¦   JobFinder.GeneratedMSBuildEditorConfig.editorconfig
+¦           ¦   JobFinder.genruntimeconfig.cache
+¦           ¦   JobFinder.GlobalUsings.g.cs
+¦           ¦   JobFinder.MvcApplicationPartsAssemblyInfo.cache
+¦           ¦   JobFinder.MvcApplicationPartsAssemblyInfo.cs
+¦           ¦   JobFinder.pdb
+¦           ¦   JobFinder.RazorAssemblyInfo.cache
+¦           ¦   JobFinder.RazorAssemblyInfo.cs
+¦           ¦   JobFinder.sourcelink.json
+¦           ¦   project.razor.vs.bin
+¦           ¦   staticwebassets.build.json
+¦           ¦   staticwebassets.development.json
+¦           ¦   staticwebassets.pack.json
+¦           ¦   
+¦           +---ref
+¦           ¦       JobFinder.dll
+¦           ¦       
+¦           +---refint
+¦           ¦       JobFinder.dll
+¦           ¦       
+¦           +---scopedcss
+¦           ¦   +---bundle
+¦           ¦   ¦       JobFinder.styles.css
+¦           ¦   ¦       
+¦           ¦   +---Pages
+¦           ¦   ¦   +---Shared
+¦           ¦   ¦           _Layout.cshtml.rz.scp.css
+¦           ¦   ¦           
+¦           ¦   +---projectbundle
+¦           ¦           JobFinder.bundle.scp.css
+¦           ¦           
+¦           +---staticwebassets
+¦                   msbuild.build.JobFinder.props
+¦                   msbuild.buildMultiTargeting.JobFinder.props
+¦                   msbuild.buildTransitive.JobFinder.props
+¦                   msbuild.JobFinder.Microsoft.AspNetCore.StaticWebAssets.props
+¦                   
++---Pages
+¦   ¦   Admin.cshtml
+¦   ¦   Admin.cshtml.cs
+¦   ¦   Error.cshtml
+¦   ¦   Error.cshtml.cs
+¦   ¦   FindJob.cshtml
+¦   ¦   FindJob.cshtml.cs
+¦   ¦   FindJobDetail.cshtml
+¦   ¦   FindJobDetail.cshtml.cs
+¦   ¦   Index.cshtml
+¦   ¦   Index.cshtml.cs
+¦   ¦   Payment.cshtml
+¦   ¦   Payment.cshtml.cs
+¦   ¦   Privacy.cshtml
+¦   ¦   Privacy.cshtml.cs
+¦   ¦   RegisterJobSeeker.cshtml
+¦   ¦   RegisterJobSeeker.cshtml.cs
+¦   ¦   RegisterRecruiter.cshtml
+¦   ¦   RegisterRecruiter.cshtml.cs
+¦   ¦   SearchJob.cshtml
+¦   ¦   SearchJob.cshtml.cs
+¦   ¦   User.cshtml
+¦   ¦   User.cshtml.cs
+¦   ¦   _ViewImports.cshtml
+¦   ¦   _ViewStart.cshtml
+¦   ¦   
+¦   +---Shared
+¦           _Layout.cshtml
+¦           _Layout.cshtml.css
+¦           _LoginPartial.cshtml
+¦           _ValidationScriptsPartial.cshtml
+¦           
++---Properties
+¦       launchSettings.json
+¦       serviceDependencies.json
+¦       serviceDependencies.local.json
+¦       serviceDependencies.local.json.user
+¦       
++---Repository
+¦       ApplicationRepository.cs
+¦       AppUserRepository.cs
+¦       DashboardRepository.cs
+¦       JobPositionRepository.cs
+¦       JobPostingRepository.cs
+¦       JobSeekerRepository.cs
+¦       JobTypeRepository.cs
+¦       RecruiterRepository.cs
+¦       
++---Service
+¦       BlobStorageService.cs
+¦       SendMailService.cs
+¦       
++---wwwroot
+    ¦   contact_process.php
+    ¦   favicon.ico
+    ¦   readme.txt
+    ¦   
+    +---Admin
+    ¦   +---css
+    ¦   ¦       material-dashboard.css
+    ¦   ¦       material-dashboard.css.map
+    ¦   ¦       material-dashboard.min.css
+    ¦   ¦       nucleo-icons.css
+    ¦   ¦       nucleo-svg.css
+    ¦   ¦       
+    ¦   +---fonts
+    ¦   ¦       nucleo-icons.eot
+    ¦   ¦       nucleo-icons.svg
+    ¦   ¦       nucleo-icons.ttf
+    ¦   ¦       nucleo-icons.woff
+    ¦   ¦       nucleo-icons.woff2
+    ¦   ¦       nucleo.eot
+    ¦   ¦       nucleo.ttf
+    ¦   ¦       nucleo.woff
+    ¦   ¦       nucleo.woff2
+    ¦   ¦       
+    ¦   +---img
+    ¦   ¦   ¦   apple-icon.png
+    ¦   ¦   ¦   bg-pricing.jpg
+    ¦   ¦   ¦   bg-smart-home-1.jpg
+    ¦   ¦   ¦   bg-smart-home-2.jpg
+    ¦   ¦   ¦   bruce-mars.jpg
+    ¦   ¦   ¦   down-arrow-dark.svg
+    ¦   ¦   ¦   down-arrow-white.svg
+    ¦   ¦   ¦   down-arrow.svg
+    ¦   ¦   ¦   drake.jpg
+    ¦   ¦   ¦   favicon.png
+    ¦   ¦   ¦   home-decor-1.jpg
+    ¦   ¦   ¦   home-decor-2.jpg
+    ¦   ¦   ¦   home-decor-3.jpg
+    ¦   ¦   ¦   ivana-square.jpg
+    ¦   ¦   ¦   ivana-squares.jpg
+    ¦   ¦   ¦   ivancik.jpg
+    ¦   ¦   ¦   kal-visuals-square.jpg
+    ¦   ¦   ¦   logo-ct-dark.png
+    ¦   ¦   ¦   logo-ct.png
+    ¦   ¦   ¦   marie.jpg
+    ¦   ¦   ¦   meeting.jpg
+    ¦   ¦   ¦   office-dark.jpg
+    ¦   ¦   ¦   product-12.jpg
+    ¦   ¦   ¦   team-1.jpg
+    ¦   ¦   ¦   team-2.jpg
+    ¦   ¦   ¦   team-3.jpg
+    ¦   ¦   ¦   team-4.jpg
+    ¦   ¦   ¦   team-5.jpg
+    ¦   ¦   ¦   tesla-model-s.png
+    ¦   ¦   ¦   vr-bg.jpg
+    ¦   ¦   ¦   
+    ¦   ¦   +---icons
+    ¦   ¦   ¦   +---flags
+    ¦   ¦   ¦           AU.png
+    ¦   ¦   ¦           BR.png
+    ¦   ¦   ¦           DE.png
+    ¦   ¦   ¦           GB.png
+    ¦   ¦   ¦           US.png
+    ¦   ¦   ¦           
+    ¦   ¦   +---illustrations
+    ¦   ¦   ¦       chat.png
+    ¦   ¦   ¦       danger-chat-ill.png
+    ¦   ¦   ¦       dark-lock-ill.png
+    ¦   ¦   ¦       error-404.png
+    ¦   ¦   ¦       error-500.png
+    ¦   ¦   ¦       illustration-lock.jpg
+    ¦   ¦   ¦       illustration-reset.jpg
+    ¦   ¦   ¦       illustration-signin.jpg
+    ¦   ¦   ¦       illustration-signup.jpg
+    ¦   ¦   ¦       illustration-verification.jpg
+    ¦   ¦   ¦       lock.png
+    ¦   ¦   ¦       pattern-tree.svg
+    ¦   ¦   ¦       rocket-white.png
+    ¦   ¦   ¦       
+    ¦   ¦   +---logos
+    ¦   ¦   ¦   ¦   mastercard.png
+    ¦   ¦   ¦   ¦   visa.png
+    ¦   ¦   ¦   ¦   
+    ¦   ¦   ¦   +---gray-logos
+    ¦   ¦   ¦           logo-coinbase.svg
+    ¦   ¦   ¦           logo-nasa.svg
+    ¦   ¦   ¦           logo-netflix.svg
+    ¦   ¦   ¦           logo-pinterest.svg
+    ¦   ¦   ¦           logo-spotify.svg
+    ¦   ¦   ¦           logo-vodafone.svg
+    ¦   ¦   ¦           
+    ¦   ¦   +---products
+    ¦   ¦   ¦       product-1-min.jpg
+    ¦   ¦   ¦       product-11.jpg
+    ¦   ¦   ¦       product-2-min.jpg
+    ¦   ¦   ¦       product-3-min.jpg
+    ¦   ¦   ¦       product-4-min.jpg
+    ¦   ¦   ¦       product-5-min.jpg
+    ¦   ¦   ¦       product-6-min.jpg
+    ¦   ¦   ¦       product-7-min.jpg
+    ¦   ¦   ¦       product-details-1.jpg
+    ¦   ¦   ¦       product-details-2.jpg
+    ¦   ¦   ¦       product-details-3.jpg
+    ¦   ¦   ¦       product-details-4.jpg
+    ¦   ¦   ¦       product-details-5.jpg
+    ¦   ¦   ¦       
+    ¦   ¦   +---shapes
+    ¦   ¦   ¦       pattern-lines.svg
+    ¦   ¦   ¦       waves-white.svg
+    ¦   ¦   ¦       
+    ¦   ¦   +---small-logos
+    ¦   ¦           bootstrap.svg
+    ¦   ¦           creative-tim.svg
+    ¦   ¦           devto.svg
+    ¦   ¦           github.svg
+    ¦   ¦           google-webdev.svg
+    ¦   ¦           icon-bulb.svg
+    ¦   ¦           icon-sun-cloud.png
+    ¦   ¦           logo-asana.svg
+    ¦   ¦           logo-atlassian.svg
+    ¦   ¦           logo-invision.svg
+    ¦   ¦           logo-jira.svg
+    ¦   ¦           logo-slack.svg
+    ¦   ¦           logo-spotify.svg
+    ¦   ¦           logo-xd.svg
+    ¦   ¦           
+    ¦   +---js
+    ¦   ¦   ¦   material-dashboard.js
+    ¦   ¦   ¦   material-dashboard.js.map
+    ¦   ¦   ¦   material-dashboard.min.js
+    ¦   ¦   ¦   
+    ¦   ¦   +---core
+    ¦   ¦   ¦       bootstrap.bundle.min.js
+    ¦   ¦   ¦       bootstrap.min.js
+    ¦   ¦   ¦       popper.min.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---plugins
+    ¦   ¦           bootstrap-notify.js
+    ¦   ¦           Chart.extension.js
+    ¦   ¦           chartjs.min.js
+    ¦   ¦           countup.min.js
+    ¦   ¦           perfect-scrollbar.min.js
+    ¦   ¦           smooth-scrollbar.min.js
+    ¦   ¦           world.js
+    ¦   ¦           
+    ¦   +---scss
+    ¦       ¦   material-dashboard.scss
+    ¦       ¦   
+    ¦       +---material-dashboard
+    ¦           ¦   theme.scss
+    ¦           ¦   _alert.scss
+    ¦           ¦   _avatars.scss
+    ¦           ¦   _badge.scss
+    ¦           ¦   _breadcrumbs.scss
+    ¦           ¦   _buttons.scss
+    ¦           ¦   _cards.scss
+    ¦           ¦   _dark-version.scss
+    ¦           ¦   _dropdown.scss
+    ¦           ¦   _dropup.scss
+    ¦           ¦   _fixed-plugin.scss
+    ¦           ¦   _footer.scss
+    ¦           ¦   _forms.scss
+    ¦           ¦   _gradients.scss
+    ¦           ¦   _header.scss
+    ¦           ¦   _icons.scss
+    ¦           ¦   _info-areas.scss
+    ¦           ¦   _misc.scss
+    ¦           ¦   _nav.scss
+    ¦           ¦   _navbar-vertical.scss
+    ¦           ¦   _navbar.scss
+    ¦           ¦   _pagination.scss
+    ¦           ¦   _popovers.scss
+    ¦           ¦   _progress.scss
+    ¦           ¦   _ripple.scss
+    ¦           ¦   _rtl.scss
+    ¦           ¦   _social-buttons.scss
+    ¦           ¦   _tables.scss
+    ¦           ¦   _tilt.scss
+    ¦           ¦   _timeline.scss
+    ¦           ¦   _tooltips.scss
+    ¦           ¦   _typography.scss
+    ¦           ¦   _utilities-extend.scss
+    ¦           ¦   _utilities.scss
+    ¦           ¦   _variables.scss
+    ¦           ¦   
+    ¦           +---bootstrap
+    ¦           ¦   ¦   bootstrap-grid.scss
+    ¦           ¦   ¦   bootstrap-reboot.scss
+    ¦           ¦   ¦   bootstrap-utilities.scss
+    ¦           ¦   ¦   bootstrap.scss
+    ¦           ¦   ¦   _accordion.scss
+    ¦           ¦   ¦   _alert.scss
+    ¦           ¦   ¦   _badge.scss
+    ¦           ¦   ¦   _breadcrumb.scss
+    ¦           ¦   ¦   _button-group.scss
+    ¦           ¦   ¦   _buttons.scss
+    ¦           ¦   ¦   _card.scss
+    ¦           ¦   ¦   _carousel.scss
+    ¦           ¦   ¦   _close.scss
+    ¦           ¦   ¦   _containers.scss
+    ¦           ¦   ¦   _dropdown.scss
+    ¦           ¦   ¦   _forms.scss
+    ¦           ¦   ¦   _functions.scss
+    ¦           ¦   ¦   _grid.scss
+    ¦           ¦   ¦   _helpers.scss
+    ¦           ¦   ¦   _images.scss
+    ¦           ¦   ¦   _list-group.scss
+    ¦           ¦   ¦   _maps.scss
+    ¦           ¦   ¦   _mixins.scss
+    ¦           ¦   ¦   _modal.scss
+    ¦           ¦   ¦   _nav.scss
+    ¦           ¦   ¦   _navbar.scss
+    ¦           ¦   ¦   _offcanvas.scss
+    ¦           ¦   ¦   _pagination.scss
+    ¦           ¦   ¦   _placeholders.scss
+    ¦           ¦   ¦   _popover.scss
+    ¦           ¦   ¦   _progress.scss
+    ¦           ¦   ¦   _reboot.scss
+    ¦           ¦   ¦   _root.scss
+    ¦           ¦   ¦   _spinners.scss
+    ¦           ¦   ¦   _tables.scss
+    ¦           ¦   ¦   _toasts.scss
+    ¦           ¦   ¦   _tooltip.scss
+    ¦           ¦   ¦   _transitions.scss
+    ¦           ¦   ¦   _type.scss
+    ¦           ¦   ¦   _utilities.scss
+    ¦           ¦   ¦   _variables.scss
+    ¦           ¦   ¦   
+    ¦           ¦   +---forms
+    ¦           ¦   ¦       _floating-labels.scss
+    ¦           ¦   ¦       _form-check.scss
+    ¦           ¦   ¦       _form-control.scss
+    ¦           ¦   ¦       _form-range.scss
+    ¦           ¦   ¦       _form-select.scss
+    ¦           ¦   ¦       _form-text.scss
+    ¦           ¦   ¦       _input-group.scss
+    ¦           ¦   ¦       _labels.scss
+    ¦           ¦   ¦       _validation.scss
+    ¦           ¦   ¦       
+    ¦           ¦   +---helpers
+    ¦           ¦   ¦       _clearfix.scss
+    ¦           ¦   ¦       _color-bg.scss
+    ¦           ¦   ¦       _colored-links.scss
+    ¦           ¦   ¦       _position.scss
+    ¦           ¦   ¦       _ratio.scss
+    ¦           ¦   ¦       _stacks.scss
+    ¦           ¦   ¦       _stretched-link.scss
+    ¦           ¦   ¦       _text-truncation.scss
+    ¦           ¦   ¦       _visually-hidden.scss
+    ¦           ¦   ¦       _vr.scss
+    ¦           ¦   ¦       
+    ¦           ¦   +---mixins
+    ¦           ¦   ¦       _alert.scss
+    ¦           ¦   ¦       _backdrop.scss
+    ¦           ¦   ¦       _banner.scss
+    ¦           ¦   ¦       _border-radius.scss
+    ¦           ¦   ¦       _box-shadow.scss
+    ¦           ¦   ¦       _breakpoints.scss
+    ¦           ¦   ¦       _buttons.scss
+    ¦           ¦   ¦       _caret.scss
+    ¦           ¦   ¦       _clearfix.scss
+    ¦           ¦   ¦       _color-scheme.scss
+    ¦           ¦   ¦       _container.scss
+    ¦           ¦   ¦       _deprecate.scss
+    ¦           ¦   ¦       _forms.scss
+    ¦           ¦   ¦       _gradients.scss
+    ¦           ¦   ¦       _grid.scss
+    ¦           ¦   ¦       _image.scss
+    ¦           ¦   ¦       _list-group.scss
+    ¦           ¦   ¦       _lists.scss
+    ¦           ¦   ¦       _pagination.scss
+    ¦           ¦   ¦       _reset-text.scss
+    ¦           ¦   ¦       _resize.scss
+    ¦           ¦   ¦       _table-variants.scss
+    ¦           ¦   ¦       _text-truncate.scss
+    ¦           ¦   ¦       _transition.scss
+    ¦           ¦   ¦       _utilities.scss
+    ¦           ¦   ¦       _visually-hidden.scss
+    ¦           ¦   ¦       
+    ¦           ¦   +---utilities
+    ¦           ¦   ¦       _api.scss
+    ¦           ¦   ¦       
+    ¦           ¦   +---vendor
+    ¦           ¦           _rfs.scss
+    ¦           ¦           
+    ¦           +---cards
+    ¦           ¦       card-background.scss
+    ¦           ¦       card-rotate.scss
+    ¦           ¦       
+    ¦           +---custom
+    ¦           ¦       _styles.scss
+    ¦           ¦       _variables.scss
+    ¦           ¦       
+    ¦           +---forms
+    ¦           ¦       _form-check.scss
+    ¦           ¦       _form-select.scss
+    ¦           ¦       _form-switch.scss
+    ¦           ¦       _forms.scss
+    ¦           ¦       _input-group.scss
+    ¦           ¦       _inputs.scss
+    ¦           ¦       _labels.scss
+    ¦           ¦       
+    ¦           +---mixins
+    ¦           ¦       mixins.scss
+    ¦           ¦       _badge.scss
+    ¦           ¦       _buttons.scss
+    ¦           ¦       _colored-shadows.scss
+    ¦           ¦       _hover.scss
+    ¦           ¦       _social-buttons.scss
+    ¦           ¦       _vendor.scss
+    ¦           ¦       
+    ¦           +---plugins
+    ¦           ¦   +---free
+    ¦           ¦           plugins.scss
+    ¦           ¦           _flatpickr.scss
+    ¦           ¦           _nouislider.scss
+    ¦           ¦           _perfect-scrollbar.scss
+    ¦           ¦           _prism.scss
+    ¦           ¦           
+    ¦           +---variables
+    ¦                   _animations.scss
+    ¦                   _avatars.scss
+    ¦                   _badge.scss
+    ¦                   _breadcrumb.scss
+    ¦                   _cards-extend.scss
+    ¦                   _cards.scss
+    ¦                   _choices.scss
+    ¦                   _dark-version.scss
+    ¦                   _dropdowns.scss
+    ¦                   _fixed-plugin.scss
+    ¦                   _form-switch.scss
+    ¦                   _full-calendar.scss
+    ¦                   _header.scss
+    ¦                   _info-areas.scss
+    ¦                   _misc-extend.scss
+    ¦                   _misc.scss
+    ¦                   _navbar-vertical.scss
+    ¦                   _navbar.scss
+    ¦                   _pagination.scss
+    ¦                   _ripple.scss
+    ¦                   _rtl.scss
+    ¦                   _social-buttons.scss
+    ¦                   _table.scss
+    ¦                   _timeline.scss
+    ¦                   _utilities-extend.scss
+    ¦                   _utilities.scss
+    ¦                   _virtual-reality.scss
+    ¦                   
+    +---assets
+    ¦   +---css
+    ¦   ¦       animate.min.css
+    ¦   ¦       bootstrap.min.css
+    ¦   ¦       flaticon.css
+    ¦   ¦       fontawesome-all.min.css
+    ¦   ¦       magnific-popup.css
+    ¦   ¦       material-dashboard.css
+    ¦   ¦       material-dashboard.css.map
+    ¦   ¦       material-dashboard.min.css
+    ¦   ¦       nice-select.css
+    ¦   ¦       nucleo-icons.css
+    ¦   ¦       nucleo-svg.css
+    ¦   ¦       owl.carousel.min.css
+    ¦   ¦       price_rangs.css
+    ¦   ¦       Recruiter.css
+    ¦   ¦       responsive.css
+    ¦   ¦       slick.css
+    ¦   ¦       slicknav.css
+    ¦   ¦       style.css
+    ¦   ¦       themify-icons.css
+    ¦   ¦       
+    ¦   +---fonts
+    ¦   ¦       fa-brands-400.eot
+    ¦   ¦       fa-brands-400.svg
+    ¦   ¦       fa-brands-400.ttf
+    ¦   ¦       fa-brands-400.woff
+    ¦   ¦       fa-brands-400.woff2
+    ¦   ¦       fa-regular-400.eot
+    ¦   ¦       fa-regular-400.svg
+    ¦   ¦       fa-regular-400.ttf
+    ¦   ¦       fa-regular-400.woff
+    ¦   ¦       fa-regular-400.woff2
+    ¦   ¦       fa-solid-900.eot
+    ¦   ¦       fa-solid-900.svg
+    ¦   ¦       fa-solid-900.ttf
+    ¦   ¦       fa-solid-900.woff
+    ¦   ¦       fa-solid-900.woff2
+    ¦   ¦       Flaticon.eot
+    ¦   ¦       flaticon.html
+    ¦   ¦       Flaticon.svg
+    ¦   ¦       Flaticon.ttf
+    ¦   ¦       Flaticon.woff
+    ¦   ¦       Flaticon.woff2
+    ¦   ¦       themify.eot
+    ¦   ¦       themify.svg
+    ¦   ¦       themify.ttf
+    ¦   ¦       themify.woff
+    ¦   ¦       _flaticon.scss
+    ¦   ¦       
+    ¦   +---img
+    ¦   ¦   ¦   favicon.ico
+    ¦   ¦   ¦   
+    ¦   ¦   +---about
+    ¦   ¦   ¦       about_lft.png
+    ¦   ¦   ¦       about_right.png
+    ¦   ¦   ¦       pet_care.png
+    ¦   ¦   ¦       
+    ¦   ¦   +---adapt_icon
+    ¦   ¦   ¦       1.png
+    ¦   ¦   ¦       1.svg
+    ¦   ¦   ¦       2.png
+    ¦   ¦   ¦       3.png
+    ¦   ¦   ¦       
+    ¦   ¦   +---banner
+    ¦   ¦   ¦       dog.png
+    ¦   ¦   ¦       img.png
+    ¦   ¦   ¦       
+    ¦   ¦   +---blog
+    ¦   ¦   ¦       author.png
+    ¦   ¦   ¦       blog_4.png
+    ¦   ¦   ¦       home-blog1.jpg
+    ¦   ¦   ¦       home-blog2.jpg
+    ¦   ¦   ¦       learn_about_bg.png
+    ¦   ¦   ¦       single_blog_1.png
+    ¦   ¦   ¦       single_blog_2.png
+    ¦   ¦   ¦       single_blog_3.png
+    ¦   ¦   ¦       single_blog_4.png
+    ¦   ¦   ¦       single_blog_5.png
+    ¦   ¦   ¦       slide_thumb_1.png
+    ¦   ¦   ¦       
+    ¦   ¦   +---comment
+    ¦   ¦   ¦       comment_1.png
+    ¦   ¦   ¦       comment_2.png
+    ¦   ¦   ¦       comment_3.png
+    ¦   ¦   ¦       
+    ¦   ¦   +---elements
+    ¦   ¦   ¦       a.jpg
+    ¦   ¦   ¦       a2.jpg
+    ¦   ¦   ¦       d.jpg
+    ¦   ¦   ¦       disabled-check.png
+    ¦   ¦   ¦       disabled-radio.png
+    ¦   ¦   ¦       f1.jpg
+    ¦   ¦   ¦       f2.jpg
+    ¦   ¦   ¦       f3.jpg
+    ¦   ¦   ¦       f4.jpg
+    ¦   ¦   ¦       f5.jpg
+    ¦   ¦   ¦       f6.jpg
+    ¦   ¦   ¦       f7.jpg
+    ¦   ¦   ¦       f8.jpg
+    ¦   ¦   ¦       g1.jpg
+    ¦   ¦   ¦       g2.jpg
+    ¦   ¦   ¦       g3.jpg
+    ¦   ¦   ¦       g4.jpg
+    ¦   ¦   ¦       g5.jpg
+    ¦   ¦   ¦       g6.jpg
+    ¦   ¦   ¦       g7.jpg
+    ¦   ¦   ¦       g8.jpg
+    ¦   ¦   ¦       primary-check.png
+    ¦   ¦   ¦       primary-radio.png
+    ¦   ¦   ¦       success-check.png
+    ¦   ¦   ¦       success-radio.png
+    ¦   ¦   ¦       
+    ¦   ¦   +---gallery
+    ¦   ¦   ¦       1.png
+    ¦   ¦   ¦       2.png
+    ¦   ¦   ¦       3.png
+    ¦   ¦   ¦       cv_bg.jpg
+    ¦   ¦   ¦       how-applybg.png
+    ¦   ¦   ¦       
+    ¦   ¦   +---hero
+    ¦   ¦   ¦       about.jpg
+    ¦   ¦   ¦       h1_hero.jpg
+    ¦   ¦   ¦       
+    ¦   ¦   +---icon
+    ¦   ¦   ¦       form.png
+    ¦   ¦   ¦       job-list1.png
+    ¦   ¦   ¦       job-list2.png
+    ¦   ¦   ¦       job-list3.png
+    ¦   ¦   ¦       job-list4.png
+    ¦   ¦   ¦       
+    ¦   ¦   +---logo
+    ¦   ¦   ¦       form-iocn.jpg
+    ¦   ¦   ¦       loder.jpg
+    ¦   ¦   ¦       logo.png
+    ¦   ¦   ¦       logo2_footer.png
+    ¦   ¦   ¦       select-items-icon.jpg
+    ¦   ¦   ¦       testimonial.png
+    ¦   ¦   ¦       
+    ¦   ¦   +---offers
+    ¦   ¦   ¦       1.png
+    ¦   ¦   ¦       2.png
+    ¦   ¦   ¦       3.png
+    ¦   ¦   ¦       
+    ¦   ¦   +---our_blog
+    ¦   ¦   ¦       blog-img1.jpg
+    ¦   ¦   ¦       
+    ¦   ¦   +---post
+    ¦   ¦   ¦       next.png
+    ¦   ¦   ¦       post_1.png
+    ¦   ¦   ¦       post_10.png
+    ¦   ¦   ¦       post_2.png
+    ¦   ¦   ¦       post_3.png
+    ¦   ¦   ¦       post_4.png
+    ¦   ¦   ¦       post_5.png
+    ¦   ¦   ¦       post_6.png
+    ¦   ¦   ¦       post_7.png
+    ¦   ¦   ¦       post_8.png
+    ¦   ¦   ¦       post_9.png
+    ¦   ¦   ¦       preview.png
+    ¦   ¦   ¦       
+    ¦   ¦   +---prising
+    ¦   ¦   ¦       1.png
+    ¦   ¦   ¦       10.png
+    ¦   ¦   ¦       2.png
+    ¦   ¦   ¦       3.png
+    ¦   ¦   ¦       4.png
+    ¦   ¦   ¦       5.png
+    ¦   ¦   ¦       6.png
+    ¦   ¦   ¦       7.png
+    ¦   ¦   ¦       8.png
+    ¦   ¦   ¦       9.png
+    ¦   ¦   ¦       
+    ¦   ¦   +---service
+    ¦   ¦   ¦       1.png
+    ¦   ¦   ¦       2.png
+    ¦   ¦   ¦       3.png
+    ¦   ¦   ¦       footer_bg.jpg
+    ¦   ¦   ¦       service_icon_1.png
+    ¦   ¦   ¦       service_icon_2.png
+    ¦   ¦   ¦       service_icon_3.png
+    ¦   ¦   ¦       service_icon_bg_1.png
+    ¦   ¦   ¦       support-img.jpg
+    ¦   ¦   ¦       
+    ¦   ¦   +---team
+    ¦   ¦   ¦       1.png
+    ¦   ¦   ¦       2.png
+    ¦   ¦   ¦       3.png
+    ¦   ¦   ¦       
+    ¦   ¦   +---testmonial
+    ¦   ¦           1.png
+    ¦   ¦           testimonial-founder.png
+    ¦   ¦           
+    ¦   +---js
+    ¦   ¦   ¦   animated.headline.js
+    ¦   ¦   ¦   bootstrap-notify.js
+    ¦   ¦   ¦   bootstrap.bundle.min.js
+    ¦   ¦   ¦   bootstrap.min.js
+    ¦   ¦   ¦   Chart.extension.js
+    ¦   ¦   ¦   chartjs.min.js
+    ¦   ¦   ¦   contact.js
+    ¦   ¦   ¦   countup.min.js
+    ¦   ¦   ¦   jquery.ajaxchimp.min.js
+    ¦   ¦   ¦   jquery.form.js
+    ¦   ¦   ¦   jquery.magnific-popup.js
+    ¦   ¦   ¦   jquery.nice-select.min.js
+    ¦   ¦   ¦   jquery.paroller.min.js
+    ¦   ¦   ¦   jquery.scrollUp.min.js
+    ¦   ¦   ¦   jquery.slicknav.min.js
+    ¦   ¦   ¦   jquery.sticky.js
+    ¦   ¦   ¦   jquery.validate.min.js
+    ¦   ¦   ¦   mail-script.js
+    ¦   ¦   ¦   main.js
+    ¦   ¦   ¦   material-dashboard.js
+    ¦   ¦   ¦   material-dashboard.js.map
+    ¦   ¦   ¦   material-dashboard.min.js
+    ¦   ¦   ¦   one-page-nav-min.js
+    ¦   ¦   ¦   owl.carousel.min.js
+    ¦   ¦   ¦   perfect-scrollbar.min.js
+    ¦   ¦   ¦   plugins.js
+    ¦   ¦   ¦   popper.min.js
+    ¦   ¦   ¦   price_rangs.js
+    ¦   ¦   ¦   slick.min.js
+    ¦   ¦   ¦   smooth-scrollbar.min.js
+    ¦   ¦   ¦   world.js
+    ¦   ¦   ¦   wow.min.js
+    ¦   ¦   ¦   
+    ¦   ¦   +---core
+    ¦   ¦   ¦       bootstrap.bundle.min.js
+    ¦   ¦   ¦       bootstrap.min.js
+    ¦   ¦   ¦       popper.min.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---plugins
+    ¦   ¦   ¦       bootstrap-notify.js
+    ¦   ¦   ¦       Chart.extension.js
+    ¦   ¦   ¦       chartjs.min.js
+    ¦   ¦   ¦       countup.min.js
+    ¦   ¦   ¦       perfect-scrollbar.min.js
+    ¦   ¦   ¦       smooth-scrollbar.min.js
+    ¦   ¦   ¦       world.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---vendor
+    ¦   ¦           jquery-1.12.4.min.js
+    ¦   ¦           modernizr-3.5.0.min.js
+    ¦   ¦           
+    ¦   +---scss
+    ¦       ¦   material-dashboard.scss
+    ¦       ¦   style.scss
+    ¦       ¦   _apply-proces.scss
+    ¦       ¦   _blog.scss
+    ¦       ¦   _blog_page.scss
+    ¦       ¦   _bradcam.scss
+    ¦       ¦   _color.scss
+    ¦       ¦   _common.scss
+    ¦       ¦   _contact.scss
+    ¦       ¦   _cv-online.scss
+    ¦       ¦   _elements.scss
+    ¦       ¦   _extend.scss
+    ¦       ¦   _featured-Jobs.scss
+    ¦       ¦   _footer.scss
+    ¦       ¦   _h1-hero.scss
+    ¦       ¦   _headerMenu.scss
+    ¦       ¦   _job_details.scss
+    ¦       ¦   _job_listing.scss
+    ¦       ¦   _mixins.scss
+    ¦       ¦   _overlay.scss
+    ¦       ¦   _pagination.scss
+    ¦       ¦   _recent.scss
+    ¦       ¦   _services.scss
+    ¦       ¦   _services_section.scss
+    ¦       ¦   _support-company.scss
+    ¦       ¦   _team.scss
+    ¦       ¦   _testimonial.scss
+    ¦       ¦   _variables.scss
+    ¦       ¦   
+    ¦       +---material-dashboard
+    ¦           ¦   theme.scss
+    ¦           ¦   _alert.scss
+    ¦           ¦   _avatars.scss
+    ¦           ¦   _badge.scss
+    ¦           ¦   _breadcrumbs.scss
+    ¦           ¦   _buttons.scss
+    ¦           ¦   _cards.scss
+    ¦           ¦   _dark-version.scss
+    ¦           ¦   _dropdown.scss
+    ¦           ¦   _dropup.scss
+    ¦           ¦   _fixed-plugin.scss
+    ¦           ¦   _footer.scss
+    ¦           ¦   _forms.scss
+    ¦           ¦   _gradients.scss
+    ¦           ¦   _header.scss
+    ¦           ¦   _icons.scss
+    ¦           ¦   _info-areas.scss
+    ¦           ¦   _misc.scss
+    ¦           ¦   _nav.scss
+    ¦           ¦   _navbar-vertical.scss
+    ¦           ¦   _navbar.scss
+    ¦           ¦   _pagination.scss
+    ¦           ¦   _popovers.scss
+    ¦           ¦   _progress.scss
+    ¦           ¦   _ripple.scss
+    ¦           ¦   _rtl.scss
+    ¦           ¦   _social-buttons.scss
+    ¦           ¦   _tables.scss
+    ¦           ¦   _tilt.scss
+    ¦           ¦   _timeline.scss
+    ¦           ¦   _tooltips.scss
+    ¦           ¦   _typography.scss
+    ¦           ¦   _utilities-extend.scss
+    ¦           ¦   _utilities.scss
+    ¦           ¦   _variables.scss
+    ¦           ¦   
+    ¦           +---bootstrap
+    ¦           ¦   ¦   bootstrap-grid.scss
+    ¦           ¦   ¦   bootstrap-reboot.scss
+    ¦           ¦   ¦   bootstrap-utilities.scss
+    ¦           ¦   ¦   bootstrap.scss
+    ¦           ¦   ¦   _accordion.scss
+    ¦           ¦   ¦   _alert.scss
+    ¦           ¦   ¦   _badge.scss
+    ¦           ¦   ¦   _breadcrumb.scss
+    ¦           ¦   ¦   _button-group.scss
+    ¦           ¦   ¦   _buttons.scss
+    ¦           ¦   ¦   _card.scss
+    ¦           ¦   ¦   _carousel.scss
+    ¦           ¦   ¦   _close.scss
+    ¦           ¦   ¦   _containers.scss
+    ¦           ¦   ¦   _dropdown.scss
+    ¦           ¦   ¦   _forms.scss
+    ¦           ¦   ¦   _functions.scss
+    ¦           ¦   ¦   _grid.scss
+    ¦           ¦   ¦   _helpers.scss
+    ¦           ¦   ¦   _images.scss
+    ¦           ¦   ¦   _list-group.scss
+    ¦           ¦   ¦   _maps.scss
+    ¦           ¦   ¦   _mixins.scss
+    ¦           ¦   ¦   _modal.scss
+    ¦           ¦   ¦   _nav.scss
+    ¦           ¦   ¦   _navbar.scss
+    ¦           ¦   ¦   _offcanvas.scss
+    ¦           ¦   ¦   _pagination.scss
+    ¦           ¦   ¦   _placeholders.scss
+    ¦           ¦   ¦   _popover.scss
+    ¦           ¦   ¦   _progress.scss
+    ¦           ¦   ¦   _reboot.scss
+    ¦           ¦   ¦   _root.scss
+    ¦           ¦   ¦   _spinners.scss
+    ¦           ¦   ¦   _tables.scss
+    ¦           ¦   ¦   _toasts.scss
+    ¦           ¦   ¦   _tooltip.scss
+    ¦           ¦   ¦   _transitions.scss
+    ¦           ¦   ¦   _type.scss
+    ¦           ¦   ¦   _utilities.scss
+    ¦           ¦   ¦   _variables.scss
+    ¦           ¦   ¦   
+    ¦           ¦   +---forms
+    ¦           ¦   ¦       _floating-labels.scss
+    ¦           ¦   ¦       _form-check.scss
+    ¦           ¦   ¦       _form-control.scss
+    ¦           ¦   ¦       _form-range.scss
+    ¦           ¦   ¦       _form-select.scss
+    ¦           ¦   ¦       _form-text.scss
+    ¦           ¦   ¦       _input-group.scss
+    ¦           ¦   ¦       _labels.scss
+    ¦           ¦   ¦       _validation.scss
+    ¦           ¦   ¦       
+    ¦           ¦   +---helpers
+    ¦           ¦   ¦       _clearfix.scss
+    ¦           ¦   ¦       _color-bg.scss
+    ¦           ¦   ¦       _colored-links.scss
+    ¦           ¦   ¦       _position.scss
+    ¦           ¦   ¦       _ratio.scss
+    ¦           ¦   ¦       _stacks.scss
+    ¦           ¦   ¦       _stretched-link.scss
+    ¦           ¦   ¦       _text-truncation.scss
+    ¦           ¦   ¦       _visually-hidden.scss
+    ¦           ¦   ¦       _vr.scss
+    ¦           ¦   ¦       
+    ¦           ¦   +---mixins
+    ¦           ¦   ¦       _alert.scss
+    ¦           ¦   ¦       _backdrop.scss
+    ¦           ¦   ¦       _banner.scss
+    ¦           ¦   ¦       _border-radius.scss
+    ¦           ¦   ¦       _box-shadow.scss
+    ¦           ¦   ¦       _breakpoints.scss
+    ¦           ¦   ¦       _buttons.scss
+    ¦           ¦   ¦       _caret.scss
+    ¦           ¦   ¦       _clearfix.scss
+    ¦           ¦   ¦       _color-scheme.scss
+    ¦           ¦   ¦       _container.scss
+    ¦           ¦   ¦       _deprecate.scss
+    ¦           ¦   ¦       _forms.scss
+    ¦           ¦   ¦       _gradients.scss
+    ¦           ¦   ¦       _grid.scss
+    ¦           ¦   ¦       _image.scss
+    ¦           ¦   ¦       _list-group.scss
+    ¦           ¦   ¦       _lists.scss
+    ¦           ¦   ¦       _pagination.scss
+    ¦           ¦   ¦       _reset-text.scss
+    ¦           ¦   ¦       _resize.scss
+    ¦           ¦   ¦       _table-variants.scss
+    ¦           ¦   ¦       _text-truncate.scss
+    ¦           ¦   ¦       _transition.scss
+    ¦           ¦   ¦       _utilities.scss
+    ¦           ¦   ¦       _visually-hidden.scss
+    ¦           ¦   ¦       
+    ¦           ¦   +---utilities
+    ¦           ¦   ¦       _api.scss
+    ¦           ¦   ¦       
+    ¦           ¦   +---vendor
+    ¦           ¦           _rfs.scss
+    ¦           ¦           
+    ¦           +---cards
+    ¦           ¦       card-background.scss
+    ¦           ¦       card-rotate.scss
+    ¦           ¦       
+    ¦           +---custom
+    ¦           ¦       _styles.scss
+    ¦           ¦       _variables.scss
+    ¦           ¦       
+    ¦           +---forms
+    ¦           ¦       _form-check.scss
+    ¦           ¦       _form-select.scss
+    ¦           ¦       _form-switch.scss
+    ¦           ¦       _forms.scss
+    ¦           ¦       _input-group.scss
+    ¦           ¦       _inputs.scss
+    ¦           ¦       _labels.scss
+    ¦           ¦       
+    ¦           +---mixins
+    ¦           ¦       mixins.scss
+    ¦           ¦       _badge.scss
+    ¦           ¦       _buttons.scss
+    ¦           ¦       _colored-shadows.scss
+    ¦           ¦       _hover.scss
+    ¦           ¦       _social-buttons.scss
+    ¦           ¦       _vendor.scss
+    ¦           ¦       
+    ¦           +---plugins
+    ¦           ¦   +---free
+    ¦           ¦           plugins.scss
+    ¦           ¦           _flatpickr.scss
+    ¦           ¦           _nouislider.scss
+    ¦           ¦           _perfect-scrollbar.scss
+    ¦           ¦           _prism.scss
+    ¦           ¦           
+    ¦           +---variables
+    ¦                   _animations.scss
+    ¦                   _avatars.scss
+    ¦                   _badge.scss
+    ¦                   _breadcrumb.scss
+    ¦                   _cards-extend.scss
+    ¦                   _cards.scss
+    ¦                   _choices.scss
+    ¦                   _dark-version.scss
+    ¦                   _dropdowns.scss
+    ¦                   _fixed-plugin.scss
+    ¦                   _form-switch.scss
+    ¦                   _full-calendar.scss
+    ¦                   _header.scss
+    ¦                   _info-areas.scss
+    ¦                   _misc-extend.scss
+    ¦                   _misc.scss
+    ¦                   _navbar-vertical.scss
+    ¦                   _navbar.scss
+    ¦                   _pagination.scss
+    ¦                   _ripple.scss
+    ¦                   _rtl.scss
+    ¦                   _social-buttons.scss
+    ¦                   _table.scss
+    ¦                   _timeline.scss
+    ¦                   _utilities-extend.scss
+    ¦                   _utilities.scss
+    ¦                   _virtual-reality.scss
+    ¦                   
+    +---css
+    ¦       animations.css
+    ¦       buttonAdmin.css
+    ¦       Login.css
+    ¦       Sign-Up.css
+    ¦       site.css
+    ¦       
+    +---Doc
+    ¦   ¦   index.html
+    ¦   ¦   
+    ¦   +---css
+    ¦   ¦       font-awesome.min.css
+    ¦   ¦       main.css
+    ¦   ¦       normalize.min.css
+    ¦   ¦       
+    ¦   +---fonts
+    ¦   ¦       fontawesome-webfont.eot
+    ¦   ¦       fontawesome-webfont.svg
+    ¦   ¦       fontawesome-webfont.ttf
+    ¦   ¦       fontawesome-webfont.woff
+    ¦   ¦       FontAwesome.otf
+    ¦   ¦       
+    ¦   +---img
+    ¦   ¦       logo.png
+    ¦   ¦       Thumbs.db
+    ¦   ¦       
+    ¦   +---js
+    ¦   ¦       custom.js
+    ¦   ¦       jquery-1.11.0.min.js
+    ¦   ¦       jquery.nav.js
+    ¦   ¦       
+    ¦   +---syntax-highlighter
+    ¦       +---scripts
+    ¦       ¦       shAutoloader.js
+    ¦       ¦       shBrushAppleScript.js
+    ¦       ¦       shBrushAS3.js
+    ¦       ¦       shBrushBash.js
+    ¦       ¦       shBrushColdFusion.js
+    ¦       ¦       shBrushCpp.js
+    ¦       ¦       shBrushCSharp.js
+    ¦       ¦       shBrushCss.js
+    ¦       ¦       shBrushDelphi.js
+    ¦       ¦       shBrushDiff.js
+    ¦       ¦       shBrushErlang.js
+    ¦       ¦       shBrushGroovy.js
+    ¦       ¦       shBrushJava.js
+    ¦       ¦       shBrushJavaFX.js
+    ¦       ¦       shBrushJScript.js
+    ¦       ¦       shBrushPerl.js
+    ¦       ¦       shBrushPhp.js
+    ¦       ¦       shBrushPlain.js
+    ¦       ¦       shBrushPowerShell.js
+    ¦       ¦       shBrushPython.js
+    ¦       ¦       shBrushRuby.js
+    ¦       ¦       shBrushSass.js
+    ¦       ¦       shBrushScala.js
+    ¦       ¦       shBrushSql.js
+    ¦       ¦       shBrushVb.js
+    ¦       ¦       shBrushXml.js
+    ¦       ¦       shCore.js
+    ¦       ¦       shLegacy.js
+    ¦       ¦       
+    ¦       +---styles
+    ¦               shCore.css
+    ¦               shCoreDefault.css
+    ¦               shCoreDjango.css
+    ¦               shCoreEclipse.css
+    ¦               shCoreEmacs.css
+    ¦               shCoreFadeToGrey.css
+    ¦               shCoreMDUltra.css
+    ¦               shCoreMidnight.css
+    ¦               shCoreRDark.css
+    ¦               shThemeDefault.css
+    ¦               shThemeDjango.css
+    ¦               shThemeEclipse.css
+    ¦               shThemeEmacs.css
+    ¦               shThemeFadeToGrey.css
+    ¦               shThemeMDUltra.css
+    ¦               shThemeMidnight.css
+    ¦               shThemeRDark.css
+    ¦               
+    +---img
+    ¦       background.jpg
+    ¦       
+    +---js
+    ¦       site.js
+    ¦       
+    +---lib
+    ¦   +---bootstrap
+    ¦   ¦   ¦   LICENSE
+    ¦   ¦   ¦   
+    ¦   ¦   +---dist
+    ¦   ¦       +---css
+    ¦   ¦       ¦       bootstrap-grid.css
+    ¦   ¦       ¦       bootstrap-grid.css.map
+    ¦   ¦       ¦       bootstrap-grid.min.css
+    ¦   ¦       ¦       bootstrap-grid.min.css.map
+    ¦   ¦       ¦       bootstrap-grid.rtl.css
+    ¦   ¦       ¦       bootstrap-grid.rtl.css.map
+    ¦   ¦       ¦       bootstrap-grid.rtl.min.css
+    ¦   ¦       ¦       bootstrap-grid.rtl.min.css.map
+    ¦   ¦       ¦       bootstrap-reboot.css
+    ¦   ¦       ¦       bootstrap-reboot.css.map
+    ¦   ¦       ¦       bootstrap-reboot.min.css
+    ¦   ¦       ¦       bootstrap-reboot.min.css.map
+    ¦   ¦       ¦       bootstrap-reboot.rtl.css
+    ¦   ¦       ¦       bootstrap-reboot.rtl.css.map
+    ¦   ¦       ¦       bootstrap-reboot.rtl.min.css
+    ¦   ¦       ¦       bootstrap-reboot.rtl.min.css.map
+    ¦   ¦       ¦       bootstrap-utilities.css
+    ¦   ¦       ¦       bootstrap-utilities.css.map
+    ¦   ¦       ¦       bootstrap-utilities.min.css
+    ¦   ¦       ¦       bootstrap-utilities.min.css.map
+    ¦   ¦       ¦       bootstrap-utilities.rtl.css
+    ¦   ¦       ¦       bootstrap-utilities.rtl.css.map
+    ¦   ¦       ¦       bootstrap-utilities.rtl.min.css
+    ¦   ¦       ¦       bootstrap-utilities.rtl.min.css.map
+    ¦   ¦       ¦       bootstrap.css
+    ¦   ¦       ¦       bootstrap.css.map
+    ¦   ¦       ¦       bootstrap.min.css
+    ¦   ¦       ¦       bootstrap.min.css.map
+    ¦   ¦       ¦       bootstrap.rtl.css
+    ¦   ¦       ¦       bootstrap.rtl.css.map
+    ¦   ¦       ¦       bootstrap.rtl.min.css
+    ¦   ¦       ¦       bootstrap.rtl.min.css.map
+    ¦   ¦       ¦       
+    ¦   ¦       +---js
+    ¦   ¦               bootstrap.bundle.js
+    ¦   ¦               bootstrap.bundle.js.map
+    ¦   ¦               bootstrap.bundle.min.js
+    ¦   ¦               bootstrap.bundle.min.js.map
+    ¦   ¦               bootstrap.esm.js
+    ¦   ¦               bootstrap.esm.js.map
+    ¦   ¦               bootstrap.esm.min.js
+    ¦   ¦               bootstrap.esm.min.js.map
+    ¦   ¦               bootstrap.js
+    ¦   ¦               bootstrap.js.map
+    ¦   ¦               bootstrap.min.js
+    ¦   ¦               bootstrap.min.js.map
+    ¦   ¦               
+    ¦   +---jquery
+    ¦   ¦   ¦   LICENSE.txt
+    ¦   ¦   ¦   
+    ¦   ¦   +---dist
+    ¦   ¦           jquery.js
+    ¦   ¦           jquery.min.js
+    ¦   ¦           jquery.min.map
+    ¦   ¦           
+    ¦   +---jquery-validation
+    ¦   ¦   ¦   LICENSE.md
+    ¦   ¦   ¦   
+    ¦   ¦   +---dist
+    ¦   ¦           additional-methods.js
+    ¦   ¦           additional-methods.min.js
+    ¦   ¦           jquery.validate.js
+    ¦   ¦           jquery.validate.min.js
+    ¦   ¦           
+    ¦   +---jquery-validation-unobtrusive
+    ¦           jquery.validate.unobtrusive.js
+    ¦           jquery.validate.unobtrusive.min.js
+    ¦           LICENSE.txt
+    ¦           
+    +---uploads
+            4c6c0089-597a-4653-9abc-cd405ae561ea.jpg
+            56b97dfd-ed77-459c-9e9c-b5bdeb1af9ac.png
+            6239bd2b-8e57-494a-ac88-75c57b2e8f6b.pdf
+            a156d104-72fe-40b3-b25a-8f4fb60d0aa2.png
+            

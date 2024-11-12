@@ -212,6 +212,13 @@ namespace JobFinder.Areas.Identity.Pages.Account.Manage
                 await LoadAsync(user);
                 return Page();
             }
+            // Check if user is over 18
+            if ((DateTime.Today.Year - Input.Birthday.Year) < 18 || (DateTime.Today.Year - Input.Birthday.Year == 18 && Input.Birthday.Date > DateTime.Today.AddYears(-18)))
+            {
+                ModelState.AddModelError("Input.Birthday", "You must be at least 18 years old.");
+                await LoadAsync(user);
+                return Page();
+            }
 
             // Handle phone number update
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
