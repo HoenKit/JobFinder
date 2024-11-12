@@ -189,7 +189,7 @@ namespace JobFinder.Areas.Identity.Pages.RecruiterInfo.Shared
             };
 
             _jobPostingRepository.AddJobPosting(jobPosting);
-            StatusMessage = "New job posting has been created.";
+            //StatusMessage = "New job posting has been created.";
             return RedirectToPage("/RecruiterInfo/Index");
         }
 
