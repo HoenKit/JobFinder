@@ -88,9 +88,18 @@ namespace JobFinder.Pages
             if (string.IsNullOrEmpty(UserId))
             {
                 ModelState.AddModelError(string.Empty, "User ID is required.");
+                LoadJobPositions();
                 return Page();
             }
 
+
+            // Check if user is over 18
+            if ((DateTime.Today.Year - Birthday.Year) < 18 || (DateTime.Today.Year - Birthday.Year == 18 && Birthday.Date > DateTime.Today.AddYears(-18)))
+            {
+                ModelState.AddModelError("Input.Birthday", "You must be at least 18 years old.");
+                LoadJobPositions();
+                return Page();
+            }
             var jobSeeker = new JobSeeker
             {
                 FirstName = FirstName,
@@ -122,6 +131,7 @@ namespace JobFinder.Pages
             else
             {
                 ModelState.AddModelError("CV", "Please upload your CV.");
+                LoadJobPositions();
                 return Page();
             }
 
